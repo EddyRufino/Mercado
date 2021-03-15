@@ -73,7 +73,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 {{-- <div class="dropdown-header text-center">
                     <strong>{{ auth()->user()->roles->count() ?'  '.auth()->user()->roles->first()->display_name : '' }}</strong>
                 </div> --}}
-                <a class="dropdown-item" href="{{ route('usuarios.show', auth()->user()->id) }}">
+                <a class="dropdown-item" href="{{ route('users.show', auth()->user()->id) }}">
                   <i class="fa fa-user"></i> Perfil
                 </a>
                 <a class="dropdown-item" href="{{ route('logout') }}"

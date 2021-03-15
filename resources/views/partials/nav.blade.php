@@ -240,7 +240,7 @@
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('usuarios.index') }}">
+                    <a class="nav-link" href="{{ route('users.index') }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Lista usuarios sistema</p>
                     </a>

@@ -7,7 +7,7 @@
                 <div class="card mt-3">
                     <div class="card-header bg-secondary">Editar Usuario</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('usuarios.update', $user->id) }}">
+                        <form method="POST" action="{{ route('users.update', $user->id) }}">
                         @csrf
                         @method('PUT')
                             @include('forms.formUser', ['btn' => 'Editar Usuario'])
@@ -39,7 +39,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Editar Usuario
                                     </button>
-                                    <a href="{{ route('usuarios.index') }}" class="btn btn-secondary text-white">
+                                    <a href="{{ route('users.index') }}" class="btn btn-secondary text-white">
                                         Cancelar
                                     </a>
                                 </div>

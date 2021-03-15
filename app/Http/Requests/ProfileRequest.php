@@ -30,7 +30,7 @@ class ProfileRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users')->ignore($this->user()->id)
+                Rule::unique('users')->ignore($this->user)
             ],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ];

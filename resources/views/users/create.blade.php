@@ -7,7 +7,7 @@
                 <div class="card mt-3">
                     <div class="card-header bg-secondary">Crear Usuario</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('usuarios.store') }}">
+                        <form method="POST" action="{{ route('users.store') }}">
                         @csrf
                             @include('forms.formUser', [
                                 'user' => new App\User,
@@ -41,7 +41,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Nuevo Usuario
                                     </button>
-                                    <a href="{{ route('usuarios.index') }}" class="btn btn-secondary text-white">
+                                    <a href="{{ route('users.index') }}" class="btn btn-secondary text-white">
                                         Cancelar
                                     </a>
                                 </div>

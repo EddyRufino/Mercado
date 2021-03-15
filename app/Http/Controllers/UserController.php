@@ -6,6 +6,7 @@ use App\User;
 use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsuariosRequest;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -18,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::latest()->paginate(3);
+        $users = User::latest()->paginate();
         return view('users.index', compact('users'));
     }
 
@@ -33,36 +34,23 @@ class UserController extends Controller
     public function store(UsuariosRequest $request)
     {
         $user = User::create($request->all());
-        // return $request->all();
-        // $user = new User;
-
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->password = $request->password;
 
         $user->roles()->attach($request->roles);
-
-        // dd($user);
 
         $user->save();
 
         return back()->with('status', 'Usuario guardado con éxito!');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
-
-        $this->authorize('show', $user);
+        // $this->authorize('show', $user);
 
         return view('users.show', compact('user'));
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-
-        $user = User::findOrFail($id);
-
         // $this->authorize('update', $user);
 
         $roles = Role::pluck('display_name', 'id');
@@ -70,37 +58,8 @@ class UserController extends Controller
         return view('users.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProfileRequest $request, User $user)
     {
-        // $rules = $this->validate($request,[
-        //     'name' => 'required',
-        //     'email' => 'required', Rule::unique('users')->ignore($id),
-        //     'avatar' => '',
-        //     // 'password' => 'required|confirmed',
-        //     'password' => '',
-        // ]);
-
-        // $user = User::findOrFail($id);
-
-        // $user->update([
-        //     $user->name = $request->name,
-        //     $user->email = $request->email,
-        //     $user->password = $request->password
-        // ]);
-
-        // $user->roles()->sync($request->roles);
-
-        $rules = [
-            'name' => 'required',
-            'email' => 'required', Rule::unique('users')->ignore($id),
-            // 'password' => 'required|confirmed',
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-        ];
-
-        $this->validate($request, $rules);
-
-        $user = User::findOrFail($id);
-
         $user->update($request->only(['name', 'email']));
 
         if (! is_null($request->password)) {
@@ -113,10 +72,10 @@ class UserController extends Controller
         return back()->with('status', 'Usuario actualizado con éxito!');
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::findOrFail($id);
         $user->delete();
+
         return back()->with('status', 'Usuario eliminado con éxito!');
     }
 }
