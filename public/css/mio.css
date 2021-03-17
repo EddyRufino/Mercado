@@ -6,5 +6,8 @@ th {
     color: #dce0e3;
 }
 
+a.d-block.up {
+    transform: translateY(-6px);
+}
 /*color: #c2c7d0;*/
 
