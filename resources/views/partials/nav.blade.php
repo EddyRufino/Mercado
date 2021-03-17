@@ -11,11 +11,16 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <div class="image mt-2">
           <img src="/adminlte/img/no-img.png" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
+        <div class="info d-flex flex-column">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block up">
+            <small>
+              {{ auth()->user()->roles->count() ?'  '.auth()->user()->roles->first()->display_name : '' }}
+            </small>
+          </a>
         </div>
       </div>
 
@@ -29,9 +34,9 @@
                @if (auth()->user()->hasRoles(['admin', 'recep']))
                <li class="nav-item has-treeview ">
                  <a href="#" class="nav-link ">
-                   <i class="nav-icon fa fa-university"></i>
+                   <i class="nav-icon fa fa-users"></i>
                    <p>
-                     Paraderos
+                     Conductores
                      <i class="right fas fa-angle-left"></i>
                    </p>
                  </a>
@@ -39,13 +44,13 @@
                    <li class="nav-item">
                      <a href="#" class="nav-link">
                        <i class="far fa-circle nav-icon"></i>
-                       <p>Listar Paraderos</p>
+                       <p>Listar Conductores</p>
                      </a>
                    </li>
                    <li class="nav-item">
                      <a href="#" class="nav-link">
                        <i class="far fa-circle nav-icon"></i>
-                       <p>Crear Paradero</p>
+                       <p>Crear Conductor</p>
                      </a>
                    </li>
                  </ul>
@@ -58,9 +63,9 @@
             @if (auth()->user()->hasRoles(['admin', 'recep']))
             <li class="nav-item has-treeview ">
               <a href="#" class="nav-link ">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-university"></i>
                 <p>
-                  Listado de Socios
+                  Ubicaciones
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -68,7 +73,13 @@
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Listar Socios</p>
+                    <p>Listar Ubicaciones</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Crear Ubicación</p>
                   </a>
                 </li>
               </ul>
@@ -81,9 +92,9 @@
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                Integrantes
+                Actividades
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -91,13 +102,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Integrantes</p>
+                  <p>Listar Actividades</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Integrante</p>
+                  <p>Crear Actividad</p>
                 </a>
               </li>
             </ul>
@@ -115,7 +126,7 @@
             </a>
           </li> --}}
 
-        @auth
+{{--         @auth
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
@@ -225,7 +236,7 @@
             </ul>
           </li>
           @endif
-        @endauth
+        @endauth --}}
 
           @auth
             @if (auth()->user()->hasRoles(['admin']))
@@ -243,6 +254,12 @@
                     <a class="nav-link" href="{{ route('users.index') }}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Lista usuarios sistema</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('users.create') }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Crear usuario sistema</p>
                     </a>
                 </li>
 
