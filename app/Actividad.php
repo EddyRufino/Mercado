@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actividad extends Model
 {
-    //
+    public function puestos()
+    {
+        return $this->hasMany(Puesto::class);
+    }
 }

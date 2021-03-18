@@ -14,7 +14,8 @@ class PuestoController extends Controller
 
     public function index()
     {
-        //
+        $puestos = Puesto::latest()->paginate(7);
+        return view('puestos.index', compact('puestos'));
     }
 
     public function create()

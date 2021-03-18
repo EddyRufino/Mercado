@@ -13,6 +13,8 @@ Route::put('profile', 'ProfileController@update')
             ->name('profile.update');
 
 Route::resource('users', 'UserController');
+Route::resource('ubicaciones', 'UbicacionController')->except('show');
+Route::resource('puestos', 'PuestoController');
 
 Auth::routes(['register' => false]);
 

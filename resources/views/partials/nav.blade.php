@@ -71,13 +71,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('ubicaciones.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Listar Ubicaciones</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('ubicaciones.create') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Crear Ubicación</p>
                   </a>
@@ -126,27 +126,27 @@
             </a>
           </li> --}}
 
-{{--         @auth
+        @auth
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
-                Licencias
+                Puestos
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('puestos.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Licencias</p>
+                  <p>Listar Puestos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('puestos.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Licencia</p>
+                  <p>Crear Puesto</p>
                 </a>
               </li>
             </ul>
@@ -154,7 +154,7 @@
           @endif
         @endauth
 
-        @auth
+ {{--        @auth
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">

@@ -9,41 +9,52 @@ class UbicacionController extends Controller
 {
     public function __constructor()
     {
-        //
+        $this->middleware('auth');
     }
 
     public function index()
     {
-        //
+        $ubicaciones = Ubicacion::latest()->paginate(7);
+        return view('ubicaciones.index', compact('ubicaciones'));
     }
 
     public function create()
     {
-        //
+        return view('ubicaciones.create');
     }
 
-    public function store(Request $request)
+    public function store(Ubicacion $ubicacione)
+    {
+        request()->validate(['nombre' => 'required']);
+
+        $ubicacion = Ubicacion::create(request()->all());
+
+        return redirect()->route('ubicaciones.index', compact('ubicacion'));
+    }
+
+    public function show(Ubicacion $ubicacione)
     {
         //
     }
 
-    public function show(Ubicacion $puesto)
+    public function edit(Request $request, Ubicacion $ubicacione)
     {
-        //
+        return view('ubicaciones.edit', compact('ubicacione'));
     }
 
-    public function edit(Ubicacion $puesto)
+    public function update(Ubicacion $ubicacione)
     {
-        //
+        request()->validate(['nombre' => 'required']);
+
+        $ubicacione->update(request()->all());
+
+        return redirect()->route('ubicaciones.index', compact('ubicacione'));
     }
 
-    public function update(Request $request, Ubicacion $puesto)
+    public function destroy(Ubicacion $ubicacione)
     {
-        //
-    }
+        $ubicacione->delete();
 
-    public function destroy(Ubicacion $puesto)
-    {
-        //
+        return redirect()->route('ubicaciones.index', $ubicacione)->with('status', 'Tu ubicación fue eliminada.');
     }
 }
