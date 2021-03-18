@@ -76,6 +76,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
                   <i class="fa fa-user"></i> Perfil
                 </a>
+{{--                 <a class="dropdown-item" href="{{ route('home') }}">
+                  <i class="fa fa-search"></i> Buscador
+                </a> --}}
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
