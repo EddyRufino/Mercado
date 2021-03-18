@@ -24,9 +24,13 @@ class UsuariosRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => ['required', 'string', 'max:240'],
+            'apellido' => ['required', 'string', 'max:240'],
             'email' => 'required|unique:users,email,'.$this->route('usuario'),
-            'password' => 'required|confirmed',
+            'direccion' => ['string', 'nullable', 'max:240'],
+            'telefono' => ['string', 'nullable', 'max:9'],
+            'dni' => ['string', 'nullable', 'min:8', 'max:8'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

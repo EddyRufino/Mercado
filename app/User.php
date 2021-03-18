@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Puesto;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'apellido',
+        'email',
+        'direccion',
+        'telefono',
+        'dni',
+        'password',
     ];
 
     /**
@@ -58,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasRoles(['admin']);
     }
+
+    // public function puestos()
+    // {
+    //   return $this->hasMany(Puesto::class);
+    // }
 }

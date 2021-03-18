@@ -26,12 +26,16 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:240'],
             'email' => ['required',
                 'string',
                 'email',
                 'max:255',
                 Rule::unique('users')->ignore($this->user)
             ],
+            'direccion' => ['string', 'nullable', 'max:240'],
+            'telefono' => ['string', 'nullable', 'max:9'],
+            'dni' => ['string', 'nullable', 'min:8', 'max:8'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ];
     }

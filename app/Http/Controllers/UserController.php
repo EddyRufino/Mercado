@@ -60,7 +60,7 @@ class UserController extends Controller
 
     public function update(ProfileRequest $request, User $user)
     {
-        $user->update($request->only(['name', 'email']));
+        $user->update($request->except(['password']));
 
         if (! is_null($request->password)) {
             $user->password = $request->password;

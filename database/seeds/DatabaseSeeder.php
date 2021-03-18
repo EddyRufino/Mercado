@@ -1,7 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
+use App\Actividad;
+use App\Deuda;
+use App\Pago;
+use App\Ubicacion;
 use App\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 3)->create();
+        factory(User::class, 6)->create();
+        factory(Ubicacion::class, 10)->create();
+        factory(Actividad::class, 10)->create();
 
         $this->call([
             RoleSeeder::class,
             AssignedRoleSeeder::class,
+            TipoSeeder::class,
+            PuestoSeeder::class,
         ]);
+
+        factory(Pago::class, 20)->create();
+        factory(Deuda::class, 20)->create();
     }
 }
