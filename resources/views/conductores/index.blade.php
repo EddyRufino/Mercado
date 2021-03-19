@@ -5,33 +5,27 @@
         @if (auth()->user()->hasRoles(['admin']))
             <div class="container">
                 <div class="d-flex justify-content-around align-items-center mt-3">
-                    <h4 class="text-secondary text-center font-weight-bold">Puestos</h4>
-                    <a class="btn btn-primary btn-sm" href="{{ route('puestos.create') }}">Crear Puesto</a>
+                    <h4 class="text-secondary text-center font-weight-bold">Conductores</h4>
+                    <a class="btn btn-primary btn-sm" href="{{ route('puestos.create') }}">Crear Conductor</a>
                 </div>
                 <table class="table mt-2">
                     <thead>
                         <tr>
                             <th scope="col">Conductor</th>
+                            <th scope="col">DNI</th>
                             <th scope="col">N. Puesto</th>
-                            <th scope="col">C. Puesto</th>
-                            <th scope="col">Medidas</th>
-                            <th scope="col">Sisa Puesto</th>
-                            <th scope="col">Sisa Diaria</th>
-                            <th scope="col">Ubicación</th>
+                            <th scope="col">R. Exposición</th>
                             <th scope="col">Actividad</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($puestos as $puesto)
+                        @forelse ($conductores as $puesto)
                             <tr>
-                                <td>{{ $puesto->user->name }}</td>
+                                <td>{{ $puesto->user->name }} {{ $puesto->user->apellido }}</td>
+                                <td>{{ $puesto->user->dni }}</td>
                                 <td>{{ $puesto->num_puesto }}</td>
-                                <td>{{ $puesto->cantidad_puesto }}</td>
-                                <td>{{ $puesto->medidas }}</td>
-                                <td>S/. {{ $puesto->sisa }}</td>
-                                <td>S/. {{ $puesto->sisa_diaria }}</td>
-                                <td>{{ $puesto->ubicacion->nombre }}</td>
+                                <td>{{ $puesto->riesgo_exposicion }}</td>
                                 <td>{{ $puesto->actividad->nombre }}</td>
                                 <td>
                                     <div class="d-flex">
@@ -67,7 +61,7 @@
                 </table>
 
                 <div class="overflow-auto mt-2">
-                    {{ $puestos->links() }}
+                    {{ $conductores->links() }}
                 </div>
             </div>
         @else

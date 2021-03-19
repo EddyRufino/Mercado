@@ -14,6 +14,8 @@ Route::put('profile', 'ProfileController@update')
 
 Route::resource('users', 'UserController');
 Route::resource('ubicaciones', 'UbicacionController')->except('show');
+Route::resource('actividades', 'ActividadController')->except('show');
+Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
 
 Auth::routes(['register' => false]);

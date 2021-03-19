@@ -42,7 +42,7 @@
                  </a>
                  <ul class="nav nav-treeview">
                    <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="{{ route('conductores.index') }}" class="nav-link">
                        <i class="far fa-circle nav-icon"></i>
                        <p>Listar Conductores</p>
                      </a>
@@ -100,13 +100,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('actividades.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listar Actividades</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('actividades.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear Actividad</p>
                 </a>
