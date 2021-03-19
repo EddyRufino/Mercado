@@ -6,7 +6,10 @@
             <div class="col-md-6">
                 <select class="form-control select2 " name="user_id">
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        <option class="" value="{{ $user->id }}"
+                            {{ old('user_id', $puesto->user_id) == $user->id ? 'selected' : '' }}
+                            >{{ $user->name }}
+                        </option>
                     @endforeach
                 </select>
 
@@ -52,7 +55,10 @@
             <div class="col-md-6">
                 <select class="form-control select2" name="ubicacion_id">
                     @foreach ($ubicaciones as $ubicacion)
-                        <option class="" value="{{ $ubicacion->id }}">{{ $ubicacion->nombre }}</option>
+                        <option class="" value="{{ $ubicacion->id }}"
+                            {{ old('ubicacion_id', $puesto->ubicacion_id) == $ubicacion->id ? 'selected' : '' }}
+                            >{{ $ubicacion->nombre }}
+                        </option>
                     @endforeach
                 </select>
 
@@ -114,7 +120,10 @@
             <div class="col-md-6">
                 <select class="form-control select2" name="actividad_id">
                     @foreach ($actividades as $actividad)
-                        <option class="" value="{{ $actividad->id }}">{{ $actividad->nombre }}</option>
+                        <option class="" value="{{ $actividad->id }}"
+                            {{ old('actividad_id', $puesto->actividad_id) == $actividad->id ? 'selected' : '' }}
+                            >{{ $actividad->nombre }}
+                        </option>
                     @endforeach
                 </select>
 
