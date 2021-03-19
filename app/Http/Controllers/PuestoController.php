@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Actividad;
+use App\Http\Requests\PuestoRequest;
 use App\Puesto;
+use App\Ubicacion;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PuestoController extends Controller
 {
@@ -20,12 +25,27 @@ class PuestoController extends Controller
 
     public function create()
     {
-        //
+
+        $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
+        $actividades = Actividad::select(['id', 'nombre'])->get();
+        $users = DB::table('users')
+                   ->whereNotExists(function ($query) {
+                       $query->select(DB::raw(1))
+                             ->from('puestos')
+                             ->whereRaw('puestos.user_id = users.id');
+                   })
+                   ->get();
+
+        // dd($users);
+
+        return view('puestos.create', compact('ubicaciones', 'actividades', 'users'));
     }
 
-    public function store(Request $request)
+    public function store(PuestoRequest $request)
     {
-        //
+        $puesto = Puesto::create($request->validated());
+
+        return redirect()->route('puestos.index', compact('puesto'));
     }
 
     public function show(Puesto $puesto)
@@ -35,16 +55,24 @@ class PuestoController extends Controller
 
     public function edit(Puesto $puesto)
     {
-        //
+        $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
+        $actividades = Actividad::select(['id', 'nombre'])->get();
+        $users = User::select(['id', 'name'])->get();
+
+        return view('puestos.edit', compact('ubicaciones', 'actividades', 'users', 'puesto'));
     }
 
-    public function update(Request $request, Puesto $puesto)
+    public function update(PuestoRequest $request, Puesto $puesto)
     {
-        //
+        $puesto->update($request->validated());
+
+        return redirect()->route('puestos.index', compact('puesto'));
     }
 
     public function destroy(Puesto $puesto)
     {
-        //
+        $puesto->delete();
+
+        return redirect()->route('puestos.index', $puesto)->with('status', 'Tu puesto fue eliminado.');
     }
 }

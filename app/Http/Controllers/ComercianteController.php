@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comerciante;
+use App\Puesto;
 use Illuminate\Http\Request;
 
 class ComercianteController extends Controller
@@ -14,7 +14,8 @@ class ComercianteController extends Controller
      */
     public function index()
     {
-        //
+        $conductores = Puesto::latest()->paginate(7);
+        return view('conductores.index', compact('conductores'));
     }
 
     /**

@@ -42,7 +42,7 @@
                  </a>
                  <ul class="nav nav-treeview">
                    <li class="nav-item">
-                     <a href="#" class="nav-link">
+                     <a href="{{ route('conductores.index') }}" class="nav-link">
                        <i class="far fa-circle nav-icon"></i>
                        <p>Listar Conductores</p>
                      </a>
@@ -100,13 +100,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('actividades.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listar Actividades</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('actividades.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Crear Actividad</p>
                 </a>
@@ -130,7 +130,7 @@
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-list-alt"></i>
+              <i class="nav-icon fas fa-university"></i>
               <p>
                 Puestos
                 <i class="right fas fa-angle-left"></i>

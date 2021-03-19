@@ -32,11 +32,6 @@ class UbicacionController extends Controller
         return redirect()->route('ubicaciones.index', compact('ubicacion'));
     }
 
-    public function show(Ubicacion $ubicacione)
-    {
-        //
-    }
-
     public function edit(Request $request, Ubicacion $ubicacione)
     {
         return view('ubicaciones.edit', compact('ubicacione'));

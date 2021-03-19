@@ -66,8 +66,8 @@ class User extends Authenticatable
         return $this->hasRoles(['admin']);
     }
 
-    // public function puestos()
-    // {
-    //   return $this->hasMany(Puesto::class);
-    // }
+    public function puestos()
+    {
+      return $this->hasMany(Puesto::class);
+    }
 }
