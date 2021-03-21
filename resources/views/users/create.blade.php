@@ -5,7 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card mt-3">
-                    <div class="card-header bg-secondary">Crear Usuario</div>
+                    @include('partials.card-header', [
+                        'title' => 'Crear Usuario',
+                        'link' => 'users.index'
+                    ])
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.store') }}">
                         @csrf
@@ -39,7 +42,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Nuevo Usuario
+                                        Guardar
                                     </button>
                                     <a href="{{ route('users.index') }}" class="btn btn-secondary text-white">
                                         Cancelar

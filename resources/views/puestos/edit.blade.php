@@ -5,13 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card mt-3">
-                    <div class="card-header bg-secondary">Editar Puesto</div>
+                    @include('partials.card-header', [
+                        'title' => 'Editar Puesto',
+                        'link' => 'puestos.index'
+                    ])
                     <div class="card-body">
                         <form method="POST" action="{{ route('puestos.update', $puesto->id) }}">
                             @csrf
                             @method('PUT')
 
-                            @include('forms.formPuestos', ['btn' => 'Editar Puesto'])
+                            @include('forms.formPuestos', ['btn' => 'Editar'])
 
                         </form>
                     </div>

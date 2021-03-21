@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header bg-secondary">Edita Tus Datos</div>
+                {{-- <div class="card-header bg-secondary">Edita Tus Datos</div> --}}
+                @include('partials.card-header', [
+                    'title' => 'Editar Perfil',
+                    'link' => 'home'
+                ])
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('profile.update') }}"
