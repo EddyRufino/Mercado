@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="d-flex justify-content-around align-items-center mt-3">
                     <h4 class="text-secondary text-center font-weight-bold">Conductores</h4>
-                    <a class="btn btn-primary btn-sm" href="{{ route('puestos.create') }}">Crear Conductor</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">Crear Conductor</a>
                 </div>
                 <table class="table mt-2">
                     <thead>
@@ -29,28 +29,11 @@
                                 <td>{{ $puesto->actividad->nombre }}</td>
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('puestos.edit', $puesto->id) }}" data-toggle="tooltip" data-placement="top" title="Editar" class="text-warning mr-2">
-                                            <svg width=".9em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        <a href="{{ route('puestos.show', $puesto->id) }}" data-toggle="tooltip" data-placement="top" title="Ver más" class="text-warning mr-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"      height="25" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
+                                                <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
                                             </svg>
                                         </a>
-
-                                    @auth
-                                        @if (auth()->user()->hasRoles(['admin']))
-                                            <form method="POST" action="{{ route('puestos.destroy', $puesto) }}"
-                                                    style="display: inline;">
-                                                    {{ csrf_field() }} {{ method_field('DELETE') }}
-                                                <button class="btn btn-xs btn-link p-0 m-0"
-                                                  onclick="return confirm('¿Estás seguro de eliminarlo?')" data-toggle="tooltip" data-placement="top" title="Eliminar">
-                                                  <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-trash text-danger mb-1 mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                                  </svg>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    @endauth
                                     </div>
                                 </td>
                             </tr>

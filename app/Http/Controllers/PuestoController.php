@@ -50,7 +50,7 @@ class PuestoController extends Controller
 
     public function show(Puesto $puesto)
     {
-        //
+        return view('puestos.show', compact('puesto'));
     }
 
     public function edit(Puesto $puesto)
@@ -73,6 +73,6 @@ class PuestoController extends Controller
     {
         $puesto->delete();
 
-        return redirect()->route('puestos.index', $puesto)->with('status', 'Tu puesto fue eliminado.');
+        return redirect()->route('puestos.index', $puesto)->with('status', 'El puesto fue eliminado.');
     }
 }

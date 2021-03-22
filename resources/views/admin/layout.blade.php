@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -18,9 +14,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="{{ asset('css/mio.css') }}">
-  {{-- <link rel="stylesheet" href="/css/app.css"> --}}
 
-  {{-- <link rel="stylesheet" href="/adminlte/plugins/datatables-select/css/select.bootstrap4.min.css"> --}}
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
@@ -39,9 +33,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Buscador</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        {{-- <a href="#" class="nav-link">Contact</a> --}}
-      </li>
+      {{-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li> --}}
     </ul>
 
     <!-- SEARCH FORM -->
@@ -106,7 +100,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-header -->
 
     <!-- Main content -->
- {{-- mt-4 le quite --}}
     <div class="container">
       @include('partials.session')
     </div>
@@ -143,8 +136,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/js/adminlte.min.js') }}"></script>
 
-<script src="{{ asset('adminlte/plugins/datatables-select/css/select.bootstrap4.min.js') }}"></script>
-
 </body>
 </html>
 
@@ -168,70 +159,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   $('.select2').select2({
       tags: true
     });
-
-  // Para vehículo
-  $('#datepickerv1').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerv2').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerv3').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-
-  // Para certificados
-  $('#datepickerc1').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerc2').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-
-  // Para soats
-  $('#datepickers1').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickers2').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickers3').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickers4').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickers5').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-
-  //Paradero
-  $('#datepickerp1').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerp2').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerp3').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepickerp4').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
 
 </script>
 
