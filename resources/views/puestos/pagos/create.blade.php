@@ -6,19 +6,19 @@
             <div class="col-md-8">
                 <div class="card mt-3">
                     @include('partials.card-header', [
-                        'title' => 'Crear Pago',
+                        'title' => 'Realizar Pago',
                         'link' => 'home'
                     ])
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('pagos.store') }}">
+                        <form method="POST" action="{{ route('puestos.pagos.store', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
 
                                 <div class="col-md-6">
-                                    <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required autofocus>
+                                    <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required disabled>
 
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                                 <label for="monto_sisa" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_sisa" type="text" class="form-control @error('monto_sisa') is-invalid @enderror" name="monto_sisa" value="{{ old('monto_sisa') }}" required autocomplete="monto_sisa" autofocus>
+                                    <input id="monto_sisa" type="text" class="form-control @error('monto_sisa') is-invalid @enderror" name="monto_sisa" value="{{ $puesto->sisa_diaria }}" required autocomplete="monto_sisa" autofocus disabled>
 
                                     @error('monto_sisa')
                                         <span class="invalid-feedback" role="alert">
@@ -77,16 +77,55 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="monto_remodelacion" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
+                                <label for="monto_remodelacion" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Remodelación</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_remodelacion" type="text" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}" required autocomplete="monto_remodelacion" autofocus>
+                                    <input id="monto_remodelacion" type="text" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}"autocomplete="monto_remodelacion" autofocus>
 
                                     @error('monto_remodelacion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="monto_constancia" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Constancia</label>
+
+                                <div class="col-md-6">
+                                    <input id="monto_constancia" type="text" class="form-control @error('monto_constancia') is-invalid @enderror" name="monto_constancia" value="{{ old('monto_constancia') }}" autocomplete="monto_constancia" autofocus>
+
+                                    @error('monto_constancia')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Agua</label>
+
+                                <div class="col-md-6">
+                                    <input id="monto_agua" type="text" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua') }}" autocomplete="monto_agua" autofocus>
+
+                                    @error('monto_agua')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4 mt-2">
+                                    <button type="submit" class="btn btn-primary">
+                                        Guardar Pago
+                                    </button>
+                                    <a href="{{ route('home') }}" class="btn btn-secondary text-white">
+                                        Cancelar
+                                    </a>
                                 </div>
                             </div>
                         </form>

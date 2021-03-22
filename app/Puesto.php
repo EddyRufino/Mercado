@@ -29,10 +29,10 @@ class Puesto extends Model
         return $this->belongsTo(Ubicacion::class);
     }
 
-    // public function pagos()
-    // {
-    //     return $this->hasMany(Pago::class);
-    // }
+    public function pagos()
+    {
+        return $this->hasMany(Pago::class);
+    }
 
     // public function tipo_pago()
     // {

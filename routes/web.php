@@ -18,6 +18,7 @@ Route::resource('actividades', 'ActividadController')->except('show');
 Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
 Route::resource('pagos', 'PagoController');
+Route::resource('puestos.pagos', 'PuestoPagoController');
 
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
 
