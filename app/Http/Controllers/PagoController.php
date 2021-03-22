@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Pago;
+use App\Puesto;
+use Illuminate\Http\Request;
 
 class PagoController extends Controller
 {
@@ -19,7 +20,8 @@ class PagoController extends Controller
 
     public function create()
     {
-        //
+        $puesto = Puesto::all();
+        return view('pagos.create', compact('puesto'));
     }
 
     public function store(Request $request)
@@ -34,7 +36,8 @@ class PagoController extends Controller
 
     public function edit(Pago $pago)
     {
-        //
+        $puesto = Puesto::all();
+        return view('pagos.create', compact('pago', 'puesto'));
     }
 
     public function update(Request $request, Pago $pago)
