@@ -156,10 +156,25 @@
 
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 
 function desactivaBoton(id) {
    document.getElementById(id).disabled=true;
 }
+
+</script> --}}
+
+<script type="text/javascript">
+
+  function muestra_oculta(id) {
+    if (document.getElementById) {
+      var el = document.getElementById(id);
+      el.style.display = (el.style.display == 'none') ? 'block' : 'none';
+    }
+  }
+
+  window.onload = function() {
+    muestra_oculta('contenido');
+  }
 
 </script>
