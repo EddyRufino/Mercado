@@ -4,7 +4,7 @@
     @if (auth()->user()->hasRoles(['admin']))
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="d-flex justify-content-around align-items-center mt-3">
                         <h4 class="text-secondary text-center font-weight-bold mt-1">Ubicaciones</h4>
                         <a class="btn btn-primary btn-sm" href="{{ route('ubicaciones.create') }}">Crear Ubicación</a>

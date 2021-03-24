@@ -8,10 +8,12 @@ use App\Tipo;
 
 class Deuda extends Model
 {
-    // public function puesto()
-    // {
-    //     return $this->belongsTo(Puesto::class);
-    // }
+    protected $guarded = [];
+
+    public function puesto()
+    {
+        return $this->belongsTo(Puesto::class);
+    }
 
     // public function tipo()
     // {
