@@ -7,9 +7,9 @@ use App\Deuda;
 
 class DeudaController extends Controller
 {
-    public function __constructor()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
     public function index()

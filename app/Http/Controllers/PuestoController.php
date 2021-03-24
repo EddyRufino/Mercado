@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class PuestoController extends Controller
 {
-    public function __constructor()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
     public function index()

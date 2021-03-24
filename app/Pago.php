@@ -8,6 +8,7 @@ use App\Tipo;
 
 class Pago extends Model
 {
+    protected $guarded = [];
     // public function puestos()
     // {
     //     return $this->hasMany(Puesto::class);

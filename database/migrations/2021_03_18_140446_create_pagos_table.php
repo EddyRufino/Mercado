@@ -17,6 +17,7 @@ class CreatePagosTable extends Migration
             $table->id();
             $table->date('fecha');
             $table->string('num_operacion')->nullable();
+            $table->string('num_recibo')-unique();
             $table->string('monto_remodelacion')->nullable();
             $table->string('monto_constancia')->nullable();
             $table->string('monto_agua')->nullable();

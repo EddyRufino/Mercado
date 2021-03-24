@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             PuestoSeeder::class,
         ]);
 
-        factory(Pago::class, 20)->create();
-        factory(Deuda::class, 20)->create();
+        // factory(Pago::class, 20)->create();
+        // factory(Deuda::class, 20)->create();
     }
 }

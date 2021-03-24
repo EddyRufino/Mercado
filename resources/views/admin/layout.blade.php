@@ -142,30 +142,39 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 
+
 <script>
-  // para licencias
+
   $('#datepicker').datepicker({
     autoclose: true,
     format: 'yyyy-mm-dd'
-  });
-  $('#datepicker2').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('#datepicker3').datepicker({
-    autoclose: true,
-    format: 'yyyy-mm-dd'
-  });
-  $('.select2').select2({
-      tags: true
-    });
+  }).datepicker("setDate", new Date());
+
+  // $('.select2').select2({
+  //     tags: true
+  //   });
 
 </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 
 function desactivaBoton(id) {
    document.getElementById(id).disabled=true;
 }
+
+</script> --}}
+
+<script type="text/javascript">
+
+  function muestra_oculta(id) {
+    if (document.getElementById) {
+      var el = document.getElementById(id);
+      el.style.display = (el.style.display == 'none') ? 'block' : 'none';
+    }
+  }
+
+  window.onload = function() {
+    muestra_oculta('contenido');
+  }
 
 </script>
