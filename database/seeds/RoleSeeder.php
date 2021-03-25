@@ -19,9 +19,9 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Secretaria',
-            'display_name' => 'Secretaria',
-            'description' => 'Soy una secreataria'
+            'name' => 'Comerciante',
+            'display_name' => 'Comerciante',
+            'description' => 'Soy un comerciante'
         ]);
 
         DB::table('roles')->insert([
