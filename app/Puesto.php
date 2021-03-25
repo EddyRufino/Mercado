@@ -14,6 +14,8 @@ class Puesto extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['ubicacion']; // Es la relación más no la tabla
+
     public function user()
     {
       return $this->belongsTo(User::class);
