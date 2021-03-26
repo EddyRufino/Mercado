@@ -24,6 +24,7 @@ Route::resource('puestos.deudas', 'PuestoDeudaController');
 
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');
+Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
 
 Auth::routes(['register' => false]);
 

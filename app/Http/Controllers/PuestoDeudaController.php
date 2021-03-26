@@ -17,7 +17,7 @@ class PuestoDeudaController extends Controller
 
     public function index(Puesto $puesto)
     {
-        $deudas = Deuda::where('puesto_id', $puesto->id)->latest()->paginate();
+        $deudas = Deuda::where('puesto_id', $puesto->id)->latest()->paginate(4);
 
         return view('puestos.deudas.index', compact('deudas'));
     }

@@ -4,10 +4,14 @@
     <div class="container">
         @if (auth()->user()->hasRoles(['admin']))
             <div class="container">
-                <div class="d-flex justify-content-around align-items-center mt-3">
-                    <h4 class="text-secondary text-center font-weight-bold">Conductores</h4>
-                    <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">Crear Conductor</a>
-                </div>
+
+                @include('partials.search-header', [
+                        'title' => 'Conductores',
+                        'linkCreate' => 'users.create',
+                        'titleCreate' => 'Crear Conductor',
+                        'linkAction' => 'conductores.search'
+                    ])
+
                 <table class="table mt-2">
                     <thead>
                         <tr>
