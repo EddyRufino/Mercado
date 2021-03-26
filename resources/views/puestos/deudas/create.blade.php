@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos.pagos.store', $puesto) }}">
+                        <form method="POST" action="{{ route('puestos.deudas.store', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">
@@ -64,20 +64,6 @@
                                 </div>
                             </div> --}}
 
-                            <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
-
-                                <div class="col-md-6">
-                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" autofocus>
-
-                                    @error('num_recibo')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
                             <div class="form-group row justify-content-center">
                                 <div class="col-md-6">
                                     <p style='cursor: pointer;' onClick="muestra_oculta('contenido')"
@@ -86,8 +72,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <a class="d-block text-secondary"
-                                        href="{{ route('puestos.deudas.create', $puesto) }}">
-                                        Ir a Deuda
+                                        href="{{ route('puestos.pagos.create', $puesto) }}">
+                                        Ir a Pago
                                     </a>
                                 </div>
                             </div>
@@ -141,7 +127,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-2">
                                     <button type="submit" class="btn btn-primary">
-                                        Guardar Pago
+                                        Guardar Deuda
                                     </button>
                                     <a href="{{ route('home') }}" class="btn btn-secondary text-white">
                                         Cancelar

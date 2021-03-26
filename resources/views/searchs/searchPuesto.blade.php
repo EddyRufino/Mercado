@@ -29,6 +29,7 @@
                         <th scope="col">Medidas</th>
                         <th scope="col">Sisa Puesto</th>
                         <th scope="col">Sisa Diaria</th>
+                        <th scope="col">R. Exposición</th>
                         <th scope="col">Ubicación</th>
                         <th scope="col">Actividad</th>
                         <th scope="col">Acciones</th>
@@ -37,14 +38,16 @@
                 <tbody>
                     @forelse ($puestos as $puesto)
                         <tr>
-                            <td>{{ $puesto->user->name }} {{ $puesto->user->apellido }}</td>
+                            <td>{{ $puesto->name }} {{ $puesto->apellido }}</td>
                             <td>{{ $puesto->num_puesto }}</td>
                             <td>{{ $puesto->cantidad_puesto }}</td>
                             <td>{{ $puesto->medidas }}</td>
                             <td>S/. {{ $puesto->sisa }}</td>
                             <td>S/. {{ $puesto->sisa_diaria }}</td>
-                            <td>{{ $puesto->ubicacion->nombre }}</td>
-                            <td>{{ $puesto->actividad->nombre }}</td>
+                            <td>{{ $puesto->riesgo_exposicion }}</td>
+                            <td>{{ $puesto->ubicacion }}</td>
+                            <td>{{ $puesto->actividad }}</td>
+
                             <td>
                                 <div class="d-flex">
                                     <a href="{{ route('puestos.edit', $puesto->id) }}" data-toggle="tooltip" data-placement="top" title="Editar" class="text-warning mr-2">
