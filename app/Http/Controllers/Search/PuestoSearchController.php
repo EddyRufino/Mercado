@@ -10,6 +10,7 @@ class PuestoSearchController extends Controller
 {
     public function search(Request $request, User $user)
     {
+        // dd($request->get('search'));
         $search = $request->get('search');
 
         $puestos = User::where('apellido', 'like', '%'. $search.'%')

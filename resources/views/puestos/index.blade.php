@@ -7,8 +7,8 @@
             @include('partials.search-header', [
                     'title' => 'Puestos',
                     'linkCreate' => 'puestos.create',
-                    'linkPDF' => 'home',
-                    'linkEXCEL' => 'home',
+                    'linkPDF' => 'puestos.pdf',
+                    'linkEXCEL' => 'puestos.excel',
                     'linkAction' => 'puestos.search'
                 ])
 

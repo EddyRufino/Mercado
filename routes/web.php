@@ -22,9 +22,17 @@ Route::resource('pagos', 'PagoController');
 Route::resource('puestos.pagos', 'PuestoPagoController');
 Route::resource('puestos.deudas', 'PuestoDeudaController');
 
+// Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');
 Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
+
+// Export
+Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');
+Route::get('puestos-pdf', 'Export\PuestoExportController@pdf')->name('puestos.pdf');
+Route::get('puestos-excel-query', 'Export\PuestoExportController@queryExcel')->name('puestos.query');
+Route::get('conductores-excel', 'Export\ComercianteExportController@excel')->name('conductores.excel');
+Route::get('conductores-pdf', 'Export\ComercianteExportController@pdf')->name('conductores.pdf');
 
 Auth::routes(['register' => false]);
 

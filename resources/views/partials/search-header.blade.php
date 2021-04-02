@@ -21,6 +21,8 @@
                 </button>
               </div>
             </div>
+
+            {{-- <a href="{{ route('puestos.query', ['search' => request('search')]) }}">Query</a> --}}
           </form>
       </div>
   </div>

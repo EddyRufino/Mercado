@@ -8,8 +8,8 @@
                 @include('partials.search-header', [
                         'title' => 'Conductores',
                         'linkCreate' => 'users.create',
-                        'linkPDF' => 'home',
-                        'linkEXCEL' => 'home',
+                        'linkPDF' => 'conductores.pdf',
+                        'linkEXCEL' => 'conductores.excel',
                         'linkAction' => 'conductores.search'
                     ])
 
