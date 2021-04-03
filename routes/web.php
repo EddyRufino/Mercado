@@ -39,6 +39,9 @@ Route::get('conductores-pdf', 'Export\ComercianteExportController@pdf')->name('c
 Route::get('users-excel', 'Export\UserExportController@excel')->name('users.excel');
 Route::get('users-pdf', 'Export\UserExportController@pdf')->name('users.pdf');
 
+Route::get('deudas-excel/{id}', 'Export\DeudaExportController@excel')->name('deudas.excel');
+Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.pdf');
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');

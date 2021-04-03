@@ -6,9 +6,18 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <li class="list-group mt-3">
-                      <button type="button" class="list-group-item list-group-item-action bg-secondary d-flex justify-content-between">
+                      <li class="list-group-item list-group-item-action bg-secondary d-flex justify-content-between">
                         <span>Listado de Deudas</span>
 
+                        <div>
+                            <a href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}" class="text-white mr-1" data-toggle="tooltip" data-placement="top" title="Exportar PDF">
+                                PDF
+                            </a>
+                            <a href="{{ route('deudas.excel', $deudas->pluck('puesto_id')->first()) }}" class="text-white"
+                            data-toggle="tooltip" data-placement="top" title="Exportar EXCEL">
+                                EXCEL
+                            </a>
+                        </div>
                         {{-- @if ($deudas->count() >= 30 )
                             <span>Días sin pagar: <strong  class="text-danger">{{ $deudas->count() }}</strong>
                             </span>
@@ -16,7 +25,7 @@
                             <span>Días sin pagar: <strong>{{ $deudas->count() }}</strong>
                             </span>
                         @endif --}}
-                      </button>
+                      </li>
 
                     @forelse ($deudas as $deuda)
                         <div class="list-group-item list-group-item-action">
