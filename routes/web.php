@@ -38,9 +38,13 @@ Route::get('conductores-excel', 'Export\ComercianteExportController@excel')->nam
 Route::get('conductores-pdf', 'Export\ComercianteExportController@pdf')->name('conductores.pdf');
 Route::get('users-excel', 'Export\UserExportController@excel')->name('users.excel');
 Route::get('users-pdf', 'Export\UserExportController@pdf')->name('users.pdf');
-
 Route::get('deudas-excel/{id}', 'Export\DeudaExportController@excel')->name('deudas.excel');
 Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.pdf');
+
+
+// Reportes
+Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
+Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 
 Auth::routes(['register' => false]);
 

@@ -154,6 +154,28 @@
           @endif
         @endauth
 
+        @auth
+          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Reportes
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('reporte.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Generar Reporte</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+        @endauth
+
  {{--        @auth
           @if (auth()->user()->hasRoles(['admin', 'recep']))
           <li class="nav-item has-treeview ">
@@ -299,6 +321,3 @@
     <!-- /.sidebar -->
   </aside>
 
-  {{-- <section class="aside-extra">
-    <h1>xD</h1>
-  </section> --}}
