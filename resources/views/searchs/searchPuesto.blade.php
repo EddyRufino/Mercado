@@ -3,23 +3,15 @@
 @section('content')
     @if (auth()->user()->hasRoles(['admin']))
         <div class="container">
-            <div class="d-flex justify-content-around mt-3">
-                <h4 class="text-secondary font-weight-bold">Puestos <a class="btn btn-primary btn-sm" href="{{ route('puestos.create') }}">Crear Puesto</a>
-                </h4>
-                <div class="">
-                    <form method="GET" action="{{ route('puestos.search') }}" class="form-inline">
-                        @csrf
-                      <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" name="search" type="search" placeholder="Buscar apellidos o puesto" aria-label="Search" required>
-                        <div class="input-group-append">
-                          <button class="btn btn-navbar bg-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                </div>
-            </div>
+
+            @include('partials.search-header', [
+                    'title' => 'Puestos',
+                    'linkCreate' => 'puestos.create',
+                    'linkPDF' => 'puestos.pdf',
+                    'linkEXCEL' => 'puestos.excel',
+                    'linkAction' => 'puestos.search'
+                ])
+
             <table class="table mt-2">
                 <thead>
                     <tr>

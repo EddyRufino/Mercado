@@ -10,6 +10,7 @@ class PuestoSearchController extends Controller
 {
     public function search(Request $request, User $user)
     {
+        // dd($request->get('search'));
         $search = $request->get('search');
 
         $puestos = User::where('apellido', 'like', '%'. $search.'%')
@@ -18,7 +19,7 @@ class PuestoSearchController extends Controller
                         ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
                         ->select('users.name', 'users.apellido', 'puestos.id', 'puestos.num_puesto', 'puestos.cantidad_puesto', 'puestos.medidas', 'puestos.sisa', 'puestos.sisa_diaria', 'puestos.riesgo_exposicion', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad')
                         ->orWhere('puestos.num_puesto', 'like', '%'. $search.'%')
-                        ->paginate(1);
+                        ->paginate();
 
         $puestos->appends(['search' => $search]);
 

@@ -4,10 +4,15 @@
     <div class="container">
         @if (auth()->user()->hasRoles(['admin']))
             <div class="container">
-                <div class="d-flex justify-content-around align-items-center mt-3">
-                    <h4 class="text-secondary text-center font-weight-bold">Conductores</h4>
-                    <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">Crear Conductor</a>
-                </div>
+
+                @include('partials.search-header', [
+                        'title' => 'Conductores',
+                        'linkCreate' => 'users.create',
+                        'linkPDF' => 'conductores.pdf',
+                        'linkEXCEL' => 'conductores.excel',
+                        'linkAction' => 'conductores.search'
+                    ])
+
                 <table class="table mt-2">
                     <thead>
                         <tr>
@@ -30,9 +35,7 @@
                                 <td>
                                     <div class="d-flex">
                                         <a href="{{ route('puestos.show', $puesto->id) }}" data-toggle="tooltip" data-placement="top" title="Ver más" class="text-warning mr-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25"      height="25" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
-                                                <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-                                            </svg>
+                                            @include('icons.icon-show')
                                         </a>
                                     </div>
                                 </td>
