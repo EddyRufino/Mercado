@@ -45,6 +45,7 @@ Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.
 // Reportes
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
+Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 
 Auth::routes(['register' => false]);
 

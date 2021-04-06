@@ -26,8 +26,7 @@ class DeudasRepostQueryExport implements FromQuery
                         ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
                         ->join('deudas', 'puestos.id', '=', 'deudas.puesto_id')
                         ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'puestos.sisa_diaria', 'deudas.fecha', 'deudas.monto_agua', 'ubicacions.nombre as ubicacion')
-                        ->whereDate('deudas.fecha', $this->date)
-                        ->orWhereYear('deudas.fecha', $this->date);
+                        ->whereDate('deudas.fecha', $this->date);
 
         return $deudas;
     }

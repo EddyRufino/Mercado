@@ -9,7 +9,7 @@
 
     @include('partials.search-reporte', [
             'title' => 'Generar Reporte Pagos',
-            'link' => 'reporte.deuda'
+            'link' => 'reporte.pago'
         ])
 </div>
 @endsection

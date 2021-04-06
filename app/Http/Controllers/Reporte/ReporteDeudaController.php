@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Reporte;
 
+use App\Exports\DeudasRepostQueryExport;
+use App\Exports\PagosRepostQueryExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\DeudasRepostQueryExport;
 use Illuminate\Http\Request;
 
 class ReporteDeudaController extends Controller
@@ -21,6 +22,15 @@ class ReporteDeudaController extends Controller
         ]);
 
         return (new DeudasRepostQueryExport)->forDate($date)->download('deudas-excel.xlsx');
+    }
+
+    public function pago()
+    {
+        $date = request()->validate([
+            'search' => 'required'
+        ]);
+
+        return (new PagosRepostQueryExport)->forDate($date)->download('pagos-excel.xlsx');
     }
 
 }
