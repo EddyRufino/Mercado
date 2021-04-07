@@ -9,7 +9,7 @@
                         <form action="{{ route($link) }}" class="form-inline">
                             @csrf
                           <div class="input-group input-group-md">
-                            <input class="form-control form-control-navbar" name="search" type="search" placeholder="Buscar por apellidos" aria-label="Search" required>
+                            <input class="form-control form-control-navbar" name="search" type="search" placeholder="{{ $placeholder }}" aria-label="Search" required>
                             <div class="input-group-append">
                               <button class="btn btn-navbar bg-primary" type="submit">
                                 <i class="fas fa-search"></i>

@@ -8,7 +8,7 @@
                     <li class="list-group mt-3">
                       <li class="list-group-item list-group-item-action bg-secondary d-flex justify-content-between">
                         <span>Listado de Deudas</span>
-
+                    @if ($deudas->count() >= 1 )
                         <div>
                             <a href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}" class="text-white mr-1" data-toggle="tooltip" data-placement="top" title="Exportar PDF">
                                 PDF
@@ -18,6 +18,7 @@
                                 EXCEL
                             </a>
                         </div>
+                    @endif
                         {{-- @if ($deudas->count() >= 30 )
                             <span>Días sin pagar: <strong  class="text-danger">{{ $deudas->count() }}</strong>
                             </span>
