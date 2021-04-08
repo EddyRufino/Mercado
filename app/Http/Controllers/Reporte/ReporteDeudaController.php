@@ -12,7 +12,7 @@ class ReporteDeudaController extends Controller
 {
     public function index()
     {
-        return view('Reportes.index');
+        return view('reportes.index');
     }
 
     public function deuda()

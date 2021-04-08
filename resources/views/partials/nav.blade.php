@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link">
-      <img src="/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{ asset('adminlte/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Mercado</span>
     </a>
@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image mt-2">
-          <img src="/adminlte/img/no-img.png" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('adminlte/img/no-img.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info d-flex flex-column">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
