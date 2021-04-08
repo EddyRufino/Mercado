@@ -24,11 +24,11 @@
                                 <a href="{{ route('puestos.pagos.create', $conductor->id) }}" class="btn btn-primary text-white btn-sm">
                                     Pagar
                                 </a>
-                                <a href="{{ route('puestos.deudas.create', $conductor->id) }}" class="btn btn-danger text-white btn-sm">
+                               {{--  <a href="{{ route('puestos.deudas.create', $conductor->id) }}" class="btn btn-danger text-white btn-sm">
                                     Deuda
-                                </a>
+                                </a> --}}
                                 <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
-                                    Ver Deuda
+                                    Ver Deudas Sisa
                                 </a>
                             </div>
                         </div>

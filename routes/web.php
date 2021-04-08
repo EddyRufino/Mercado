@@ -19,8 +19,10 @@ Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
 Route::resource('pagos', 'PagoController');
 
-Route::resource('puestos.pagos', 'PuestoPagoController');
-Route::resource('puestos.deudas', 'PuestoDeudaController');
+Route::resource('puestos.pagos', 'PuestoPagoController')->only(['index', 'create', 'store']);
+Route::resource('puestos.deudas', 'PuestoDeudaController')->only(['index', 'create', 'store', 'destroy']);
+Route::resource('puestos.tramites', 'PuestoTramiteController')->only(['create', 'store']);
+Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create', 'store']);
 
 
 // Search

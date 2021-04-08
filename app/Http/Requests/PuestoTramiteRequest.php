@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PuestoPagoRequest extends FormRequest
+class PuestoTramiteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,8 @@ class PuestoPagoRequest extends FormRequest
             'fecha' => ['date', 'required'],
             'num_operacion' => ['nullable', 'max:250'],
             'num_recibo' => ['max:250', 'required', 'unique:pagos'],
-            'monto_remodelacion' => ['nullable'],
-            'monto_constancia' => ['nullable'],
+            'monto_remodelacion' => ['required'],
+            'monto_constancia' => ['required'],
             'monto_agua' => ['nullable'],
             'monto_sisa' => ['nullable'],
             'puesto_id' => ['nullable'],

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PuestoPagoRequest;
 use App\Pago;
-use App\Puesto;
 use App\Tipo;
+use App\Puesto;
+use App\Http\Requests\PuestoServicioRequest;
 use Illuminate\Http\Request;
 
-class PuestoPagoController extends Controller
+class PuestoServicioController extends Controller
 {
     public function __construct()
     {
@@ -17,17 +17,15 @@ class PuestoPagoController extends Controller
 
     public function create(Puesto $puesto)
     {
-        $tipos = Tipo::all();
-        return view('puestos.pagos.create', compact('puesto', 'tipos'));
+        return view('puestos.servicios.create', compact('puesto'));
     }
 
-    public function store(PuestoPagoRequest $request, Puesto $puesto)
+    public function store(PuestoServicioRequest $request, Puesto $puesto)
     {
         $data = Pago::create([
             'fecha' => $request->fecha,
-            'num_operacion' => $request->num_operacion,
             'num_recibo' => $request->num_recibo,
-            'monto_sisa' => $request->monto_sisa,
+            'monto_agua' => $request->monto_agua,
             'puesto_id' => $puesto->id,
             'tipo_id' => $request->tipo_id,
         ]);

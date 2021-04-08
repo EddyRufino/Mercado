@@ -32,30 +32,12 @@ class PuestoDeudaController extends Controller
         $data = Deuda::create([
             'fecha' => $request->fecha,
             'num_operacion' => $request->num_operacion,
-            'monto_remodelacion' => $request->monto_remodelacion,
-            'monto_constancia' => $request->monto_constancia,
-            'monto_agua' => $request->monto_agua,
             'monto_sisa' => $request->monto_sisa,
             'puesto_id' => $puesto->id,
             'tipo_id' => 2,
         ]);
 
         return redirect()->route('home')->with('status', "La deuda fue procesada con éxito!");
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit(Puesto $puesto)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function destroy(Puesto $puesto, Deuda $deuda)
