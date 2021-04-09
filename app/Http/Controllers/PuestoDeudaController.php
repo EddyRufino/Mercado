@@ -6,10 +6,14 @@ use App\Deuda;
 use App\Http\Requests\PuestoDeudaRequest;
 use App\Pago;
 use App\Puesto;
+use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Gate;
 
 class PuestoDeudaController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,7 +21,11 @@ class PuestoDeudaController extends Controller
 
     public function index(Puesto $puesto)
     {
-        $deudas = Deuda::where('puesto_id', $puesto->id)->latest()->paginate(4);
+        $this->authorize('view', $puesto);
+
+        $deudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
+            $query->where('user_id', $puesto->user_id);
+        })->paginate(4);
 
         return view('puestos.deudas.index', compact('deudas'));
     }

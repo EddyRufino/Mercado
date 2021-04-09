@@ -1,8 +1,10 @@
   <div class="row d-flex justify-content-around mt-3">
       <h4 class="text-secondary font-weight-bold">{{ $title }}
-        <a href="{{ route($linkCreate) }}" data-toggle="tooltip" data-placement="top" title="Agregar">
-          <i class="fas fa-plus-square"></i>
-        </a>
+        @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+          <a href="{{ route($linkCreate) }}" data-toggle="tooltip" data-placement="top" title="Agregar">
+            <i class="fas fa-plus-square"></i>
+          </a>
+        @endif
         <a href="{{ route($linkPDF) }}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Exportar PDF">
           <i class="fas fa-file-pdf"></i>
         </a>
