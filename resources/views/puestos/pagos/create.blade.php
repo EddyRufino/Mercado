@@ -42,27 +42,25 @@
                                 </div>
                             </div>
 
-{{--                             <div class="form-group row">
+                            <div class="form-group row">
                                 <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Tipo Pago</label>
 
                                 <div class="col-md-6">
-                                    <select class="form-control select2" name="tipo_id">
-                                        @foreach($tipos as $tipo)
-                                            @if ($tipo->nombre == 'Pago')
-                                                <option class="" value="{{ $tipo->id }}">
-                                                    {{ $tipo->nombre }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
 
-                                    @error('tipo_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="dropdown">
+                                        <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Pago Sisa
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <a href="{{ route('puestos.deudas.create', $puesto->id) }}" class="dropdown-item">
+                                               Deuda Sisa
+                                            </a>
+                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">Trámite</a>
+                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">Servicio</a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="form-group row">
                                 <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
@@ -78,64 +76,18 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row justify-content-center">
+                            {{-- Obtine el ID --}}
+                            <div class="form-group row d-none">
+
                                 <div class="col-md-6">
-                                    <p style='cursor: pointer;' onClick="muestra_oculta('contenido')"
-                                        class="col-md-4 col-form-label text-md-right font-weight-normal text-secondary"><u>Ver más</u>
-                                    </p>
+                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="1" readonly autocomplete="tipo_id" autofocus>
+
+                                    @error('tipo_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                <div class="mt-2">
-                                    <a class="d-block text-secondary"
-                                        href="{{ route('puestos.deudas.create', $puesto) }}">
-                                        Ir a Deuda
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div id="contenido">
-
-                                <div class="form-group row">
-                                    <label for="monto_remodelacion" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Remodelación</label>
-
-                                    <div class="col-md-6">
-                                        <input id="monto_remodelacion" type="text" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}"autocomplete="monto_remodelacion" autofocus>
-
-                                        @error('monto_remodelacion')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="monto_constancia" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Constancia</label>
-
-                                    <div class="col-md-6">
-                                        <input id="monto_constancia" type="text" class="form-control @error('monto_constancia') is-invalid @enderror" name="monto_constancia" value="{{ old('monto_constancia') }}" autocomplete="monto_constancia" autofocus>
-
-                                        @error('monto_constancia')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Agua</label>
-
-                                    <div class="col-md-6">
-                                        <input id="monto_agua" type="text" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua') }}" autocomplete="monto_agua" autofocus>
-
-                                        @error('monto_agua')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
                             </div>
 
                             <div class="form-group row mb-0">

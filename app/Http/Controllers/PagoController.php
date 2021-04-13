@@ -26,9 +26,15 @@ class PagoController extends Controller
         return view('pagos.create', compact('puesto', 'tipos'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Pago $pago)
     {
-        //
+        request()->validate(['num_operacion' => 'required']);
+
+        $pagos = Pago::where('fecha', $request->fecha)->get();
+
+        $pagos->each->update(['num_operacion' => $request->num_operacion]);
+
+        return redirect()->route('operaciones.create')->with('status', 'Número de operación registrado!');
     }
 
     public function show(Pago $pago)

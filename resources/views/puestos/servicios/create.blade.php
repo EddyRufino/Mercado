@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos.deudas.store', $puesto) }}">
+                        <form method="POST" action="{{ route('puestos.pagos.store', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">
@@ -29,12 +29,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="monto_sisa" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_sisa" type="text" class="form-control @error('monto_sisa') is-invalid @enderror" name="monto_sisa" value="{{ $puesto->sisa_diaria }}" required autocomplete="monto_sisa" autofocus readonly>
+                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" >
 
-                                    @error('monto_sisa')
+                                    @error('num_recibo')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -46,26 +46,19 @@
                                 <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Tipo Pago</label>
 
                                 <div class="col-md-6">
-{{--                                     <select class="form-control select2" name="tipo_id">
-                                        @foreach($tipos as $tipo)
-                                            @if ($tipo->nombre == 'Pago')
-                                                <option class="" value="{{ $tipo->id }}">
-                                                    {{ $tipo->nombre }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select> --}}
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Deuda Sisa
+                                            Servicio
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
                                                 Pago Sisa
                                             </a>
-                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">Trámite</a>
-                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">Servicio</a>
+                                            <a href="{{ route('puestos.deudas.create', $puesto->id) }}" class="dropdown-item">
+                                                Deuda Sisa
+                                            </a>
+                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">Trámites</a>
                                         </div>
                                     </div>
                                 </div>
@@ -74,9 +67,24 @@
                             <div class="form-group row d-none">
 
                                 <div class="col-md-6">
-                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="2" readonly autocomplete="tipo_id" autofocus>
+                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="4" readonly autocomplete="tipo_id" autofocus>
 
                                     @error('tipo_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Agua</label>
+
+                                <div class="col-md-6">
+                                    <input id="monto_agua" type="number" step="any" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua') }}"autocomplete="monto_agua" required autofocus>
+
+                                    @error('monto_agua')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -87,7 +95,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-2">
                                     <button type="submit" class="btn btn-primary">
-                                        Guardar Deuda
+                                        Guardar Pago
                                     </button>
                                     <a href="{{ route('home') }}" class="btn btn-secondary text-white">
                                         Cancelar

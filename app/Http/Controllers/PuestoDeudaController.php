@@ -6,10 +6,14 @@ use App\Deuda;
 use App\Http\Requests\PuestoDeudaRequest;
 use App\Pago;
 use App\Puesto;
+use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Gate;
 
 class PuestoDeudaController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,7 +21,11 @@ class PuestoDeudaController extends Controller
 
     public function index(Puesto $puesto)
     {
-        $deudas = Deuda::where('puesto_id', $puesto->id)->latest()->paginate(4);
+        $this->authorize('view', $puesto);
+
+        $deudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
+            $query->where('user_id', $puesto->user_id);
+        })->paginate(4);
 
         return view('puestos.deudas.index', compact('deudas'));
     }
@@ -32,30 +40,12 @@ class PuestoDeudaController extends Controller
         $data = Deuda::create([
             'fecha' => $request->fecha,
             'num_operacion' => $request->num_operacion,
-            'monto_remodelacion' => $request->monto_remodelacion,
-            'monto_constancia' => $request->monto_constancia,
-            'monto_agua' => $request->monto_agua,
             'monto_sisa' => $request->monto_sisa,
             'puesto_id' => $puesto->id,
             'tipo_id' => 2,
         ]);
 
         return redirect()->route('home')->with('status', "La deuda fue procesada con éxito!");
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit(Puesto $puesto)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function destroy(Puesto $puesto, Deuda $deuda)

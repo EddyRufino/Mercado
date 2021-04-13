@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if (auth()->user()->hasRoles(['admin']))
+        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
             <div class="container">
 
                 @include('partials.search-header', [

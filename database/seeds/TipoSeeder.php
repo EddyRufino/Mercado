@@ -19,5 +19,13 @@ class TipoSeeder extends Seeder
         DB::table('tipos')->insert([
             'nombre' => 'Deuda',
         ]);
+
+        DB::table('tipos')->insert([
+            'nombre' => 'Tramite',
+        ]);
+
+        DB::table('tipos')->insert([
+            'nombre' => 'Servicio',
+        ]);
     }
 }

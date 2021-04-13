@@ -30,8 +30,17 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+          <li class="nav-item">
+            <a href="{{ route('home') }}" class="nav-link">
+              <i class="nav-icon fas fa-search"></i>
+              <p>
+                Buscar Conductor
+              </p>
+            </a>
+          </li>
+
             @auth
-               @if (auth()->user()->hasRoles(['admin', 'recep']))
+               @if (auth()->user()->hasRoles(['admin', 'cobrador']))
                <li class="nav-item has-treeview ">
                  <a href="#" class="nav-link ">
                    <i class="nav-icon fa fa-users"></i>
@@ -47,20 +56,72 @@
                        <p>Listar Conductores</p>
                      </a>
                    </li>
-                   <li class="nav-item">
-                     <a href="#" class="nav-link">
-                       <i class="far fa-circle nav-icon"></i>
-                       <p>Crear Conductor</p>
-                     </a>
-                   </li>
+                   @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                     <li class="nav-item">
+                       <a href="{{ route('users.create') }}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                         <p>Crear Conductor</p>
+                       </a>
+                     </li>
+                   @endif
                  </ul>
                </li>
                @endif
             @endauth
 
+        @auth
+          @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-university"></i>
+              <p>
+                Puestos
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('puestos.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listar Puestos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('puestos.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Crear Puesto</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+        @endauth
+
+        @auth
+          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-credit-card"></i>
+              <p>
+                Pagos
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('home') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Registrar Pago</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+        @endauth
+
 
             @auth
-            @if (auth()->user()->hasRoles(['admin', 'recep']))
+            @if (auth()->user()->hasRoles(['admin', 'secretaria']))
             <li class="nav-item has-treeview ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-university"></i>
@@ -89,7 +150,7 @@
 
 
         @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'secretaria']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-list-alt"></i>
@@ -116,37 +177,22 @@
           @endif
         @endauth
 
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li> --}}
 
         @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'secretaria']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-university"></i>
+              <i class="nav-icon fas fa-random"></i>
               <p>
-                Puestos
+                N. Operación
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('puestos.index') }}" class="nav-link">
+                <a href="{{ route('operaciones.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Puestos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('puestos.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Puesto</p>
+                  <p>Ingresar</p>
                 </a>
               </li>
             </ul>
@@ -154,8 +200,9 @@
           @endif
         @endauth
 
+
         @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'secretaria']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-book"></i>
@@ -177,7 +224,7 @@
         @endauth
 
  {{--        @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-car"></i>
@@ -205,7 +252,7 @@
         @endauth
 
         @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-book"></i>
@@ -233,7 +280,7 @@
         @endauth
 
         @auth
-          @if (auth()->user()->hasRoles(['admin', 'recep']))
+          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link ">
               <i class="nav-icon fa fa-folder-open"></i>

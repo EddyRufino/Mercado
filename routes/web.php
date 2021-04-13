@@ -17,10 +17,12 @@ Route::resource('ubicaciones', 'UbicacionController')->except('show');
 Route::resource('actividades', 'ActividadController')->except('show');
 Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
-Route::resource('pagos', 'PagoController');
+Route::resource('pagos', 'PagoController')->only('store');
 
-Route::resource('puestos.pagos', 'PuestoPagoController');
-Route::resource('puestos.deudas', 'PuestoDeudaController');
+Route::resource('puestos.pagos', 'PuestoPagoController')->only(['index', 'create', 'store']);
+Route::resource('puestos.deudas', 'PuestoDeudaController')->only(['index', 'create', 'store', 'destroy']);
+Route::resource('puestos.tramites', 'PuestoTramiteController')->only(['create', 'store']);
+Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create', 'store']);
 
 
 // Search
@@ -40,6 +42,10 @@ Route::get('users-excel', 'Export\UserExportController@excel')->name('users.exce
 Route::get('users-pdf', 'Export\UserExportController@pdf')->name('users.pdf');
 Route::get('deudas-excel/{id}', 'Export\DeudaExportController@excel')->name('deudas.excel');
 Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.pdf');
+
+// Operaciones
+Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
+// Route::post('operaciones/{id}', 'Operacion\OperacionController@store')->name('operaciones.store');
 
 
 // Reportes

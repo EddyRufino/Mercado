@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    @if (auth()->user()->hasRoles(['admin']))
+    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
         <div class="container">
 
             @include('partials.search-header', [
