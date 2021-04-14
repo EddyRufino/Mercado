@@ -19,7 +19,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="num_operacion" class="col-md-4 col-form-label text-md-right font-weight-normal">num_operacion</label>
+    <label for="num_operacion" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Operación</label>
 
     <div class="col-md-6">
         <input id="num_operacion" type="text" class="form-control @error('num_operacion') is-invalid @enderror" name="num_operacion" value="{{ old('num_operacion', $pago->num_operacion) }}" required autocomplete="num_operacion" autofocus>

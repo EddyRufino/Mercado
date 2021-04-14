@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos.pagos.store', $puesto) }}">
+                        <form method="POST" action="{{ route('puestos.tramites.store', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">

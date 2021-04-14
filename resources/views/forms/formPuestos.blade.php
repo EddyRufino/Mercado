@@ -4,7 +4,7 @@
             <label for="user_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Conductor</label>
 
             <div class="col-md-6">
-                <select class="form-control select2 " name="user_id">
+                <select class="form-control selectpicker" name="user_id" data-live-search="true">
                     @foreach ($users as $user)
                         <option class="" value="{{ $user->id }}"
                             {{ old('user_id', $puesto->user_id) == $user->id ? 'selected' : '' }}
@@ -53,7 +53,7 @@
             <label for="ubicacion_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Ubicación</label>
 
             <div class="col-md-6">
-                <select class="form-control select2" name="ubicacion_id">
+                <select class="form-control selectpicker" name="ubicacion_id" data-live-search="true">
                     @foreach ($ubicaciones as $ubicacion)
                         <option class="" value="{{ $ubicacion->id }}"
                             {{ old('ubicacion_id', $puesto->ubicacion_id) == $ubicacion->id ? 'selected' : '' }}
@@ -76,7 +76,7 @@
             <label for="sisa" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Puesto</label>
 
             <div class="col-md-6">
-                <input id="sisa" type="text" class="form-control @error('sisa') is-invalid @enderror" name="sisa" value="{{ old('sisa', $puesto->sisa) }}" required autocomplete="sisa" autofocus>
+                <input id="sisa" type="number" step="any" class="form-control @error('sisa') is-invalid @enderror" name="sisa" value="{{ old('sisa', $puesto->sisa) }}" required autocomplete="sisa" autofocus>
 
                 @error('sisa')
                     <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
             <label for="sisa_diaria" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
 
             <div class="col-md-6">
-                <input id="sisa_diaria" type="text" class="form-control @error('sisa_diaria') is-invalid @enderror" name="sisa_diaria" value="{{ old('sisa_diaria', $puesto->sisa_diaria) }}" required autocomplete="sisa_diaria" autofocus>
+                <input id="sisa_diaria" type="number" step="any" class="form-control @error('sisa_diaria') is-invalid @enderror" name="sisa_diaria" value="{{ old('sisa_diaria', $puesto->sisa_diaria) }}" required autocomplete="sisa_diaria" autofocus>
 
                 @error('sisa_diaria')
                     <span class="invalid-feedback" role="alert">
@@ -118,7 +118,7 @@
             <label for="actividad_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Actividad</label>
 
             <div class="col-md-6">
-                <select class="form-control select2" name="actividad_id">
+                <select class="form-control selectpicker" name="actividad_id" data-live-search="true">
                     @foreach ($actividades as $actividad)
                         <option class="" value="{{ $actividad->id }}"
                             {{ old('actividad_id', $puesto->actividad_id) == $actividad->id ? 'selected' : '' }}
