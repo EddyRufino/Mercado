@@ -21,114 +21,119 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+
+      <!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+  <div id="app">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('home') }}" class="nav-link">Buscar Conductor</a>
-      </li>
-      {{-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> --}}
-    </ul>
+    <div class="wrapper">
 
-    <!-- SEARCH FORM -->
-    {{-- <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form> --}}
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+          </li>
+          <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('home') }}" class="nav-link">Buscar Conductor</a>
+          </li>
+          {{-- <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contact</a>
+          </li> --}}
+        </ul>
 
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                {{-- <img src="img/avatars/6.jpg" class="img-avatar"> --}}
-                <span class="d-md-down-none">{{ auth()->user()->name }} </span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                {{-- <div class="dropdown-header text-center">
-                    <strong>{{ auth()->user()->roles->count() ?'  '.auth()->user()->roles->first()->display_name : '' }}</strong>
-                </div> --}}
-                <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
-                  <i class="fa fa-user"></i> Perfil
-                </a>
-{{--                 <a class="dropdown-item" href="{{ route('home') }}">
-                  <i class="fa fa-search"></i> Buscador
-                </a> --}}
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                                 <i class="fa fa-lock"></i>
-                    {{ __('Logout') }}
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-
+        <!-- SEARCH FORM -->
+        {{-- <form class="form-inline ml-3">
+          <div class="input-group input-group-sm">
+            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
-        </li>
+          </div>
+        </form> --}}
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{-- <img src="img/avatars/6.jpg" class="img-avatar"> --}}
+                    <span class="d-md-down-none">{{ auth()->user()->name }} </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    {{-- <div class="dropdown-header text-center">
+                        <strong>{{ auth()->user()->roles->count() ?'  '.auth()->user()->roles->first()->display_name : '' }}</strong>
+                    </div> --}}
+                    <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
+                      <i class="fa fa-user"></i> Perfil
+                    </a>
+    {{--                 <a class="dropdown-item" href="{{ route('home') }}">
+                      <i class="fa fa-search"></i> Buscador
+                    </a> --}}
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                                     <i class="fa fa-lock"></i>
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+
+                </div>
+            </li>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      @include('partials/nav')
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper overflow-auto">
+        <!-- Content Header (Page header) -->
+
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="container">
+          @include('partials.session')
         </div>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
 
-  @include('partials/nav')
+          @yield('content')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper overflow-auto">
-    <!-- Content Header (Page header) -->
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
 
-    <!-- /.content-header -->
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+        <div class="p-3">
+          <h5>Title</h5>
+          <p>Sidebar content</p>
+        </div>
+      </aside>
+      <!-- /.control-sidebar -->
 
-    <!-- Main content -->
-    <div class="container">
-      @include('partials.session')
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <strong>Gerencia De Desarrollo Local</strong>
+      </footer>
     </div>
-
-    @yield('content')
-
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Gerencia De Desarrollo Local</strong>
-  </footer>
-</div>
 <!-- ./wrapper -->
-
+</div>
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->

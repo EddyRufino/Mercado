@@ -8,7 +8,7 @@
                     @foreach ($users as $user)
                         <option class="" value="{{ $user->id }}"
                             {{ old('user_id', $puesto->user_id) == $user->id ? 'selected' : '' }}
-                            >{{ $user->name }}
+                            >{{ $user->name }} {{ $user->apellido }}
                         </option>
                     @endforeach
                 </select>
@@ -25,7 +25,50 @@
             <label for="num_puesto" class="col-md-4 col-form-label text-md-right font-weight-normal"># Puesto</label>
 
             <div class="col-md-6">
-                <input id="num_puesto" type="text" class="form-control @error('num_puesto') is-invalid @enderror" name="num_puesto" value="{{ old('num_puesto', $puesto->num_puesto) }}" required autocomplete="num_puesto" autofocus>
+                {{-- <input id="num_puesto" type="text" class="form-control @error('num_puesto') is-invalid @enderror" name="num_puesto" value="{{ old('num_puesto', $puesto->num_puesto) }}" required autocomplete="num_puesto" autofocus> --}}
+
+           {{--  @php
+                $puestos = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
+            @endphp --}}
+
+            {{-- <input type="text" value="{{old('num_puesto', $puesto->num_puesto)}}"> --}}
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Agregar puestos
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Listado de Puestos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    {{-- @foreach ($lists as $list)
+
+                            $puestos = [$lists];
+                    @endforeach --}}
+
+                    <list-puestos
+                        :puestos="{{ json_encode($lists) }}"
+                        :oldpuestos="{{ json_encode(old('num_puesto', $puesto->num_puesto)) }}">
+                    </list-puestos>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
 
                 @error('num_puesto')
                     <span class="invalid-feedback" role="alert">

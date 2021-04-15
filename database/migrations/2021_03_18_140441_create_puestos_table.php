@@ -15,12 +15,13 @@ class CreatePuestosTable extends Migration
     {
         Schema::create('puestos', function (Blueprint $table) {
             $table->id();
-            $table->string('num_puesto');
+            // $table->string('num_puesto');
             $table->integer('cantidad_puesto');
             $table->string('medidas');
             $table->string('sisa');
             $table->string('sisa_diaria'); // cantidad_puesto * sisa
             $table->string('riesgo_exposicion')->nullable();
+            $table->foreignId('list_puesto_id')->constrained('list_puestos')->onDelete('cascade')->nullable();
             $table->foreignId('ubicacion_id')->constrained('ubicacions')->onDelete('cascade');
             $table->foreignId('actividad_id')->constrained('actividads')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
