@@ -22,24 +22,32 @@
         </div>
 
         <div class="form-group row">
-            <label for="num_puesto" class="col-md-4 col-form-label text-md-right font-weight-normal"># Puesto</label>
+            <label for="lista_id" class="col-md-4 col-form-label text-md-right font-weight-normal"># Puesto</label>
 
             <div class="col-md-6">
-                {{-- <input id="num_puesto" type="text" class="form-control @error('num_puesto') is-invalid @enderror" name="num_puesto" value="{{ old('num_puesto', $puesto->num_puesto) }}" required autocomplete="num_puesto" autofocus> --}}
 
-           {{--  @php
-                $puestos = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-            @endphp --}}
+{{--                 <select name="lista_id[]" class="form-control selectpicker"
+                        multiple="multiple"
+                        data-placeholder="Selecciona uno o más practicantes"
+                        style="width: 100%;">
+                      @foreach ($lists as $tag)
+                                <option {{ collect(old('lists', $puesto->lists->pluck('id')))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}">{{ $tag->num_puesto }}
+                                </option>
+                      @endforeach
+                  </select> --}}
 
-            {{-- <input type="text" value="{{old('num_puesto', $puesto->num_puesto)}}"> --}}
+                    <list-puestos
+                        :puestos="{{ json_encode($lists) }}"
+                        :oldpuestos="{{ json_encode(old('num_puesto', $puesto->num_puesto)) }}">
+                    </list-puestos>
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+{{--             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Agregar puestos
-            </button>
+            </button> --}}
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{--             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -49,11 +57,6 @@
                     </button>
                   </div>
                   <div class="modal-body">
-
-                    {{-- @foreach ($lists as $list)
-
-                            $puestos = [$lists];
-                    @endforeach --}}
 
                     <list-puestos
                         :puestos="{{ json_encode($lists) }}"
@@ -66,11 +69,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
 
-
-                @error('num_puesto')
+                @error('lista_id')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

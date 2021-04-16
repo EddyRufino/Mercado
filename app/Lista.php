@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ListPuesto extends Model
+class Lista extends Model
 {
-    //
+    protected $guarded = [];
+
+
 }

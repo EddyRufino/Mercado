@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Actividad;
 use App\Http\Requests\PuestoRequest;
-use App\ListPuesto;
 use App\Puesto;
 use App\Ubicacion;
+use App\Lista;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,16 +29,15 @@ class PuestoController extends Controller
 
         $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
         $actividades = Actividad::select(['id', 'nombre'])->get();
-        // $lists = ListPuesto::select(['id', 'num_puesto'])->get();
 
-        $lists = DB::table('list_puestos')
+        $lists = DB::table('listas')
                    ->whereNotExists(function ($query) {
                        $query->select(DB::raw(1))
-                             ->from('puestos')
-                             ->whereRaw('puestos.list_puesto_id = list_puestos.id');
+                             ->from('lista_puesto')
+                             ->whereRaw('lista_puesto.lista_id = listas.id');
                    })
                    ->get();
-        // dd($list);
+
         $users = DB::table('users')
                    ->whereNotExists(function ($query) {
                        $query->select(DB::raw(1))
@@ -47,8 +46,6 @@ class PuestoController extends Controller
                    })
                    ->get();
 
-        // dd($users);
-
         return view('puestos.create', compact('ubicaciones', 'actividades', 'users', 'lists'));
     }
 
@@ -56,6 +53,8 @@ class PuestoController extends Controller
     {
         dd($request->all());
         $puesto = Puesto::create($request->validated());
+
+        $puesto->lists()->sync($request->get('lista_id'));
 
         return redirect()->route('puestos.index', compact('puesto'));
     }
@@ -70,13 +69,16 @@ class PuestoController extends Controller
         $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
         $actividades = Actividad::select(['id', 'nombre'])->get();
         $users = User::select(['id', 'name'])->get();
+        $lists = Lista::select(['id', 'num_puesto'])->get();
 
-        return view('puestos.edit', compact('ubicaciones', 'actividades', 'users', 'puesto'));
+        return view('puestos.edit', compact('ubicaciones', 'actividades', 'users', 'puesto', 'lists'));
     }
 
     public function update(PuestoRequest $request, Puesto $puesto)
     {
         $puesto->update($request->validated());
+
+        $puesto->lists()->sync($request->get('lista_id'));
 
         return redirect()->route('puestos.index', compact('puesto'));
     }

@@ -1967,11 +1967,55 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
     return {
-      habilidades: new Set()
+      habilidades: new Set(),
+      selects: [],
+      chose: ''
     };
   },
   created: function created() {
@@ -1989,7 +2033,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     document.querySelector('#puestos').value = this.oldpuestos;
   },
   methods: {
-    choosepuesto: function choosepuesto(e, puesto) {
+    choosepuesto: function choosepuesto(e) {
       // console.log(e.target.remove());
       if (e.target.classList.contains('bg-primary')) {
         e.target.classList.remove('bg-primary');
@@ -2002,7 +2046,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
       var stringHabilidades = _toConsumableArray(this.habilidades);
 
-      document.getElementById('puestos').value = stringHabilidades; // console.log(this.puestos.splice(puesto, -1));
+      document.getElementById('puestos').value = stringHabilidades; // console.log(document.querySelector('.filter-option-inner-inner').value = stringHabilidades);
+      // document.getElementById('exampleFormControlSelect1').value = stringHabilidades;
+
+      this.selects = stringHabilidades; // console.log(this.selects);
+      // console.log(this.puestos.splice(puesto, -1));
       // console.log(Vue.delete(this.puestos, this.puesto));
     },
     verifyClassActive: function verifyClassActive(puesto) {
@@ -37723,30 +37771,131 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c(
-      "ul",
-      { staticClass: "list-group list-group-horizontal-sm d-flex flex-wrap" },
-      _vm._l(_vm.puestos, function(puesto) {
-        return _c(
-          "li",
-          {
-            staticClass: "list-group-item",
-            class: _vm.verifyClassActive(puesto),
-            on: {
-              click: function($event) {
-                return _vm.choosepuesto($event)
-              }
-            }
-          },
-          [_vm._v(_vm._s(puesto["num_puesto"]))]
-        )
-      }),
-      0
+      "select",
+      {
+        staticClass: "form-control selectpicker",
+        attrs: { name: "lista_id[]", id: "puestos", multiple: "multiple" }
+      },
+      [_c("option", [_vm._v(_vm._s(_vm.chose))])]
     ),
     _vm._v(" "),
-    _c("input", { attrs: { type: "text", name: "num_puesto", id: "puestos" } })
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": "#exampleModal"
+        }
+      },
+      [_vm._v("\n              Agregar puestos\n            ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "exampleModal",
+          tabindex: "-1",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "ul",
+                {
+                  staticClass:
+                    "list-group list-group-horizontal-sm d-flex flex-wrap"
+                },
+                _vm._l(_vm.puestos, function(puesto) {
+                  return _c(
+                    "li",
+                    {
+                      staticClass: "list-group-item",
+                      class: _vm.verifyClassActive(puesto),
+                      on: {
+                        click: function($event) {
+                          return _vm.choosepuesto($event)
+                        }
+                      },
+                      model: {
+                        value: _vm.chose,
+                        callback: function($$v) {
+                          _vm.chose = $$v
+                        },
+                        expression: "chose"
+                      }
+                    },
+                    [_vm._v(_vm._s(puesto["num_puesto"]))]
+                  )
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ])
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Listado de Puestos")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        [_vm._v("Save changes")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

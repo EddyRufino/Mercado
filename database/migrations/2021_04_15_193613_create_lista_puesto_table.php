@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListPuestosTable extends Migration
+class CreateListaPuestoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateListPuestosTable extends Migration
      */
     public function up()
     {
-        Schema::create('list_puestos', function (Blueprint $table) {
-            $table->id();
-            $table->string('num_puesto');
-            $table->timestamps();
+        Schema::create('lista_puesto', function (Blueprint $table) {
+            $table->unsignedInteger('lista_id');
+            $table->unsignedInteger('puesto_id');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateListPuestosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_puestos');
+        Schema::dropIfExists('lista_puesto');
     }
 }

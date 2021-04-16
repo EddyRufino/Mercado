@@ -22,6 +22,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 
+  {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+
       <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
@@ -149,7 +151,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
-
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
 <script>
 
@@ -158,10 +160,15 @@
     format: 'yyyy-mm-dd'
   }).datepicker("setDate", new Date());
 
-  // $('.select2').select2({
-  //     tags: true
-  //   });
+</script>
 
+<script>
+    $('.select2').select2({
+      tags: true
+    });
+  // $(document).ready(function() {
+  //     $('.js-example-basic-multiple').select2();
+  // });
 </script>
 
 {{-- <script type="text/javascript">

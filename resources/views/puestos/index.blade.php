@@ -30,7 +30,7 @@
                     @forelse ($puestos as $puesto)
                         <tr>
                             <td>{{ $puesto->user->name }} {{ $puesto->user->apellido }}</td>
-                            <td>{{ $puesto->num_puesto }}</td>
+                            <td>{{ $puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
                             <td>{{ $puesto->cantidad_puesto }}</td>
                             <td>{{ $puesto->medidas }}</td>
                             <td>S/. {{ $puesto->sisa }}</td>

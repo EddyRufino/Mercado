@@ -15,12 +15,15 @@ class PuestoSearchController extends Controller
 
         $puestos = User::where('apellido', 'like', '%'. $search.'%')
                         ->join('puestos', 'users.id', '=', 'puestos.user_id')
+                        ->join('lista_puesto', 'puestos.id', '=', 'lista_puesto.puesto_id')
+                        ->join('listas', 'listas.id', '=', 'lista_puesto.lista_id')
                         ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
                         ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-                        ->select('users.name', 'users.apellido', 'puestos.id', 'puestos.num_puesto', 'puestos.cantidad_puesto', 'puestos.medidas', 'puestos.sisa', 'puestos.sisa_diaria', 'puestos.riesgo_exposicion', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad')
-                        ->orWhere('puestos.num_puesto', 'like', '%'. $search.'%')
+                        ->select('users.name', 'users.apellido', 'puestos.id', 'puestos.cantidad_puesto', 'puestos.medidas', 'puestos.sisa', 'puestos.sisa_diaria', 'puestos.riesgo_exposicion', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad', 'listas.num_puesto')
+                        ->orWhere('listas.num_puesto', 'like', '%'. $search.'%')
+                        ->distinct()
                         ->paginate();
-
+        // dd($puestos);
         $puestos->appends(['search' => $search]);
 
         // dd($users);

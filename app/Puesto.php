@@ -50,4 +50,9 @@ class Puesto extends Model
     // {
     //     return $this->hasMany(Deuda::class);
     // }
+
+    public function lists()
+    {
+        return $this->belongsToMany(Lista::class);
+    }
 }
