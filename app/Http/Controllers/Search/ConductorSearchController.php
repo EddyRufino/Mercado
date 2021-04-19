@@ -10,6 +10,7 @@ class ConductorSearchController extends Controller
 {
     public function search(Request $request, User $user)
     {
+        // Vista conductores
         $search = $request->get('search');
 
         $conductores = User::where('apellido', 'like', '%'. $search.'%')

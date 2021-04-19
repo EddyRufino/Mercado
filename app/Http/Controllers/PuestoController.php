@@ -51,7 +51,9 @@ class PuestoController extends Controller
 
     public function store(PuestoRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        request()->validate(['lista_id' => 'required']); // Valida lista_id
+
         $puesto = Puesto::create($request->validated());
 
         $puesto->lists()->sync($request->get('lista_id'));
@@ -69,14 +71,29 @@ class PuestoController extends Controller
         $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
         $actividades = Actividad::select(['id', 'nombre'])->get();
         $users = User::select(['id', 'name'])->get();
-        $lists = Lista::select(['id', 'num_puesto'])->get();
+        // $lists = Lista::select(['id', 'num_puesto'])->get();
+        $lists = DB::table('listas')
+                   ->whereNotExists(function ($query) {
+                       $query->select(DB::raw(1))
+                             ->from('lista_puesto')
+                             ->whereRaw('lista_puesto.lista_id = listas.id');
+                   })
+                   ->orWhereExists(function ($query) use ($puesto) {
+                       $query->select(DB::raw(1))
+                             ->from('lista_puesto')
+                             ->whereColumn('lista_puesto.lista_id', 'listas.id')
+                             ->where('lista_puesto.puesto_id', $puesto->id);
+                   })
+                   ->get();
 
         return view('puestos.edit', compact('ubicaciones', 'actividades', 'users', 'puesto', 'lists'));
     }
 
     public function update(PuestoRequest $request, Puesto $puesto)
     {
-        $puesto->update($request->validated());
+        request()->validate(['lista_id' => 'required']); // Valida lista_id
+
+        $puesto->update($request->validated()); // Valida y Actualiza los campos del puesto
 
         $puesto->lists()->sync($request->get('lista_id'));
 

@@ -18,7 +18,7 @@
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
 
                                 <div class="col-md-6">
-                                    <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required readonly>
+                                    <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="<?php echo date("Y-m-d"); ?>" required readonly>
 
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">

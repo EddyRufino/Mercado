@@ -35,10 +35,10 @@
                                 </option>
                       @endforeach
                   </select> --}}
-
+                  {{-- {{ dd($puesto->lists->pluck('id')->implode(', ')) }} --}}
                     <list-puestos
                         :puestos="{{ json_encode($lists) }}"
-                        :oldpuestos="{{ json_encode(old('num_puesto', $puesto->num_puesto)) }}">
+                        :oldpuestos="{{ json_encode(old('lista_id', $puesto->lists->pluck('id'))) }}">
                     </list-puestos>
 
             <!-- Button trigger modal -->

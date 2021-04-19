@@ -14,7 +14,7 @@ class Puesto extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['ubicacion']; // Es la relación más no la tabla
+    protected $with = ['ubicacion', 'lists']; // Es la relación más no la tabla
 
     public function user()
     {

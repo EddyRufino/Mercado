@@ -24,7 +24,7 @@ class PuestoRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'lista_id' => [],
+            // 'lista_id' => ['required'],
             'cantidad_puesto' => ['required'],
             'medidas' => ['string', 'required', 'max:200'],
             'sisa' => ['string', 'required', 'max:200'],

@@ -16,7 +16,7 @@
 
         <div class="d-flex justify-content-center align-items-start">
             <div class="col">
-                <select name="lista_id[]" class="form-control " id="puestos" multiple="multiple" v-show="this.selects != 0">
+                <select name="lista_id[]" class="form-control " id="puestos" multiple="multiple" v-show="this.oldpuestos">
                     <option v-for="select in this.selects"  :value="select">{{select}}</option>
                 </select>
 
@@ -46,13 +46,14 @@
                             <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
                                 <li class="list-group-item"
                                    v-for="puesto in puestos"
-                                    :class="verifyClassActive(puesto)"
+                                    :class="verifyClassActive(puesto['num_puesto'])"
                                    @click="choosepuesto($event)"
                                 >{{ puesto['num_puesto'] }}</li>
                             </ul>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
                       </div>
                     </div>
                   </div>
@@ -73,15 +74,16 @@
         },
         created: function() {
             if (this.oldpuestos) {
-                const puestosArray = this.oldpuestos;
+                const puestosArray = this.oldpuestos.split('');
                 puestosArray.forEach( puesto => this.habilidades.add(puesto) );
-                console.log(this.puestosArray);
+
             }
         },
         mounted: function() {
             // Llena el input con las puestos selecionadas antes de recargar la pagina
             document.querySelector('#puestos').value = this.oldpuestos;
             console.log(this.oldpuestos);
+            this.selects = this.oldpuestos;
         },
         methods: {
             choosepuesto(e) {
@@ -98,7 +100,7 @@
                 document.getElementById('puestos').value = stringHabilidades;
 
                 this.selects = stringHabilidades;
-                // this.oldpuestos = stringHabilidades;
+                this.oldpuestos = stringHabilidades;
             },
             verifyClassActive(puesto) {
                 return this.habilidades.has(puesto) ? 'bg-primary' : '';
