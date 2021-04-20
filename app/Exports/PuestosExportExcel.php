@@ -2,22 +2,22 @@
 
 namespace App\Exports;
 
-use App\User;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Puesto;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PuestosExportExcel implements FromCollection
+class PuestosExportExcel implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        $puestos = User::join('puestos', 'users.id', '=', 'puestos.user_id')
-                ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-                ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-                ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'puestos.cantidad_puesto', 'puestos.medidas', 'puestos.sisa', 'puestos.sisa_diaria', 'puestos.riesgo_exposicion', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad')
-                ->get();
-
-        return $puestos;
+        $puestos = Puesto::with('user')->get();
+        return view('exports.exportEXCEL.puestos-excel', compact('puestos'));
     }
+
+    // public function collection()
+    // {
+    //     $puestos = Puesto::with('user')->get();
+
+    //     return $puestos;
+    // }
 }

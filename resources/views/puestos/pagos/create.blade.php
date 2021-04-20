@@ -19,7 +19,7 @@
 
                                 <div class="col-md-6">
                                     <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="<?php echo date("Y-m-d"); ?>" required readonly>
-
+{{-- <?php echo date("Y-m-d"); ?> --}}
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

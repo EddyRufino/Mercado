@@ -36,6 +36,11 @@ class Puesto extends Model
         return $this->hasMany(Pago::class);
     }
 
+    public function deudas()
+    {
+        return $this->hasMany(Deuda::class);
+    }
+
     // public function tipo_pago()
     // {
     //     return $this->hasMany(Tipo::class);

@@ -15,23 +15,6 @@ class SearchComerciante extends Controller
         // Buscar puesto par apagar
         $search = $request->get('search');
 
-        // $conductores = User::where('apellido', 'like', '%'. $search.'%')
-        //                 ->join('puestos', 'users.id', '=', 'puestos.user_id')
-        //                 ->select('puestos.id', 'users.name', 'users.apellido', 'puestos.num_puesto')
-        //                 ->get();
-
-        // $conductores = User::where('apellido', 'like', '%'. $search.'%')
-        //                 ->join('puestos', 'users.id', '=', 'puestos.user_id')
-        //                 ->join('lista_puesto', 'puestos.id', '=', 'lista_puesto.puesto_id')
-        //                 ->join('listas', 'listas.id', '=', 'lista_puesto.lista_id')
-        //                 ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-        //                 ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-        //                 ->select('users.name', 'users.apellido', 'puestos.id', 'puestos.cantidad_puesto', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad', 'listas.num_puesto')
-        //                 ->distinct()
-        //                 ->get();
-
-        // $conductores = User::has('puestos.lists')->where('apellido', 'like', '%'. $search.'%')->get();
-
         $conductores = Puesto::with('user')
         ->whereHas('user', function ($query) use ($search) {
             $query->where('apellido', 'like', '%'. $search. '%');

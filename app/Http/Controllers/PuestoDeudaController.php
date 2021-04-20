@@ -27,6 +27,8 @@ class PuestoDeudaController extends Controller
             $query->where('user_id', $puesto->user_id);
         })->paginate(4);
 
+        // dd($deudas);
+
         return view('puestos.deudas.index', compact('deudas'));
     }
 
@@ -54,7 +56,7 @@ class PuestoDeudaController extends Controller
 
         Pago::create([
             'fecha' => $deuda->fecha,
-            'num_operacion' => '',
+            'num_operacion' => NULL,
             'num_recibo' => rand(0, 9999999999),
             'monto_remodelacion' => $deuda->monto_remodelacion,
             'monto_constancia' => $deuda->monto_constancia,
