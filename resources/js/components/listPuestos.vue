@@ -75,13 +75,13 @@
             if (this.oldpuestos) {
                 const puestosArray = this.oldpuestos;
                 puestosArray.forEach( puesto => this.habilidades.add(puesto) );
-                console.log(this.puestosArray);
+                // console.log(this.puestosArray);
             }
         },
         mounted: function() {
             // Llena el input con las puestos selecionadas antes de recargar la pagina
             document.querySelector('#puestos').value = this.oldpuestos;
-            console.log(this.oldpuestos);
+            // console.log(this.oldpuestos);
         },
         methods: {
             choosepuesto(e) {

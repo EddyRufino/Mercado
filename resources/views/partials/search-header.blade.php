@@ -16,7 +16,7 @@
           <form method="GET" action="{{ route($linkAction) }}" class="form-inline">
               @csrf
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" name="search" type="search" placeholder="Buscar apellidos o puesto" aria-label="Search" required>
+              <input class="form-control form-control-navbar" name="search" type="search" placeholder="Buscar por apellidos" aria-label="Search" required>
               <div class="input-group-append">
                 <button class="btn btn-navbar bg-primary" type="submit">
                   <i class="fas fa-search"></i>

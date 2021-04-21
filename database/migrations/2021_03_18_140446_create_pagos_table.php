@@ -21,7 +21,7 @@ class CreatePagosTable extends Migration
             $table->string('monto_remodelacion')->nullable();
             $table->string('monto_constancia')->nullable();
             $table->string('monto_agua')->nullable();
-            $table->string('monto_sisa');
+            $table->string('monto_sisa')->nullable();
             $table->foreignId('puesto_id')->constrained('puestos')->onDelete('cascade');
             $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
             $table->timestamps();

@@ -82,7 +82,7 @@
         mounted: function() {
             // Llena el input con las puestos selecionadas antes de recargar la pagina
             document.querySelector('#puestos').value = this.oldpuestos;
-            console.log(this.oldpuestos);
+            // console.log(this.oldpuestos);
             this.selects = this.oldpuestos;
         },
         methods: {
