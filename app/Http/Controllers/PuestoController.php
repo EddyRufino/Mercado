@@ -10,6 +10,7 @@ use App\Lista;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class PuestoController extends Controller
 {
@@ -51,12 +52,17 @@ class PuestoController extends Controller
 
     public function store(PuestoRequest $request)
     {
+
         // dd($request->all());
+
         request()->validate(['lista_id' => 'required']); // Valida lista_id
 
         $puesto = Puesto::create($request->validated());
 
-        $puesto->lists()->sync($request->get('lista_id'));
+        $list_puesto = collect($request->lista_id)->unique();
+        $puesto->lists()->sync($list_puesto);
+
+        // $puesto->lists()->sync($request->get('lista_id'));
 
         return redirect()->route('puestos.index', compact('puesto'));
     }
@@ -93,16 +99,23 @@ class PuestoController extends Controller
     {
         request()->validate(['lista_id' => 'required']); // Valida lista_id
 
+        $my_ray = $request->lista_id;
+
         $puesto->update($request->validated()); // Valida y Actualiza los campos del puesto
 
-        $puesto->lists()->sync($request->get('lista_id'));
+        $list_puesto = array_splice($my_ray, 0, -1) ;
+        $puesto->lists()->sync($list_puesto);
+        // $puesto->lists()->sync($request->get('lista_id'));
 
         return redirect()->route('puestos.index', compact('puesto'));
     }
 
     public function destroy(Puesto $puesto)
     {
+        // dd($puesto->lists()->delete());
         $puesto->delete();
+
+        // $puesto->lists()->delete();
 
         return redirect()->route('puestos.index', $puesto)->with('status', 'El puesto fue eliminado.');
     }

@@ -55,7 +55,7 @@
                                           {{-- {{ dd($puesto->lists->pluck('id')->implode(', ')) }} --}}
                                             <list-puesto-edit
                                                 :puestos="{{ json_encode($lists) }}"
-                                                :oldpuestos="{{ json_encode(old('lista_id', $puesto->lists->pluck('id')->implode(''))) }}">
+                                                :oldpuestos="{{ json_encode(old('lista_id', $puesto->lists->pluck('id'))) }}">
                                             </list-puesto-edit>
 
                                         {!! $errors->first('lista_id', '<span class="text-danger">:message</span>') !!}

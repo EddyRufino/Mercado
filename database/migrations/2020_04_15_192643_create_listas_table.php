@@ -16,7 +16,8 @@ class CreateListasTable extends Migration
         Schema::create('listas', function (Blueprint $table) {
             $table->id();
             $table->string('num_puesto');
-            $table->timestamps();
+            $table->string('ubicacion');
+            $table->string('color');
         });
     }
 

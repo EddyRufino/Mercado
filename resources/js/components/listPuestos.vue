@@ -16,9 +16,11 @@
 
         <div class="d-flex justify-content-center align-items-start">
             <div class="col">
-                <select name="lista_id[]" class="form-control " id="puestos" multiple="multiple" v-show="this.selects != 0">
+              <!--   <select name="lista_id[]" class="form-control " id="puestos" multiple="multiple" v-show="this.selects != 0">
                     <option v-for="select in this.selects"  :value="select">{{select}}</option>
-                </select>
+                </select> -->
+                <!-- <span v-for="name in this.names">{{name.num_puesto}} {{name.num_puesto}}</span> -->
+                <input type="hidden" v-for="select in this.selects" :value="select" name="lista_id[]" id="puestos">
 
             </div>
 
@@ -44,12 +46,18 @@
                       </div>
                       <div class="modal-body">
                             <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
-                                <li class="list-group-item"
-                                   v-for="puesto in puestos"
+                                <li class="list-group-item pointer d-flex justify-content-center flex-column"
+                                    v-for="puesto in puestos"
                                     :class="verifyClassActive(puesto)"
-                                   @click="choosepuesto($event)"
-                                >{{ puesto['num_puesto'] }}</li>
+                                    @click="choosepuesto($event, puesto)"
+                                    :style="{'background-color': puesto['color']}"
+                                >
+                                    <span class="text-center text-white">{{ puesto['num_puesto'] }}</span>
+                                    <span class="text-center text-white">{{ puesto['ubicacion'] }}</span>
+                                </li>
                             </ul>
+
+                            <input type="hidden" name="lista_id[]" id="puestos">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -69,6 +77,7 @@
             return {
                 habilidades: new Set(),
                 selects: [],
+                // names: [],
             }
         },
         created: function() {
@@ -84,21 +93,24 @@
             // console.log(this.oldpuestos);
         },
         methods: {
-            choosepuesto(e) {
-                // console.log(e.target.remove());
+            choosepuesto(e, puesto) {
+                // console.log(puesto);
                 if (e.target.classList.contains('bg-primary')) {
                     e.target.classList.remove('bg-primary');
-                    this.habilidades.delete(e.target.textContent);
+                    this.habilidades.delete(puesto.id);
                 } else {
                     e.target.classList.add('bg-primary');
-                    this.habilidades.add(e.target.textContent);
+                    this.habilidades.add(puesto.id);
                 }
+                // e.target.textContent
                 // Agregar las puestos al input
                 const stringHabilidades = [...this.habilidades];
                 document.getElementById('puestos').value = stringHabilidades;
 
                 this.selects = stringHabilidades;
-                // this.oldpuestos = stringHabilidades;
+
+                // this.names.push(puesto);
+                // console.log(stringHabilidades.num_puesto);
             },
             verifyClassActive(puesto) {
                 return this.habilidades.has(puesto) ? 'bg-primary' : '';

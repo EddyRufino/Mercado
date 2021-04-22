@@ -150,12 +150,12 @@
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
-<script>
+{{-- <script>
   $('#datepicker').datepicker({
     autoclose: true,
     format: 'yyyy-mm-dd'
   }).datepicker("setDate", new Date());
-</script>
+</script> --}}
 
 <script>
     $('.select2').select2({

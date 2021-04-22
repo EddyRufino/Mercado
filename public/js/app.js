@@ -2018,6 +2018,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
@@ -2030,7 +2038,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var _this = this;
 
     if (this.oldpuestos) {
-      var puestosArray = this.oldpuestos.split('');
+      var puestosArray = this.oldpuestos;
       puestosArray.forEach(function (puesto) {
         return _this.habilidades.add(puesto);
       });
@@ -2038,19 +2046,19 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     // Llena el input con las puestos selecionadas antes de recargar la pagina
-    document.querySelector('#puestos').value = this.oldpuestos; // console.log(this.oldpuestos);
-
+    document.querySelector('#puestos').value = this.oldpuestos;
+    console.log(this.oldpuestos);
     this.selects = this.oldpuestos;
   },
   methods: {
-    choosepuesto: function choosepuesto(e) {
+    choosepuesto: function choosepuesto(e, puesto) {
       // console.log(e.target.remove());
       if (e.target.classList.contains('bg-primary')) {
         e.target.classList.remove('bg-primary');
-        this.habilidades["delete"](e.target.textContent);
+        this.habilidades["delete"](puesto.id);
       } else {
         e.target.classList.add('bg-primary');
-        this.habilidades.add(e.target.textContent);
+        this.habilidades.add(puesto.id);
       } // Agregar las puestos al input
 
 
@@ -2153,12 +2161,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
     return {
       habilidades: new Set(),
-      selects: []
+      selects: [] // names: [],
+
     };
   },
   created: function created() {
@@ -2176,21 +2193,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     document.querySelector('#puestos').value = this.oldpuestos; // console.log(this.oldpuestos);
   },
   methods: {
-    choosepuesto: function choosepuesto(e) {
-      // console.log(e.target.remove());
+    choosepuesto: function choosepuesto(e, puesto) {
+      // console.log(puesto);
       if (e.target.classList.contains('bg-primary')) {
         e.target.classList.remove('bg-primary');
-        this.habilidades["delete"](e.target.textContent);
+        this.habilidades["delete"](puesto.id);
       } else {
         e.target.classList.add('bg-primary');
-        this.habilidades.add(e.target.textContent);
-      } // Agregar las puestos al input
+        this.habilidades.add(puesto.id);
+      } // e.target.textContent
+      // Agregar las puestos al input
 
 
       var stringHabilidades = _toConsumableArray(this.habilidades);
 
       document.getElementById('puestos').value = stringHabilidades;
-      this.selects = stringHabilidades; // this.oldpuestos = stringHabilidades;
+      this.selects = stringHabilidades; // this.names.push(puesto);
+      // console.log(stringHabilidades.num_puesto);
     },
     verifyClassActive: function verifyClassActive(puesto) {
       return this.habilidades.has(puesto) ? 'bg-primary' : '';
@@ -37913,29 +37932,17 @@ var render = function() {
       "div",
       { staticClass: "d-flex justify-content-center align-items-start" },
       [
-        _c("div", { staticClass: "col" }, [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: this.oldpuestos,
-                  expression: "this.oldpuestos"
-                }
-              ],
-              staticClass: "form-control ",
-              attrs: { name: "lista_id[]", id: "puestos", multiple: "multiple" }
-            },
-            _vm._l(this.selects, function(select) {
-              return _c("option", { domProps: { value: select } }, [
-                _vm._v(_vm._s(select))
-              ])
-            }),
-            0
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "col" },
+          _vm._l(this.selects, function(select) {
+            return _c("input", {
+              attrs: { type: "hidden", name: "lista_id[]", id: "puestos" },
+              domProps: { value: select }
+            })
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "col-" }, [
           _c(
@@ -37978,19 +37985,37 @@ var render = function() {
                         return _c(
                           "li",
                           {
-                            staticClass: "list-group-item",
-                            class: _vm.verifyClassActive(puesto["num_puesto"]),
+                            staticClass:
+                              "list-group-item pointer d-flex justify-content-center flex-column",
+                            class: _vm.verifyClassActive(puesto["id"]),
+                            style: { "background-color": puesto["color"] },
                             on: {
                               click: function($event) {
-                                return _vm.choosepuesto($event)
+                                return _vm.choosepuesto($event, puesto)
                               }
                             }
                           },
-                          [_vm._v(_vm._s(puesto["num_puesto"]))]
+                          [
+                            _c("span", { staticClass: "text-center" }, [
+                              _vm._v(_vm._s(puesto["num_puesto"]))
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "text-center" }, [
+                              _vm._v(_vm._s(puesto["ubicacion"]))
+                            ])
+                          ]
                         )
                       }),
                       0
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        name: "lista_id[]",
+                        id: "puestos"
+                      }
+                    })
                   ]),
                   _vm._v(" "),
                   _vm._m(1)
@@ -38071,29 +38096,17 @@ var render = function() {
       "div",
       { staticClass: "d-flex justify-content-center align-items-start" },
       [
-        _c("div", { staticClass: "col" }, [
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: this.selects != 0,
-                  expression: "this.selects != 0"
-                }
-              ],
-              staticClass: "form-control ",
-              attrs: { name: "lista_id[]", id: "puestos", multiple: "multiple" }
-            },
-            _vm._l(this.selects, function(select) {
-              return _c("option", { domProps: { value: select } }, [
-                _vm._v(_vm._s(select))
-              ])
-            }),
-            0
-          )
-        ]),
+        _c(
+          "div",
+          { staticClass: "col" },
+          _vm._l(this.selects, function(select) {
+            return _c("input", {
+              attrs: { type: "hidden", name: "lista_id[]", id: "puestos" },
+              domProps: { value: select }
+            })
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "col-" }, [
           _c(
@@ -38136,19 +38149,41 @@ var render = function() {
                         return _c(
                           "li",
                           {
-                            staticClass: "list-group-item",
+                            staticClass:
+                              "list-group-item pointer d-flex justify-content-center flex-column",
                             class: _vm.verifyClassActive(puesto),
+                            style: { "background-color": puesto["color"] },
                             on: {
                               click: function($event) {
-                                return _vm.choosepuesto($event)
+                                return _vm.choosepuesto($event, puesto)
                               }
                             }
                           },
-                          [_vm._v(_vm._s(puesto["num_puesto"]))]
+                          [
+                            _c(
+                              "span",
+                              { staticClass: "text-center text-white" },
+                              [_vm._v(_vm._s(puesto["num_puesto"]))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-center text-white" },
+                              [_vm._v(_vm._s(puesto["ubicacion"]))]
+                            )
+                          ]
                         )
                       }),
                       0
-                    )
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        name: "lista_id[]",
+                        id: "puestos"
+                      }
+                    })
                   ]),
                   _vm._v(" "),
                   _vm._m(1)

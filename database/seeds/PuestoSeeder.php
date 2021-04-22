@@ -11,6 +11,191 @@ class PuestoSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('listas')->insert([
+            'num_puesto' => '1',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '2',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '3',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '4',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '5',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '6',
+            'ubicacion' => 'I',
+            'color' => '#5DD9F5'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '7',
+            'ubicacion' => 'G-I',
+            'color' => '#49B3CB'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '8',
+            'ubicacion' => 'G-I',
+            'color' => '#49B3CB'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '9',
+            'ubicacion' => 'G-I',
+            'color' => '#49B3CB'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '10',
+            'ubicacion' => 'G-I',
+            'color' => '#49B3CB'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '11',
+            'ubicacion' => 'G-I',
+            'color' => '#49B3CB'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '1',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '2',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '3',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '4',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '5',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '6',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '7',
+            'ubicacion' => 'P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '8',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '9',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '10',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '11',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '12',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '13',
+            'ubicacion' => 'MD-P',
+            'color' => '#CD6B08'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '1',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '2',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '3',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '4',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '5',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '6',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '7',
+            'ubicacion' => 'L-E',
+            'color' => '#FB9E3F'
+        ]);
         // DB::table('puestos')->insert([
         //     // 'num_puesto' => '1 al 3',
         //     'cantidad_puesto' => '3',

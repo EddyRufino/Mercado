@@ -53,3 +53,24 @@ tbody {
     background-color: #e9ecef;
     border-color: #ced4da;
 }
+
+.list-group-item {
+    border-radius: 40px !important;
+    margin: 5px;
+    border: solid 0px white !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+/*@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 1200px !important;
+        margin: 1.75rem auto;
+    }
+}*/
+
+.content-wrapper {
+    /*background: white !important;*/
+}
