@@ -14,8 +14,8 @@
 
         <!-- this.selects != 0   this.oldpuestos-->
 
-        <div class="d-flex justify-content-center align-items-start">
-            <div class="col">
+        <div class="d-flex justify-content-center align-items-start flex-column">
+            <div class="row col-md-12">
 <!--                 <select name="lista_id[]" class="form-control " id="puestos" multiple="multiple" v-show="this.oldpuestos">
                     <option v-for="select in this.selects"  :value="select">{{select}}</option>
                 </select> -->
@@ -26,7 +26,7 @@
 
 
             <!-- var Util = { -->
-            <div class="col-">
+            <div class="row col-md-12">
 
 
                     <!-- Button trigger modal -->
@@ -45,19 +45,30 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                            <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
-                                <li class="list-group-item pointer d-flex justify-content-center flex-column"
-                                   v-for="puesto in puestos"
-                                    :class="verifyClassActive(puesto['id'])"
-                                   @click="choosepuesto($event, puesto)"
-                                   :style="{'background-color': puesto['color']}"
-                                >
-                                    <span class="text-center">{{ puesto['num_puesto'] }}</span>
-                                    <span class="text-center">{{ puesto['ubicacion'] }}</span>
-                                </li>
-                            </ul>
+                        <div class="d-flex justify-content-around mb-3 row">
+                            <span><i class="circule circule-1"></i> Interior</span>
+                            <span><i class="circule circule-2"></i> Gruta - Interior</span>
+                            <span><i class="circule circule-3"></i> Plataforma</span>
+                            <span><i class="circule circule-4"></i> Mesa Redonda - Plataforma</span>
+                            <span><i class="circule circule-5"></i> Local Exterior</span>
+                        </div>
+                        <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
+                            <li class="list-group-item pointer d-flex justify-content-center flex-column text-white"
+                               v-for="puesto in puestos"
+                                :class="verifyClassActive(puesto['id'])"
+                               @click="choosepuesto($event, puesto)"
+                               :style="{'background-color': puesto['color']}"
+                            >
+                                <!-- <span class="text-center"> -->
+                                    {{ puesto['num_puesto'] }}
+                                <!-- </span> -->
+                                <!-- <span class="text-center"> -->
+                                    {{ puesto['ubicacion'] }}
+                                <!-- </span> -->
+                            </li>
+                        </ul>
 
-                            <input type="hidden" name="lista_id[]" id="puestos">
+                        <input type="hidden" name="lista_id[]" id="puestos">
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>

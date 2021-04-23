@@ -2026,6 +2026,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
@@ -2169,13 +2180,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
     return {
       habilidades: new Set(),
-      selects: [] // names: [],
-
+      selects: [],
+      names: []
     };
   },
   created: function created() {
@@ -2198,9 +2225,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       if (e.target.classList.contains('bg-primary')) {
         e.target.classList.remove('bg-primary');
         this.habilidades["delete"](puesto.id);
+        this.names.splice(this.names.indexOf(puesto), 1);
       } else {
         e.target.classList.add('bg-primary');
         this.habilidades.add(puesto.id);
+        this.names.push(puesto);
       } // e.target.textContent
       // Agregar las puestos al input
 
@@ -2208,8 +2237,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var stringHabilidades = _toConsumableArray(this.habilidades);
 
       document.getElementById('puestos').value = stringHabilidades;
-      this.selects = stringHabilidades; // this.names.push(puesto);
-      // console.log(stringHabilidades.num_puesto);
+      this.selects = stringHabilidades;
     },
     verifyClassActive: function verifyClassActive(puesto) {
       return this.habilidades.has(puesto) ? 'bg-primary' : '';
@@ -37930,11 +37958,14 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "d-flex justify-content-center align-items-start" },
+      {
+        staticClass:
+          "d-flex justify-content-center align-items-start flex-column"
+      },
       [
         _c(
           "div",
-          { staticClass: "col" },
+          { staticClass: "row col-md-12" },
           _vm._l(this.selects, function(select) {
             return _c("input", {
               attrs: { type: "hidden", name: "lista_id[]", id: "puestos" },
@@ -37944,7 +37975,7 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-" }, [
+        _c("div", { staticClass: "row col-md-12" }, [
           _c(
             "button",
             {
@@ -37975,6 +38006,8 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
                     _c(
                       "ul",
                       {
@@ -37986,7 +38019,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item pointer d-flex justify-content-center flex-column",
+                              "list-group-item pointer d-flex justify-content-center flex-column text-white",
                             class: _vm.verifyClassActive(puesto["id"]),
                             style: { "background-color": puesto["color"] },
                             on: {
@@ -37996,13 +38029,17 @@ var render = function() {
                             }
                           },
                           [
-                            _c("span", { staticClass: "text-center" }, [
-                              _vm._v(_vm._s(puesto["num_puesto"]))
-                            ]),
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(puesto["num_puesto"]) +
+                                "\n                                "
+                            ),
                             _vm._v(" "),
-                            _c("span", { staticClass: "text-center" }, [
-                              _vm._v(_vm._s(puesto["ubicacion"]))
-                            ])
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(puesto["ubicacion"]) +
+                                "\n                                "
+                            )
                           ]
                         )
                       }),
@@ -38018,7 +38055,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm._m(2)
                 ])
               ])
             ]
@@ -38053,6 +38090,41 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-around mb-3 row" },
+      [
+        _c("span", [
+          _c("i", { staticClass: "circule circule-1" }),
+          _vm._v(" Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-2" }),
+          _vm._v(" Gruta - Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-3" }),
+          _vm._v(" Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-4" }),
+          _vm._v(" Mesa Redonda - Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-5" }),
+          _vm._v(" Local Exterior")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -38094,21 +38166,41 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "d-flex justify-content-center align-items-start" },
+      {
+        staticClass:
+          "d-flex justify-content-center align-items-start flex-column"
+      },
       [
         _c(
           "div",
-          { staticClass: "col" },
-          _vm._l(this.selects, function(select) {
-            return _c("input", {
-              attrs: { type: "hidden", name: "lista_id[]", id: "puestos" },
-              domProps: { value: select }
+          { staticClass: "row col-md-12" },
+          [
+            _vm._l(this.names, function(name) {
+              return _c(
+                "span",
+                { staticClass: "bg-secondary m-1 pt-1 pb-1 pr-2 pl-2 rounded" },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(name.num_puesto) +
+                      _vm._s(name.ubicacion) +
+                      "\n                "
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._l(this.selects, function(select) {
+              return _c("input", {
+                attrs: { type: "hidden", name: "lista_id[]", id: "puestos" },
+                domProps: { value: select }
+              })
             })
-          }),
-          0
+          ],
+          2
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "col-" }, [
+        _c("div", { staticClass: "row col-md-12" }, [
           _c(
             "button",
             {
@@ -38139,6 +38231,8 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
                     _c(
                       "ul",
                       {
@@ -38150,7 +38244,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item pointer d-flex justify-content-center flex-column",
+                              "list-group-item pointer d-flex justify-content-center flex-column text-white",
                             class: _vm.verifyClassActive(puesto),
                             style: { "background-color": puesto["color"] },
                             on: {
@@ -38160,16 +38254,16 @@ var render = function() {
                             }
                           },
                           [
-                            _c(
-                              "span",
-                              { staticClass: "text-center text-white" },
-                              [_vm._v(_vm._s(puesto["num_puesto"]))]
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(puesto["num_puesto"]) +
+                                "\n                                    "
                             ),
                             _vm._v(" "),
-                            _c(
-                              "span",
-                              { staticClass: "text-center text-white" },
-                              [_vm._v(_vm._s(puesto["ubicacion"]))]
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(puesto["ubicacion"]) +
+                                "\n                                "
                             )
                           ]
                         )
@@ -38186,7 +38280,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm._m(2)
                 ])
               ])
             ]
@@ -38221,6 +38315,41 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-around mb-3 row" },
+      [
+        _c("span", [
+          _c("i", { staticClass: "circule circule-1" }),
+          _vm._v(" Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-2" }),
+          _vm._v(" Gruta - Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-3" }),
+          _vm._v(" Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-4" }),
+          _vm._v(" Mesa Redonda - Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-5" }),
+          _vm._v(" Local Exterior")
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this

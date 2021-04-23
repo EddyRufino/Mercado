@@ -8,6 +8,7 @@ use App\Puesto;
 use App\Ubicacion;
 use App\Lista;
 use App\User;
+use App\lista_puesto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
@@ -112,10 +113,16 @@ class PuestoController extends Controller
 
     public function destroy(Puesto $puesto)
     {
-        // dd($puesto->lists()->delete());
         $puesto->delete();
 
-        // $puesto->lists()->delete();
+        $lists = DB::table('lista_puesto')
+                   ->whereExists(function ($query) {
+                       $query->select(DB::raw(1))
+                             ->from('listas')
+                             ->whereRaw('lista_puesto.lista_id = listas.id');
+                   })->where('lista_puesto.puesto_id', $puesto->id)->delete();
+
+        // $lists->each->delete();
 
         return redirect()->route('puestos.index', $puesto)->with('status', 'El puesto fue eliminado.');
     }

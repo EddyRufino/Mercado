@@ -158,43 +158,43 @@ class PuestoSeeder extends Seeder
         DB::table('listas')->insert([
             'num_puesto' => '1',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '2',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '3',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '4',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '5',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '6',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '7',
             'ubicacion' => 'L-E',
-            'color' => '#FB9E3F'
+            'color' => '#F662BC'
         ]);
         // DB::table('puestos')->insert([
         //     // 'num_puesto' => '1 al 3',
