@@ -55,7 +55,7 @@
                             <span><i class="circule circule-5"></i> Local Exterior</span>
                         </div>
                         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
-                            <li class="list-group-item pointer d-flex justify-content-center flex-column text-white"
+                            <li class="list-group-item redond pointer d-flex justify-content-center flex-column text-white"
                                 v-for="puesto in puestos"
                                 :class="verifyClassActive(puesto)"
                                 @click="choosepuesto($event, puesto)"

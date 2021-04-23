@@ -38019,7 +38019,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item pointer d-flex justify-content-center flex-column text-white",
+                              "list-group-item redond pointer d-flex justify-content-center flex-column text-white",
                             class: _vm.verifyClassActive(puesto["id"]),
                             style: { "background-color": puesto["color"] },
                             on: {
@@ -38244,7 +38244,7 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "list-group-item pointer d-flex justify-content-center flex-column text-white",
+                              "list-group-item redond pointer d-flex justify-content-center flex-column text-white",
                             class: _vm.verifyClassActive(puesto),
                             style: { "background-color": puesto["color"] },
                             on: {
