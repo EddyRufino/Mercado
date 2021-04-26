@@ -68,7 +68,7 @@ tbody {
 
 @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 900px !important;
+        max-width: 950px !important;
         margin: 1.75rem auto;
     }
 }
@@ -106,4 +106,28 @@ tbody {
 
 .circule-5 {
     background-color: #F662BC;
+}
+
+.circule-6 {
+    background-color: #088A68;
+}
+
+.circule-7 {
+    background-color: #0080FF;
+}
+
+.circule-8 {
+    background-color: #F7D358;
+}
+
+.circule-9 {
+    background-color: #BF00FF;
+}
+
+.circule-10 {
+    background-color: #F6CED8;
+}
+
+.circule-11 {
+    background-color: #F6CECE;
 }

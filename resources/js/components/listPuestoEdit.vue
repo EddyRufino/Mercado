@@ -50,7 +50,13 @@
                             <span><i class="circule circule-2"></i> Gruta - Interior</span>
                             <span><i class="circule circule-3"></i> Plataforma</span>
                             <span><i class="circule circule-4"></i> Mesa Redonda - Plataforma</span>
-                            <span><i class="circule circule-5"></i> Local Exterior</span>
+                            <span><i class="circule circule-5"></i> Locales de Exterior</span>
+                            <span><i class="circule circule-6"></i> Locales - Plataforma</span>
+                            <span><i class="circule circule-7 mt-2"></i> Locales del Interior</span>
+                            <span><i class="circule circule-8 mt-2"></i> Ambulantes</span>
+                            <span><i class="circule circule-9 mt-2"></i> Kioskos Plataforma</span>
+                            <span><i class="circule circule-10 mt-2"></i> Kioskos del Interior</span>
+                            <span><i class="circule circule-11 mt-2"></i> Kioskos del Exterior</span>
                         </div>
                         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
                             <li class="list-group-item redond pointer d-flex justify-content-center flex-column text-white"
@@ -107,11 +113,11 @@
         methods: {
             choosepuesto(e, puesto) {
                 // console.log(e.target.remove());
-                if (e.target.classList.contains('bg-primary')) {
-                    e.target.classList.remove('bg-primary');
+                if (e.target.classList.contains('bg-danger')) {
+                    e.target.classList.remove('bg-danger');
                     this.habilidades.delete(puesto.id);
                 } else {
-                    e.target.classList.add('bg-primary');
+                    e.target.classList.add('bg-danger');
                     this.habilidades.add(puesto.id);
                 }
                 // Agregar las puestos al input
@@ -122,7 +128,7 @@
                 this.oldpuestos = stringHabilidades;
             },
             verifyClassActive(puesto) {
-                return this.habilidades.has(puesto) ? 'bg-primary' : '';
+                return this.habilidades.has(puesto) ? 'bg-danger' : '';
             }
         },
     }

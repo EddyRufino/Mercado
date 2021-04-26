@@ -2037,6 +2037,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
@@ -2064,11 +2070,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     choosepuesto: function choosepuesto(e, puesto) {
       // console.log(e.target.remove());
-      if (e.target.classList.contains('bg-primary')) {
-        e.target.classList.remove('bg-primary');
+      if (e.target.classList.contains('bg-danger')) {
+        e.target.classList.remove('bg-danger');
         this.habilidades["delete"](puesto.id);
       } else {
-        e.target.classList.add('bg-primary');
+        e.target.classList.add('bg-danger');
         this.habilidades.add(puesto.id);
       } // Agregar las puestos al input
 
@@ -2080,7 +2086,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.oldpuestos = stringHabilidades;
     },
     verifyClassActive: function verifyClassActive(puesto) {
-      return this.habilidades.has(puesto) ? 'bg-primary' : '';
+      return this.habilidades.has(puesto) ? 'bg-danger' : '';
     }
   }
 });
@@ -2196,6 +2202,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
@@ -2222,12 +2235,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   methods: {
     choosepuesto: function choosepuesto(e, puesto) {
       // console.log(puesto);
-      if (e.target.classList.contains('bg-primary')) {
-        e.target.classList.remove('bg-primary');
+      if (e.target.classList.contains('bg-danger')) {
+        e.target.classList.remove('bg-danger');
         this.habilidades["delete"](puesto.id);
         this.names.splice(this.names.indexOf(puesto), 1);
       } else {
-        e.target.classList.add('bg-primary');
+        e.target.classList.add('bg-danger');
         this.habilidades.add(puesto.id);
         this.names.push(puesto);
       } // e.target.textContent
@@ -2240,7 +2253,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.selects = stringHabilidades;
     },
     verifyClassActive: function verifyClassActive(puesto) {
-      return this.habilidades.has(puesto) ? 'bg-primary' : '';
+      return this.habilidades.has(puesto) ? 'bg-danger' : '';
     }
   }
 });
@@ -38121,7 +38134,37 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("span", [
           _c("i", { staticClass: "circule circule-5" }),
-          _vm._v(" Local Exterior")
+          _vm._v(" Locales de Exterior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-6" }),
+          _vm._v(" Locales - Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-7 mt-2" }),
+          _vm._v(" Locales del Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-8 mt-2" }),
+          _vm._v(" Ambulantes")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-9 mt-2" }),
+          _vm._v(" Kioskos Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-10 mt-2" }),
+          _vm._v(" Kioskos del Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-11 mt-2" }),
+          _vm._v(" Kioskos del Exterior")
         ])
       ]
     )
@@ -38322,7 +38365,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "d-flex justify-content-around mb-3 row" },
+      { staticClass: "d-flex justify-content-around mb-3 row flex-wrap" },
       [
         _c("span", [
           _c("i", { staticClass: "circule circule-1" }),
@@ -38344,9 +38387,41 @@ var staticRenderFns = [
           _vm._v(" Mesa Redonda - Plataforma")
         ]),
         _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c("span", [
-          _c("i", { staticClass: "circule circule-5" }),
-          _vm._v(" Local Exterior")
+          _c("i", { staticClass: "circule circule-5 mt-2" }),
+          _vm._v(" Locales del Exterior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-6 mt-2" }),
+          _vm._v(" Locales - Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-7 mt-2" }),
+          _vm._v(" Locales del Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-8 mt-2" }),
+          _vm._v(" Ambulantes")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-9 mt-2" }),
+          _vm._v(" Kioskos Plataforma")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-10 mt-2" }),
+          _vm._v(" Kioskos del Interior")
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "circule circule-11 mt-2" }),
+          _vm._v(" Kioskos del Exterior")
         ])
       ]
     )

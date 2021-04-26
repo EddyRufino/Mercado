@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="lista_id" class="col-md-4 col-form-label text-md-right font-weight-normal"># Puesto</label>
+            <label for="lista_id" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Puesto</label>
 
             <div class="col-md-6">
 

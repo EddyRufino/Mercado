@@ -196,6 +196,78 @@ class PuestoSeeder extends Seeder
             'ubicacion' => 'L-E',
             'color' => '#F662BC'
         ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '1',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '2',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '3',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '4',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '5',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '6',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '7',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '8',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '9',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '10',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '11',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
+
+        DB::table('listas')->insert([
+            'num_puesto' => '12',
+            'ubicacion' => 'A',
+            'color' => '#F7D358'
+        ]);
         // DB::table('puestos')->insert([
         //     // 'num_puesto' => '1 al 3',
         //     'cantidad_puesto' => '3',
