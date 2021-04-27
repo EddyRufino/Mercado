@@ -22,6 +22,7 @@ class PuestoTramiteController extends Controller
 
     public function store(PuestoTramiteRequest $request, Puesto $puesto)
     {
+        // dd($request->all());
         $data = Pago::create([
             'fecha' => $request->fecha,
             'num_recibo' => $request->num_recibo,

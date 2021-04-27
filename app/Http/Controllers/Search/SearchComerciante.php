@@ -12,13 +12,15 @@ class SearchComerciante extends Controller
 {
     public function search(Request $request, Puesto $puesto)
     {
+        // Buscar puesto par apagar
         $search = $request->get('search');
 
-        // $conductores = User::where('apellido', 'like', '%'. $search.'%')->paginate();
-        $conductores = User::where('apellido', 'like', '%'. $search.'%')
-                        ->join('puestos', 'users.id', '=', 'puestos.user_id')
-                        ->select('puestos.id', 'users.name', 'users.apellido', 'puestos.num_puesto')
-                        ->get();
+        $conductores = Puesto::with('user')
+        ->whereHas('user', function ($query) use ($search) {
+            $query->where('apellido', 'like', '%'. $search. '%');
+        })
+        ->get();
+
         // dd($conductores);
         // $conductores->appends(['search' => $search]);
 

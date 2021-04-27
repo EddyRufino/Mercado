@@ -2,7 +2,7 @@
     <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha Pagos</label>
 
     <div class="col-md-6">
-        <select class="form-control select2 " name="fecha" required>
+        <select class="form-control selectpicker" name="fecha" required data-live-search="true">
             @foreach ($pagos as $pago)
                 <option class="" value="{{ $pago->fecha }}">
                     {{ $pago->fecha }}
@@ -19,7 +19,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="num_operacion" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Operacion</label>
+    <label for="num_operacion" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Operación</label>
 
     <div class="col-md-6">
         <input id="num_operacion" type="text" class="form-control @error('num_operacion') is-invalid @enderror" name="num_operacion" value="{{ old('num_operacion', $pago->num_operacion) }}" required autocomplete="num_operacion" autofocus>

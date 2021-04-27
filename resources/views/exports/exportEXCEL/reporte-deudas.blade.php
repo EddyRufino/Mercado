@@ -42,27 +42,25 @@
         <div class="text-center">
             {{-- <img src="{{ asset('img/logo.png') }}" alt="Minu Castilla" class="circle"> --}}
         </div>
-            <h4 class="text-center font-weight-bold">Lista de Conductores</h4>
+            <h4 class="text-center font-weight-bold">Lista de Deudas</h4>
             <table class="table mt-2">
                 <thead>
                     <tr>
                         <th scope="col">Conductor</th>
-                        <th scope="col">DNI</th>
+                        <th scope="col">Fecha</th>
                         <th scope="col">Puesto</th>
-                        <th scope="col">R. Exposición</th>
-                        <th scope="col">Actividad</th>
+                        <th scope="col">Sisa Diaria</th>
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($conductores as $conductor)
+                    @foreach ($deudas as $deuda)
                         <tr>
-                            <td>{{ $conductor->user->name }} {{ $conductor->user->apellido }}</td>
-                            <td>{{ $conductor->user->dni }}</td>
-                            <td>{{ $conductor->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>{{ $conductor->riesgo_exposicion }}</td>
-                            <td>{{ $conductor->ubicacion->nombre }}</td>
-                            <td>{{ $conductor->actividad->nombre }}</td>
+                            <td>{{ $deuda->puesto->user->name }} {{ $deuda->puesto->user->apellido }}</td>
+                            <td>{{ $deuda->fecha }}</td>
+                            <td>{{ $deuda->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
+                            <td>S/. {{ $deuda->monto_sisa }}</td>
+                            <td>{{ $deuda->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
                 </tbody>

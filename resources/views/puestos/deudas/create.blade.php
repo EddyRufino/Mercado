@@ -7,7 +7,7 @@
                 <div class="card mt-3">
                     <div class="card-header bg-secondary d-flex justify-content-between align-items-center">
                         <span class="w-100">
-                            {{ $puesto->user->name }} {{ $puesto->user->apellido }} <strong>-</strong> Puesto {{ $puesto->num_puesto }}
+                            {{ $puesto->user->name }} {{ $puesto->user->apellido }} <strong>-</strong> Puesto {{ $puesto->lists->pluck('num_puesto')->implode(',  ') }}
                         </span>
                     </div>
                     <div class="card-body">
@@ -18,7 +18,10 @@
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
 
                                 <div class="col-md-6">
-                                    <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required readonly>
+{{--                                     <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="<?php echo date("Y-m-d"); ?>" required readonly> --}}
+                                    <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
+                                           value="<?php echo date("Y-m-d"); ?>"
+                                           min="2018-01-01" max="2030-12-31" required>
 
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">

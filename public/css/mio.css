@@ -11,8 +11,22 @@ a.d-block.up {
 }
 /*color: #c2c7d0;*/
 
+tbody {
+    background-color: white !important;
+}
+
 .w-100 {
     width: 100%;
+}
+
+.bootstrap-select > .dropdown-toggle {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    text-align: right;
+    white-space: nowrap;
+    background-color: white !important;
+    border: 1px solid #ced4da !important;
 }
 
 .btn-s {
@@ -38,4 +52,82 @@ a.d-block.up {
     color: #495057;
     background-color: #e9ecef;
     border-color: #ced4da;
+}
+
+.redond {
+    border-radius: 8px !important;
+    margin-left: 5px;
+    margin-top: 5px;
+    border: solid 0px white !important;
+    padding: 5px 18px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 950px !important;
+        margin: 1.75rem auto;
+    }
+}
+
+.content-wrapper {
+    background: white !important;
+}
+
+.card-body {
+    /*background-color: #F9FAFB !important;*/
+}
+
+.circule {
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.circule-1 {
+    background-color: #5DD9F5;
+}
+
+.circule-2 {
+    background-color: #49B3CB;
+}
+
+.circule-3 {
+    background-color: #30BF3B;
+}
+
+.circule-4 {
+    background-color: #FB9E3F;
+}
+
+.circule-5 {
+    background-color: #F662BC;
+}
+
+.circule-6 {
+    background-color: #088A68;
+}
+
+.circule-7 {
+    background-color: #0080FF;
+}
+
+.circule-8 {
+    background-color: #F7D358;
+}
+
+.circule-9 {
+    background-color: #BF00FF;
+}
+
+.circule-10 {
+    background-color: #F6CED8;
+}
+
+.circule-11 {
+    background-color: #F6CECE;
 }

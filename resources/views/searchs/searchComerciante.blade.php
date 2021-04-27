@@ -18,7 +18,8 @@
                         ])
 
                         <div class="card-body">
-                            {{ $conductor->name }} {{ $conductor->apellido }} <strong>-</strong> Puesto del {{ $conductor->num_puesto }}
+                            {{ $conductor->user->name }} {{ $conductor->user->apellido }} <strong>-</strong>
+                            Puesto {{ $conductor->lists->pluck('num_puesto')->implode(', ') }}
 
                             <div class="mt-3">
                                 @auth

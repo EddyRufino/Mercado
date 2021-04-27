@@ -2,11 +2,13 @@
 
 namespace App\Exports;
 
+use App\Pago;
 use App\User;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PagosRepostQueryExport implements FromQuery
+class PagosRepostQueryExport implements FromView
 {
     use Exportable;
 
@@ -17,15 +19,22 @@ class PagosRepostQueryExport implements FromQuery
         return $this;
     }
 
-    public function query()
+    public function view(): View
     {
-        $pagos = User::join('puestos', 'users.id', '=', 'puestos.user_id')
-                        ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-                        ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-                        ->join('pagos', 'puestos.id', '=', 'pagos.puesto_id')
-                        ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'pagos.num_recibo', 'puestos.sisa_diaria', 'pagos.fecha', 'pagos.num_operacion', 'pagos.monto_agua', 'ubicacions.nombre as ubicacion')
-                        ->whereDate('pagos.fecha', $this->date);
+        $pagos = Pago::with('puesto')->where('fecha', $this->date)->get();
 
-        return $pagos;
+        return view('exports.exportEXCEL.reporte-pagos', compact('pagos'));
     }
+
+    // public function query()
+    // {
+    //     $pagos = User::join('puestos', 'users.id', '=', 'puestos.user_id')
+    //                     ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
+    //                     ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
+    //                     ->join('pagos', 'puestos.id', '=', 'pagos.puesto_id')
+    //                     ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'pagos.num_recibo', 'puestos.sisa_diaria', 'pagos.fecha', 'pagos.num_operacion', 'pagos.monto_agua', 'ubicacions.nombre as ubicacion')
+    //                     ->whereDate('pagos.fecha', $this->date);
+
+    //     return $pagos;
+    // }
 }

@@ -30,15 +30,15 @@
                 <tbody>
                     @forelse ($puestos as $puesto)
                         <tr>
-                            <td>{{ $puesto->name }} {{ $puesto->apellido }}</td>
-                            <td>{{ $puesto->num_puesto }}</td>
+                            <td>{{ $puesto->user->name }} {{ $puesto->user->apellido }}</td>
+                            <td>{{ $puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
                             <td>{{ $puesto->cantidad_puesto }}</td>
                             <td>{{ $puesto->medidas }}</td>
                             <td>S/. {{ $puesto->sisa }}</td>
                             <td>S/. {{ $puesto->sisa_diaria }}</td>
                             <td>{{ $puesto->riesgo_exposicion }}</td>
-                            <td>{{ $puesto->ubicacion }}</td>
-                            <td>{{ $puesto->actividad }}</td>
+                            <td>{{ $puesto->ubicacion->nombre }}</td>
+                            <td>{{ $puesto->actividad->nombre }}</td>
 
                             <td>
                                 <div class="d-flex">

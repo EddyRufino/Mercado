@@ -14,7 +14,7 @@ class Puesto extends Model
 {
     protected $guarded = [];
 
-    protected $with = ['ubicacion']; // Es la relación más no la tabla
+    protected $with = ['ubicacion', 'lists']; // Es la relación más no la tabla
 
     public function user()
     {
@@ -36,6 +36,11 @@ class Puesto extends Model
         return $this->hasMany(Pago::class);
     }
 
+    public function deudas()
+    {
+        return $this->hasMany(Deuda::class);
+    }
+
     // public function tipo_pago()
     // {
     //     return $this->hasMany(Tipo::class);
@@ -50,4 +55,9 @@ class Puesto extends Model
     // {
     //     return $this->hasMany(Deuda::class);
     // }
+
+    public function lists()
+    {
+        return $this->belongsToMany(Lista::class);
+    }
 }

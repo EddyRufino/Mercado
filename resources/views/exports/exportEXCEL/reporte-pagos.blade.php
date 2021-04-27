@@ -42,27 +42,35 @@
         <div class="text-center">
             {{-- <img src="{{ asset('img/logo.png') }}" alt="Minu Castilla" class="circle"> --}}
         </div>
-            <h4 class="text-center font-weight-bold">Lista de Conductores</h4>
+            <h4 class="text-center font-weight-bold">Lista de Deudas</h4>
             <table class="table mt-2">
                 <thead>
                     <tr>
                         <th scope="col">Conductor</th>
-                        <th scope="col">DNI</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Número Recibo</th>
+                        <th scope="col">Número Operación</th>
                         <th scope="col">Puesto</th>
-                        <th scope="col">R. Exposición</th>
-                        <th scope="col">Actividad</th>
+                        <th scope="col">Monto Sisa</th>
+                        <th scope="col">Monto Agua</th>
+                        <th scope="col">Monto Remodelación</th>
+                        <th scope="col">Monto Constancia</th>
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($conductores as $conductor)
+                    @foreach ($pagos as $pago)
                         <tr>
-                            <td>{{ $conductor->user->name }} {{ $conductor->user->apellido }}</td>
-                            <td>{{ $conductor->user->dni }}</td>
-                            <td>{{ $conductor->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>{{ $conductor->riesgo_exposicion }}</td>
-                            <td>{{ $conductor->ubicacion->nombre }}</td>
-                            <td>{{ $conductor->actividad->nombre }}</td>
+                            <td>{{ $pago->puesto->user->name }} {{ $pago->puesto->user->apellido }}</td>
+                            <td>{{ $pago->fecha }}</td>
+                            <td>{{ $pago->num_recibo }}</td>
+                            <td>{{ $pago->num_operacion }}</td>
+                            <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
+                            <td>S/. {{ $pago->monto_sisa }}</td>
+                            <td>S/. {{ $pago->monto_agua }}</td>
+                            <td>S/. {{ $pago->monto_remodelacion }}</td>
+                            <td>S/. {{ $pago->monto_constancia }}</td>
+                            <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
                 </tbody>

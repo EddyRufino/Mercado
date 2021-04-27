@@ -39,7 +39,7 @@
                                 <div class="col-sm-12 col-md-7 d-flex justify-content-between">
                                     <span class="text-secondary">
                                         @include('icons.icon-home')
-                                        Puesto {{ $deuda->puesto->num_puesto }}
+                                        Puesto {{ $deuda->puesto->lists->pluck('num_puesto')->implode(',  ') }}
                                     </span>
                                     <span class="text-secondary">
                                         @include('icons.icon-date')
