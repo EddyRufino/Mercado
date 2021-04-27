@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Tipo Pago</label>
+    <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha Pagos</label>
 
     <div class="col-md-6">
         <select class="form-control selectpicker" name="fecha" required data-live-search="true">
