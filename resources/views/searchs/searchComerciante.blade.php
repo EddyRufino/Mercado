@@ -18,8 +18,11 @@
                         ])
 
                         <div class="card-body">
+                            <span class="text-secondary font-weight-bold">
                             {{ $conductor->user->name }} {{ $conductor->user->apellido }} <strong>-</strong>
-                            Puesto {{ $conductor->lists->pluck('num_puesto')->implode(', ') }}
+                            Puesto {{ $conductor->lists->pluck('num_puesto')->implode(', ') }}</span> <br>
+                            <span class="text-muted"><i class="fas fa-map-marker-alt"></i> {{ $conductor->ubicacion->nombre }}
+                            </span>
 
                             <div class="mt-3">
                                 @auth

@@ -12,7 +12,7 @@ class SearchComerciante extends Controller
 {
     public function search(Request $request, Puesto $puesto)
     {
-        // Buscar puesto par apagar
+        // Buscar puesto para pagar
         $search = $request->get('search');
 
         $conductores = Puesto::with('user')
