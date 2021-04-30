@@ -52,6 +52,7 @@ Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaci
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
+Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 
 Auth::routes(['register' => false]);
 

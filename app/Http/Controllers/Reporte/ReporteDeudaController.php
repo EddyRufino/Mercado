@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Reporte;
 
 use App\Exports\DeudasRepostQueryExport;
 use App\Exports\PagosRepostQueryExport;
+use App\Exports\SisaRepostQueryExport;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteDeudaController extends Controller
 {
@@ -31,6 +32,15 @@ class ReporteDeudaController extends Controller
         ]);
 
         return (new PagosRepostQueryExport)->forDate($date)->download('pagos-excel.xlsx');
+    }
+
+    public function sisa()
+    {
+        $date = request()->validate([
+            'search' => 'required'
+        ]);
+
+        return (new SisaRepostQueryExport)->forDate($date)->download('sisa-mensual-excel.xlsx');
     }
 
 }
