@@ -11,6 +11,8 @@ $factory->define(Pago::class, function (Faker $faker) {
     return [
         'fecha' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'num_operacion' => '',
+        'monto_deposito' => '',
+        'fecha_deposito' => '',
         'monto_remodelacion' => '',
         'monto_constancia' => '',
         'monto_agua' => '',

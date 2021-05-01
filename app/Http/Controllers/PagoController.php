@@ -28,11 +28,19 @@ class PagoController extends Controller
 
     public function store(Request $request, Pago $pago)
     {
-        request()->validate(['num_operacion' => 'required']);
+        request()->validate([
+            'num_operacion' => 'required',
+            'monto_deposito' => 'required',
+            'fecha_deposito' => 'required'
+    ]);
 
         $pagos = Pago::where('fecha', $request->fecha)->get();
 
-        $pagos->each->update(['num_operacion' => $request->num_operacion]);
+        $pagos->each->update([
+            'num_operacion' => $request->num_operacion,
+            'monto_deposito' => $request->monto_deposito,
+            'fecha_deposito' =>$request->fecha_deposito
+        ]);
 
         return redirect()->route('operaciones.create')->with('status', 'Número de operación registrado!');
     }

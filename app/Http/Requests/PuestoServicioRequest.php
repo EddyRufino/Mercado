@@ -26,6 +26,8 @@ class PuestoServicioRequest extends FormRequest
         return [
             'fecha' => ['date', 'required'],
             'num_operacion' => ['nullable', 'max:250'],
+            'monto_deposito' => ['nullable'],
+            'fecha_deposito' => ['nullable'],
             'num_recibo' => ['max:250', 'required', 'unique:pagos'],
             'monto_remodelacion' => ['nullable'],
             'monto_constancia' => ['nullable'],

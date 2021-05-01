@@ -1,12 +1,5 @@
 <template>
     <div>
-<!--         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
-            <li class="list-group-item"
-               v-for="puesto in puestos"
-                :class="verifyClassActive(puesto)"
-               @click="choosepuesto($event)"
-            >{{ puesto['num_puesto'] }}</li>
-        </ul> -->
 
 <!--         <select name="lista_id[]" id="puestos" class="selectpicker" multiple="multiple">
             <option v-for="select in selects"  :value="select">{{select}}</option>
@@ -61,16 +54,12 @@
                         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
                             <li class="list-group-item redond pointer d-flex justify-content-center flex-column text-white"
                                v-for="puesto in puestos"
-                                :class="verifyClassActive(puesto['id'])"
+                               :class="verifyClassActive(puesto['id'])"
                                @click="choosepuesto($event, puesto)"
                                :style="{'background-color': puesto['color']}"
                             >
-                                <!-- <span class="text-center"> -->
                                     {{ puesto['num_puesto'] }}
-                                <!-- </span> -->
-                                <!-- <span class="text-center"> -->
                                     {{ puesto['ubicacion'] }}
-                                <!-- </span> -->
                             </li>
                         </ul>
 
@@ -101,13 +90,12 @@
             if (this.oldpuestos) {
                 const puestosArray = this.oldpuestos;
                 puestosArray.forEach( puesto => this.habilidades.add(puesto) );
-
             }
         },
         mounted: function() {
             // Llena el input con las puestos selecionadas antes de recargar la pagina
             document.querySelector('#puestos').value = this.oldpuestos;
-            console.log(this.oldpuestos);
+            // console.log(this.oldpuestos);
             this.selects = this.oldpuestos;
         },
         methods: {
@@ -115,20 +103,22 @@
                 // console.log(e.target.remove());
                 if (e.target.classList.contains('bg-danger')) {
                     e.target.classList.remove('bg-danger');
-                    this.habilidades.delete(puesto.id);
+                    this.habilidades.delete(parseInt(puesto.id));
                 } else {
                     e.target.classList.add('bg-danger');
-                    this.habilidades.add(puesto.id);
+                    this.habilidades.add(parseInt(puesto.id));
                 }
                 // Agregar las puestos al input
+                // parseInt(this.habilidades);
                 const stringHabilidades = [...this.habilidades];
-                document.getElementById('puestos').value = stringHabilidades;
+                document.getElementById('puestos').value = parseInt(stringHabilidades);
 
+                console.log(stringHabilidades);
                 this.selects = stringHabilidades;
                 this.oldpuestos = stringHabilidades;
             },
             verifyClassActive(puesto) {
-                return this.habilidades.has(puesto) ? 'bg-danger' : '';
+                return this.habilidades.has(parseInt(puesto)) ? 'bg-danger' : '';
             }
         },
     }

@@ -2032,17 +2032,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
@@ -2063,8 +2052,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   mounted: function mounted() {
     // Llena el input con las puestos selecionadas antes de recargar la pagina
-    document.querySelector('#puestos').value = this.oldpuestos;
-    console.log(this.oldpuestos);
+    document.querySelector('#puestos').value = this.oldpuestos; // console.log(this.oldpuestos);
+
     this.selects = this.oldpuestos;
   },
   methods: {
@@ -2072,21 +2061,23 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       // console.log(e.target.remove());
       if (e.target.classList.contains('bg-danger')) {
         e.target.classList.remove('bg-danger');
-        this.habilidades["delete"](puesto.id);
+        this.habilidades["delete"](parseInt(puesto.id));
       } else {
         e.target.classList.add('bg-danger');
-        this.habilidades.add(puesto.id);
+        this.habilidades.add(parseInt(puesto.id));
       } // Agregar las puestos al input
+      // parseInt(this.habilidades);
 
 
       var stringHabilidades = _toConsumableArray(this.habilidades);
 
-      document.getElementById('puestos').value = stringHabilidades;
+      document.getElementById('puestos').value = parseInt(stringHabilidades);
+      console.log(stringHabilidades);
       this.selects = stringHabilidades;
       this.oldpuestos = stringHabilidades;
     },
     verifyClassActive: function verifyClassActive(puesto) {
-      return this.habilidades.has(puesto) ? 'bg-danger' : '';
+      return this.habilidades.has(parseInt(puesto)) ? 'bg-danger' : '';
     }
   }
 });
@@ -38045,13 +38036,9 @@ var render = function() {
                             _vm._v(
                               "\n                                    " +
                                 _vm._s(puesto["num_puesto"]) +
-                                "\n                                "
-                            ),
-                            _vm._v(" "),
-                            _vm._v(
-                              "\n                                    " +
+                                "\n                                    " +
                                 _vm._s(puesto["ubicacion"]) +
-                                "\n                                "
+                                "\n                            "
                             )
                           ]
                         )

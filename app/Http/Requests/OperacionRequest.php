@@ -26,6 +26,8 @@ class OperacionRequest extends FormRequest
         return [
             'fecha' => ['date', 'nullable'],
             'num_operacion' => ['nullable', 'max:250'],
+            'monto_deposito' => ['nullable'],
+            'fecha_deposito' => ['nullable'],
             'num_recibo' => ['max:250', 'nullable'],
             'monto_remodelacion' => ['nullable'],
             'monto_constancia' => ['nullable'],
