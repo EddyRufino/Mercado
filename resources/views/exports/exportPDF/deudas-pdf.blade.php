@@ -50,6 +50,7 @@
                         <th scope="col">Fecha</th>
                         <th scope="col">Puesto</th>
                         <th scope="col">Sisa Diaria</th>
+                        <th scope="col">Monto Agua</th>
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
@@ -59,7 +60,8 @@
                             <td>{{ $deuda->puesto->user->name }} {{ $deuda->puesto->user->apellido }}</td>
                             <td>{{ $deuda->fecha }}</td>
                             <td>{{ $deuda->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>S/. {{ $deuda->puesto->sisa_diaria }}</td>
+                            <td>S/. {{ $deuda->monto_sisa }}</td>
+                            <td>S/. {{ $deuda->monto_agua }}</td>
                             <td>{{ $deuda->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach

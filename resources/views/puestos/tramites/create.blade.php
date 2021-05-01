@@ -53,7 +53,7 @@
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Trámite
+                                            Pago Trámite
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
@@ -62,7 +62,12 @@
                                             <a href="{{ route('puestos.deudas.create', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Sisa
                                             </a>
-                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">Servicio</a>
+                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Servicio
+                                            </a>
+                                            <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
+                                                Deuda Servicio
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

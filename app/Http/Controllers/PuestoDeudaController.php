@@ -24,12 +24,16 @@ class PuestoDeudaController extends Controller
         $this->authorize('view', $puesto);
 
         $deudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
-            $query->where('user_id', $puesto->user_id);
+            $query->where('user_id', $puesto->user_id)->whereNotNull('monto_sisa');
+        })->paginate(4);
+
+        $aguaDeudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
+            $query->where('user_id', $puesto->user_id)->whereNotNull('monto_agua');
         })->paginate(4);
 
         // dd($deudas);
 
-        return view('puestos.deudas.index', compact('deudas'));
+        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas'));
     }
 
     public function create(Puesto $puesto)
@@ -63,7 +67,7 @@ class PuestoDeudaController extends Controller
             'monto_agua' => $deuda->monto_agua,
             'monto_sisa' => $deuda->monto_sisa,
             'puesto_id' => $puesto->id,
-            'tipo_id' => 1,
+            'tipo_id' => $deuda->tipo_id,
         ]);
 
         return back()->with('status', 'Pago de la deuda fue un éxito!');

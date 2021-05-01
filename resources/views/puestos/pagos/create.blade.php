@@ -58,8 +58,15 @@
                                             <a href="{{ route('puestos.deudas.create', $puesto->id) }}" class="dropdown-item">
                                                Deuda Sisa
                                             </a>
-                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">Trámite</a>
-                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">Servicio</a>
+                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Trámite
+                                            </a>
+                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Servicio
+                                            </a>
+                                            <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
+                                                Deuda Servicio
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

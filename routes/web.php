@@ -24,6 +24,9 @@ Route::resource('puestos.deudas', 'PuestoDeudaController')->only(['index', 'crea
 Route::resource('puestos.tramites', 'PuestoTramiteController')->only(['create', 'store']);
 Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create', 'store']);
 
+Route::get('puestos/{puesto}/servicios/deuda', 'PuestoServicioController@deuda')->name('servicio.deuda');
+Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('puestos.servicios.save');
+
 
 // Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');

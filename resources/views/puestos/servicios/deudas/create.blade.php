@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos.servicios.store', $puesto) }}">
+                        <form method="POST" action="{{ route('puestos.servicios.save', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">
@@ -31,27 +31,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
-
-                                <div class="col-md-6">
-                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" >
-
-                                    @error('num_recibo')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Tipo Pago</label>
 
                                 <div class="col-md-6">
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Pago Servicio
+                                            Deuda Servicio
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
@@ -63,8 +49,8 @@
                                             <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">
                                                 Pago Trámites
                                             </a>
-                                            <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
-                                                Deuda Servicio
+                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Servicio
                                             </a>
                                         </div>
                                     </div>
@@ -102,7 +88,7 @@
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-2">
                                     <button type="submit" class="btn btn-primary">
-                                        Guardar Pago
+                                        Guardar Deuda
                                     </button>
                                     <a href="{{ route('home') }}" class="btn btn-secondary text-white">
                                         Cancelar
@@ -116,3 +102,4 @@
         </div>
     </div>
 @endsection
+

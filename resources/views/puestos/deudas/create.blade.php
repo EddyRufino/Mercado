@@ -18,7 +18,6 @@
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
 
                                 <div class="col-md-6">
-{{--                                     <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="<?php echo date("Y-m-d"); ?>" required readonly> --}}
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
                                            value="<?php echo date("Y-m-d"); ?>"
                                            min="2018-01-01" max="2030-12-31" required>
@@ -67,8 +66,15 @@
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
                                                 Pago Sisa
                                             </a>
-                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">Trámite</a>
-                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">Servicio</a>
+                                            <a href="{{ route('puestos.tramites.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Trámite
+                                            </a>
+                                            <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
+                                                Pago Servicio
+                                            </a>
+                                            <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
+                                                Deuda Servicio
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
