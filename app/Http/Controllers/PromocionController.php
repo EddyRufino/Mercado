@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PromocionRequest;
 use App\Promocion;
 use Illuminate\Http\Request;
 
@@ -11,79 +12,42 @@ class PromocionController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $promociones = Promocion::latest()->paginate();
+        return view('promociones.index', compact('promociones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('promociones.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(PromocionRequest $request)
+    {
+        Promocion::create($request->all());
+        return redirect()->route('promociones.index');
+    }
+
+    public function show(Promocion $promocione)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Promocion  $promocion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Promocion $promocion)
+    public function edit(Promocion $promocione)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Promocion  $promocion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Promocion $promocion)
+    public function update(Request $request, Promocion $promocione)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Promocion  $promocion
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Promocion $promocion)
+    public function destroy(Promocion $promocione)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Promocion  $promocion
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Promocion $promocion)
-    {
-        //
+        $promocione->delete();
+        return redirect()->route('promociones.index')->with('status', 'La promoción fue eliminada.');
     }
 }

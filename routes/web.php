@@ -27,6 +27,9 @@ Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create'
 Route::get('puestos/{puesto}/servicios/deuda', 'PuestoServicioController@deuda')->name('servicio.deuda');
 Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('puestos.servicios.save');
 
+// Promociones
+Route::resource('promociones', 'PromocionController');
+
 
 // Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');

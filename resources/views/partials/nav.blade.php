@@ -200,6 +200,28 @@
           @endif
         @endauth
 
+        @auth
+          @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-ad"></i>
+              <p>
+                Promociones
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('promociones.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Nueva Promoción</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
+        @endauth
+
 
         @auth
           @if (auth()->user()->hasRoles(['admin', 'secretaria']))

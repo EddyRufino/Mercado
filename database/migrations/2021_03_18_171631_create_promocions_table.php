@@ -15,11 +15,12 @@ class CreatePromocionsTable extends Migration
     {
         Schema::create('promocions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre_representante')->nullable();
             $table->string('nombre_empresa');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('monto');
+            $table->string('telefono')->nullable();
             $table->timestamps();
         });
     }
