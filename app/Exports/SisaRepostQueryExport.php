@@ -10,6 +10,10 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Database\Eloquent\Builder;
+use DateTime;
+use DateInterval;
+use DatePeriod;
+use DB;
 
 class SisaRepostQueryExport implements FromView
 {
@@ -27,17 +31,101 @@ class SisaRepostQueryExport implements FromView
         // $sisas = Pago::with(['puesto'])->whereDate('fecha', $this->date)->get();
         // $sisas = Pago::with('puesto')->select('fecha')->distinct()->whereMonth('fecha', $this->date)->get();
 
-        $pagos = Pago::whereDate('fecha', $this->date)->get();
-        $deudas = Deuda::whereDate('fecha', $this->date)->get();
+        $sisas  = Pago::whereMonth('fecha', $this->date)->get()->unique('fecha');
+        $deudas = Deuda::whereDate('fecha', $this->date)->get()->unique('fecha');
 
-        $pago = $pagos->sum('monto_sisa');
-        $deuda = $deudas->sum('monto_sisa');
-        $agua = $pagos->sum('monto_agua');
-        $constancia = $pagos->sum('monto_constancia');
-        $remodalacion = $pagos->sum('monto_remodalacion');
+        $sisas = Pago::whereMonth('fecha', '05')
+                        ->get()
+                        ->unique('fecha');
 
-        $total_diario = $pago + $deuda + $agua + $constancia + $remodalacion;
-        $sisa = $pago + $deuda;
+        $fechas = ['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05'];
+
+        $fecha1 = "2021-05-01";
+        $fecha2 = "2021-05-05";
+
+        for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+            // echo $i . "<br />";
+         //aca puedes comparar $i a una fecha en la bd y guardar el resultado en un arreglo
+
+            $pagos = Pago::select('monto_sisa')->whereMonth('fecha', '05')
+                ->each(function ($item) use ($i) {
+                                $item->whereDate('fecha', $i)
+                                ->get()
+                                ->sum('monto_sisa');
+                });
+        }
+
+
+
+
+
+        // $sisas = DB::table('pagos')
+        //             ->join('puestos', 'puestos.id', '=', 'pagos.puesto_id')
+        //             ->where(function ($query) {
+        //                 $query->select(DB::raw(1))
+        //                      ->from('deudas')
+        //                      ->whereRaw('deudas.puesto_id = deudas.id');
+        //             })
+        //             ->get();
+
+
+
+        // $sisas = Pago::whereMonth('fecha', $this->date)->get();
+
+        // $start = new DateTime('2021-05-01');
+        // $last = new DateTime('2021-05-03');
+
+        // dd($pagos);
+        // dd($deudas);
+
+        // for ($date = $start; $date <= $last; $date++) {
+            // $monto_sisa = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->sum('monto_sisa');
+            // $sisas = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->unique('fecha');
+
+
+            // $sisas = Pago::join('puestos', 'puestos.id', '=', 'pagos.puesto_id')
+            //                 ->join('deudas', 'deudas.id', '=', 'deudas.puesto_id')
+            //                 ->whereDate('pagos.fecha', $this->date)
+            //                 ->orWhere(function($query) {
+            //                     $query->whereDate('deudas.fecha', $this->date);
+            //                 })
+            //                 ->select('pagos.fecha', 'pagos.monto_sisa as sisa_pago', 'deudas.monto_sisa as sisa_deuda')
+            //                 ->get()
+            //                 ->unique('pagos.fecha');
+
+        // $sees = collect(['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05']);
+
+        // $sees->each(function ($item, $key) {
+        //     dd($item);
+        // });
+
+
+        // }
+            // $sisas->each(function ($sisa) {
+            //     dd($sisa->where('fecha', $this->date)->sum('monto_sisa'));
+            // });
+        // dd($fecha->pluck('fecha'));
+        // $fd = $sisas->map(function($sisa, $key) use ($last) {
+        //     return $sisa->where('fecha', $last);
+        // });
+
+
+
+        // for ($datew = $start; $datew <= $last; $datew++) {
+            // $sisas = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->unique('fecha');
+        // }
+
+
+
+
+        // $pago = $pagos->sum('monto_sisa');
+        // $deuda = $deudas->sum('monto_sisa');
+        // $agua = $pagos->sum('monto_agua');
+        // $constancia = $pagos->sum('monto_constancia');
+        // $remodalacion = $pagos->sum('monto_remodalacion');
+
+        // $total_diario = $pago + $deuda + $agua + $constancia + $remodalacion;
+        // $sisa = $pago + $deuda;
 
         // $sisas = Puesto::with(['pagos', 'deudas'])
         //         ->whereHas('pagos', function (Builder $query) {
@@ -52,10 +140,10 @@ class SisaRepostQueryExport implements FromView
         // $sisa_dia = $sisas->each->puesto->sum('monto_sisa');
         // $sisa_deuda = $sisas->each->puesto->each->deudas->sum('monto_sisa');
 
-        dd($total_diario);
+        // dd($total_diario);
         // dd($sisas->each->puesto->each->deudas->sum('monto_sisa'));
         $khaaa = 'sd';
 
-        return view('exports.exportEXCEL.reporte-sisa', compact('sisas', 'khaaa'));
+        return view('exports.exportEXCEL.reporte-sisa', compact('sisas', 'pagos'));
     }
 }
