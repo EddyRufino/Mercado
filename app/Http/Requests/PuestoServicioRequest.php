@@ -25,6 +25,7 @@ class PuestoServicioRequest extends FormRequest
     {
         return [
             'fecha' => ['date', 'required'],
+            'fecha_deuda' => ['nullable'],
             'num_operacion' => ['nullable', 'max:250'],
             'monto_deposito' => ['nullable'],
             'fecha_deposito' => ['nullable'],
@@ -32,7 +33,9 @@ class PuestoServicioRequest extends FormRequest
             'monto_remodelacion' => ['nullable'],
             'monto_constancia' => ['nullable'],
             'monto_agua' => ['required'],
+            'monto_agua_anticipada' => ['nullable'],
             'monto_sisa' => ['nullable'],
+            'monto_sisa_anticipada' => ['nullable'],
             'puesto_id' => ['nullable'],
             'tipo_id' => ['nullable'],
         ];

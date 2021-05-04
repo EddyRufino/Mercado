@@ -52,7 +52,6 @@
                         <th scope="col">Sisa al Día</th>
                         <th scope="col">Sisa Anticipada</th>
                         <th scope="col">Sisa Morosa</th>
-                        <th scope="col">Promoción</th>
                         <th scope="col">Agua</th>
                         <th scope="col">Constancia de Conducción</th>
                         <th scope="col">Remodelación de Puesto</th>
@@ -82,14 +81,13 @@
                             <td></td> --}}
 
                             <td>{{ $pago->fecha }}</td>
-                            <td>{{ $pagos }}</td>
+                            <td></td>
+                            <td></td>
                             <td>{{ $pago->monto_sisa }}</td>
                             <td></td>
-                            <td></td>
-                            <td></td>
                             {{-- {{ $pago->puesto->deudas->pluck('monto_sisa')->implode(' ') }} --}}
-                            <td></td>
                             <td>{{ $pago->monto_agua }}</td>
+                            <td></td>
                             <td>{{ $pago->monto_remodelacion }}</td>
 
 

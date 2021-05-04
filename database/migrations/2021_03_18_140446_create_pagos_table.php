@@ -15,7 +15,8 @@ class CreatePagosTable extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
+            $table->date('fecha'); // Fecha que pago
+            $table->date('fecha_deuda')->nullable(); // Fecha deuda
             $table->string('num_operacion')->nullable();
             $table->string('monto_deposito')->nullable();
             $table->date('fecha_deposito')->nullable();
@@ -23,7 +24,9 @@ class CreatePagosTable extends Migration
             $table->string('monto_remodelacion')->nullable();
             $table->string('monto_constancia')->nullable();
             $table->string('monto_agua')->nullable();
+            $table->string('monto_agua_anticipada')->nullable();
             $table->string('monto_sisa')->nullable();
+            $table->string('monto_sisa_anticipada')->nullable();
             $table->foreignId('puesto_id')->constrained('puestos')->onDelete('cascade');
             $table->foreignId('tipo_id')->constrained('tipos')->onDelete('cascade');
             $table->timestamps();

@@ -14,6 +14,7 @@ use DateTime;
 use DateInterval;
 use DatePeriod;
 use DB;
+use Carbon\Carbon;
 
 class SisaRepostQueryExport implements FromView
 {
@@ -31,14 +32,63 @@ class SisaRepostQueryExport implements FromView
         // $sisas = Pago::with(['puesto'])->whereDate('fecha', $this->date)->get();
         // $sisas = Pago::with('puesto')->select('fecha')->distinct()->whereMonth('fecha', $this->date)->get();
 
-        $sisas  = Pago::whereMonth('fecha', $this->date)->get()->unique('fecha');
-        $deudas = Deuda::whereDate('fecha', $this->date)->get()->unique('fecha');
 
-        $sisas = Pago::whereMonth('fecha', '05')
-                        ->get()
-                        ->unique('fecha');
+        $fechas = collect(['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05']);
 
-        $fechas = ['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05'];
+        // $sisas = Puesto::addSelect(['count_sisa' => Pago::selectRaw('SUM(monto_sisa)')
+        //             ->whereColumn('puesto_id', 'puestos.id')
+        //             ->whereDate('fecha', $this->date)
+        //             ->limit(1)
+        //         ])->get()
+        //         ->unique('fecha');
+
+        // $deudas = Puesto::addSelect(['count_sisa' => Deuda::selectRaw('SUM(monto_sisa)')
+        //             ->whereColumn('puesto_id', 'puestos.id')
+        //             ->whereDate('fecha', $this->date)
+        //             ->limit(1)
+        //         ])->get()
+        //         ->unique('fecha');
+
+
+
+        // $sisas = Pago::addSelect(['count_sisa' => Pago::selectRaw('SUM(monto_sisa)')
+        //             ->whereDate('fecha', $this->date)
+        //             ->limit(1)
+        //         ])->get()
+        //         ->unique('fecha')
+
+
+        // $sisas = DB::table('Pagos')
+        //         ->select('monto_sisa', DB::raw('count(*) as user_count, monto_sisa  '))
+        //         ->whereDate('fecha', $this->date)
+        //         ->groupBy('monto_sisa')
+        //         ->havingRaw('SUM(monto_sisa)')
+        //         ->get();
+
+
+        // dd($sisas);
+
+
+        $sisa_anti = Pago::where('fecha', '>', Carbon::now());
+
+
+        $sisas  = Pago::whereMonth('fecha', $this->date)->orderBy('fecha', 'ASC')->get();
+        // $deudas = Deuda::whereDate('fecha', $this->date)->get()->unique('fecha');
+
+        // La más cercana a la meta
+        // $sisas  = Pago::where('fecha', '<=', $this->date)
+        //             ->addSelect(['total_sisa' => Pago::select(DB::raw('SUM(monto_sisa)'))
+        //                 ->where('fecha', '<=', $this->date)
+        //                 ->limit(1)
+        //             ])
+        //             ->get()
+        //             ->unique('fecha');
+
+        // dd($sisas);
+
+        // $sisas = Pago::whereMonth('fecha', '05')
+        //                 ->get()
+        //                 ->unique('fecha');
 
         $fecha1 = "2021-05-01";
         $fecha2 = "2021-05-05";
@@ -54,6 +104,9 @@ class SisaRepostQueryExport implements FromView
                                 ->sum('monto_sisa');
                 });
         }
+
+
+
 
 
 
