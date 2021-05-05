@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PuestoPagoRequest extends FormRequest
+class PagoAnticipadoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,14 @@ class PuestoPagoRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha' => ['date', 'required'],
-            'fecha_deuda' => ['nullable'],
+            'fecha' => ['date'],
+            'fecha_anticipada' => ['date', 'required'],
             'num_operacion' => ['nullable', 'max:250'],
             'monto_deposito' => ['nullable'],
             'fecha_deposito' => ['nullable'],
             'num_recibo' => ['max:250', 'required', 'unique:pagos'],
-            'monto_remodelacion' => ['nullable'],
-            'monto_constancia' => ['nullable'],
-            'monto_agua' => ['nullable'],
-            'monto_sisa' => ['nullable'],
+            'monto_agua_anticipada' => ['nullable'],
+            'monto_sisa_anticipada' => ['nullable'],
             'puesto_id' => ['nullable'],
             'tipo_id' => ['nullable'],
         ];

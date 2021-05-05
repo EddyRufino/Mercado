@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Reporte;
 
 use App\Exports\DeudasRepostQueryExport;
+use App\Exports\PagoAnticipadoExport;
 use App\Exports\PagosRepostQueryExport;
 use App\Exports\SisaRepostQueryExport;
 use App\Http\Controllers\Controller;
@@ -22,16 +23,24 @@ class ReporteDeudaController extends Controller
             'search' => 'required'
         ]);
 
-        return (new DeudasRepostQueryExport)->forDate($date)->download('deudas-excel.xlsx');
+        $year = request()->validate([
+            'year' => 'required'
+        ]);
+
+        return (new DeudasRepostQueryExport)->forDate($date, $year)->download('deudas-excel.xlsx');
     }
 
     public function pago()
     {
         $date = request()->validate([
-            'search' => 'required'
+            'search' => 'required',
         ]);
 
-        return (new PagosRepostQueryExport)->forDate($date)->download('pagos-excel.xlsx');
+        $year = request()->validate([
+            'year' => 'required'
+        ]);
+
+        return (new PagosRepostQueryExport)->forDate($date, $year)->download('pagos-excel.xlsx');
     }
 
     public function sisa()
@@ -40,7 +49,11 @@ class ReporteDeudaController extends Controller
             'search' => 'required'
         ]);
 
-        return (new SisaRepostQueryExport)->forDate($date)->download('sisa-mensual-excel.xlsx');
+        $year = request()->validate([
+            'year' => 'required'
+        ]);
+
+        return (new PagoAnticipadoExport)->forDate($date, $year)->download('pago-anticipado-mensual.xlsx');
     }
 
 }

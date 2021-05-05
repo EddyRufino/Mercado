@@ -27,6 +27,8 @@ Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create'
 Route::get('puestos/{puesto}/servicios/deuda', 'PuestoServicioController@deuda')->name('servicio.deuda');
 Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('puestos.servicios.save');
 
+Route::resource('puestos.pagoanticipados', 'PagoAnticipadoController')->only(['index', 'create', 'store']);
+
 // Promociones
 Route::resource('promociones', 'PromocionController');
 

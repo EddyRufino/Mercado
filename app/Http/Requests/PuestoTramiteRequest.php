@@ -33,9 +33,7 @@ class PuestoTramiteRequest extends FormRequest
             'monto_remodelacion' => ['required'],
             'monto_constancia' => ['required'],
             'monto_agua' => ['nullable'],
-            'monto_agua_anticipada' => ['nullable'],
             'monto_sisa' => ['nullable'],
-            'monto_sisa_anticipada' => ['nullable'],
             'puesto_id' => ['nullable'],
             'tipo_id' => ['nullable'],
         ];

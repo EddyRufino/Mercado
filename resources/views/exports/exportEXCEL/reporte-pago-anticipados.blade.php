@@ -42,20 +42,18 @@
         <div class="text-center">
             {{-- <img src="{{ asset('img/logo.png') }}" alt="Minu Castilla" class="circle"> --}}
         </div>
-            <h4 class="text-center font-weight-bold">Lista de Deudas</h4>
+            <h4 class="text-center font-weight-bold">Lista de Pagos Anticipados</h4>
             <table class="table mt-2">
                 <thead>
                     <tr>
                         <th scope="col">Conductor</th>
                         <th scope="col">Fecha Pago</th>
-                        <th scope="col">Fecha Concepto Pago</th>
+                        <th scope="col">Fecha Pago Anticipada</th>
                         <th scope="col">Número Recibo</th>
                         <th scope="col">Número Operación</th>
                         <th scope="col">Puesto</th>
                         <th scope="col">Monto Sisa</th>
-                        <th scope="col">Monto Agua</th>
-                        <th scope="col">Monto Remodelación</th>
-                        <th scope="col">Monto Constancia</th>
+                        {{-- <th scope="col">Monto Agua</th> --}}
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
@@ -64,14 +62,12 @@
                         <tr>
                             <td>{{ $pago->puesto->user->name }} {{ $pago->puesto->user->apellido }}</td>
                             <td>{{ $pago->fecha }}</td>
-                            <td>{{ $pago->fecha_deuda }}</td>
+                            <td>{{ $pago->fecha_anticipada }}</td>
                             <td>{{ $pago->num_recibo }}</td>
                             <td>{{ $pago->num_operacion }}</td>
                             <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>{{ $pago->monto_sisa }}</td>
-                            <td>{{ $pago->monto_agua }}</td>
-                            <td>{{ $pago->monto_remodelacion }}</td>
-                            <td>{{ $pago->monto_constancia }}</td>
+                            <td>{{ $pago->monto_sisa_anticipada }}</td>
+                            {{-- <td>{{ $pago->monto_agua_anticipada }}</td> --}}
                             <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach

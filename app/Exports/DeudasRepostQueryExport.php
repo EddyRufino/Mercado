@@ -14,16 +14,20 @@ class DeudasRepostQueryExport implements FromView
 
     private $date;
 
-    public function forDate($date)
+    public function forDate($date, $year)
     {
         $this->date = $date;
+        $this->year = $year;
 
         return $this;
     }
 
     public function view(): View
     {
-        $deudas = Deuda::with('puesto')->where('fecha', $this->date)->get();
+        $deudas = Deuda::with('puesto')->whereYear('fecha', $this->year)
+                                    ->whereMonth('fecha', $this->date)
+                                    ->orderBy('fecha', 'ASC')
+                                    ->get();
 
         return view('exports.exportEXCEL.reporte-deudas', compact('deudas'));
     }

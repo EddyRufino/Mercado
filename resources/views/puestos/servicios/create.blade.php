@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Recibo</label>
 
                                 <div class="col-md-6">
                                     <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" >
@@ -65,6 +65,9 @@
                                             </a>
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Servicio
+                                            </a>
+                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+                                               Pago Anticipado
                                             </a>
                                         </div>
                                     </div>
