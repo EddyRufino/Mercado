@@ -25,7 +25,7 @@ class PagoAnticipadoController extends Controller
     public function store(PagoAnticipadoRequest $request, Puesto $puesto)
     {
         $fecha = Carbon::now();
-        $fecha = $fecha->format('Y-d-m');
+        $fecha = $fecha->format('Y-m-d');
         // dd($request->all());
         $data = PagoAnticipado::create([
             'fecha' => $fecha,

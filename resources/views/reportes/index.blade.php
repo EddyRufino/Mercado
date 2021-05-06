@@ -14,6 +14,9 @@
                 <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                     <span id="headingThree">Reporte Pago Anticipados</span>
                 </div>
+                <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <span id="headingFour">Reporte Promociones</span>
+                </div>
             </div>
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -34,14 +37,17 @@
                         ])
                 </div>
             </div>
-            <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Pago Anticipado',
+                            'title' => 'Generar Reporte Promociones',
                             'placeholder' => 'Ejemplo 2020-08-26',
-                            'link' => 'reporte.sisa'
+                            'link' => 'reporte.promocion'
                         ])
                 </div>
+            </div>
+            <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
+
             </div>
         </div>
     @else

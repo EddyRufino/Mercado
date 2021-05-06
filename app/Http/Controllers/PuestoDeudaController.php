@@ -60,7 +60,7 @@ class PuestoDeudaController extends Controller
         $deuda->delete();
 
         $fecha = Carbon::now();
-        $fecha = $fecha->format('Y-d-m');
+        $fecha = $fecha->format('Y-m-d');
 
         Pago::create([
             'fecha' => $fecha,

@@ -12,20 +12,30 @@ class PagosRepostQueryExport implements FromView
 {
     use Exportable;
 
-    public function forDate($date, $year)
+    public function forDate($date, $year, $day)
     {
         $this->date = $date;
         $this->year = $year;
+        $this->day = $day;
 
         return $this;
     }
 
     public function view(): View
     {
-        $pagos = Pago::with('puesto')->whereYear('fecha', $this->year)
-                                    ->whereMonth('fecha', $this->date)
+        $wfechaw = "{$this->year['year']}-{$this->date['search']}-{$this->day['day']}";
+
+        $pagos = Pago::with('puesto')->whereDate('fecha', $wfechaw)
                                     ->orderBy('fecha', 'ASC')
                                     ->get();
+
+        if (count($pagos) <= 0) {
+            $pagos = Pago::with('puesto')->whereYear('fecha', $this->year)
+                                        ->whereMonth('fecha', $this->date)
+                                        ->orderBy('fecha', 'ASC')
+                                        ->get();
+        }
+
 
         return view('exports.exportEXCEL.reporte-pagos', compact('pagos'));
     }
