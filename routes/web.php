@@ -38,6 +38,7 @@ Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.sear
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');
 Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
+Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
 
 
 // Export
@@ -50,6 +51,8 @@ Route::get('users-excel', 'Export\UserExportController@excel')->name('users.exce
 Route::get('users-pdf', 'Export\UserExportController@pdf')->name('users.pdf');
 Route::get('deudas-excel/{id}', 'Export\DeudaExportController@excel')->name('deudas.excel');
 Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.pdf');
+Route::get('promociones-excel', 'Export\PromocionExportController@excel')->name('promociones.excel');
+Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('promociones.pdf');
 
 // Operaciones
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');

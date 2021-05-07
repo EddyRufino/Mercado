@@ -212,6 +212,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{ route('promociones.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista Promociones</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('promociones.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Nueva Promoción</p>

@@ -42,7 +42,7 @@
         <div class="text-center">
             {{-- <img src="{{ asset('img/logo.png') }}" alt="Minu Castilla" class="circle"> --}}
         </div>
-            <h4 class="text-center font-weight-bold">Lista de Deudas</h4>
+            <h4 class="text-center font-weight-bold">Lista de Pagos</h4>
             <table class="table mt-2">
                 <thead>
                     <tr>

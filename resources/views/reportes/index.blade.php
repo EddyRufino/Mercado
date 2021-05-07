@@ -37,6 +37,15 @@
                         ])
                 </div>
             </div>
+            <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    @include('partials.search-reporte', [
+                            'title' => 'Generar Reporte Pago Anticipados',
+                            'placeholder' => 'Ejemplo 2020-08-26',
+                            'link' => 'reporte.sisa'
+                        ])
+                </div>
+            </div>
             <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
@@ -45,9 +54,6 @@
                             'link' => 'reporte.promocion'
                         ])
                 </div>
-            </div>
-            <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
-
             </div>
         </div>
     @else
