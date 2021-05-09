@@ -75,6 +75,9 @@
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Servicio
                                             </a>
+                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+                                               Pago Anticipado
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

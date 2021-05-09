@@ -27,5 +27,8 @@ class TipoSeeder extends Seeder
         DB::table('tipos')->insert([
             'nombre' => 'Servicio',
         ]);
+        DB::table('tipos')->insert([
+            'nombre' => 'Pago Anticipado',
+        ]);
     }
 }

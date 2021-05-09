@@ -6,7 +6,7 @@
             <div class="col-md-10">
                 <div class="card mt-3">
                     @include('partials.card-header', [
-                        'title' => 'Crear Usuario',
+                        'title' => 'Crear Usuario - Conductor',
                         'link' => 'users.index'
                     ])
                     <div class="card-body">

@@ -9,6 +9,7 @@ use App\Puesto;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 // use Illuminate\Support\Facades\Gate;
 
 class PuestoDeudaController extends Controller
@@ -58,8 +59,12 @@ class PuestoDeudaController extends Controller
     {
         $deuda->delete();
 
+        $fecha = Carbon::now();
+        $fecha = $fecha->format('Y-m-d');
+
         Pago::create([
-            'fecha' => $deuda->fecha,
+            'fecha' => $fecha,
+            'fecha_deuda' => $deuda->fecha,
             'num_operacion' => NULL,
             'num_recibo' => rand(0, 9999999999),
             'monto_remodelacion' => $deuda->monto_remodelacion,

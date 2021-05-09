@@ -21,7 +21,7 @@
                                     {{-- <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required readonly> --}}
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
                                            value="<?php echo date("Y-m-d"); ?>"
-                                           min="2018-01-01" max="2030-12-31" required>
+                                           min="2018-01-01" max="2030-12-31" required >
 {{-- <?php echo date("Y-m-d"); ?> --}}
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">
@@ -67,13 +67,16 @@
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Servicio
                                             </a>
+                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+                                               Pago Anticipado
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal"># Recibo</label>
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Recibo</label>
 
                                 <div class="col-md-6">
                                     <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" autofocus>

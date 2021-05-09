@@ -27,6 +27,8 @@ Route::resource('puestos.servicios', 'PuestoServicioController')->only(['create'
 Route::get('puestos/{puesto}/servicios/deuda', 'PuestoServicioController@deuda')->name('servicio.deuda');
 Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('puestos.servicios.save');
 
+Route::resource('puestos.pagoanticipados', 'PagoAnticipadoController')->only(['index', 'create', 'store']);
+
 // Promociones
 Route::resource('promociones', 'PromocionController');
 
@@ -36,6 +38,7 @@ Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.sear
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');
 Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
+Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
 
 
 // Export
@@ -48,6 +51,8 @@ Route::get('users-excel', 'Export\UserExportController@excel')->name('users.exce
 Route::get('users-pdf', 'Export\UserExportController@pdf')->name('users.pdf');
 Route::get('deudas-excel/{id}', 'Export\DeudaExportController@excel')->name('deudas.excel');
 Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.pdf');
+Route::get('promociones-excel', 'Export\PromocionExportController@excel')->name('promociones.excel');
+Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('promociones.pdf');
 
 // Operaciones
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
@@ -59,6 +64,7 @@ Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('re
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
+Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
 
 Auth::routes(['register' => false]);
 

@@ -77,6 +77,7 @@ class PuestoSeeder extends Seeder
             'color' => '#49B3CB'
         ]);
 
+
         DB::table('listas')->insert([
             'num_puesto' => '1',
             'ubicacion' => 'P',
