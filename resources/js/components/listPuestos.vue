@@ -48,39 +48,36 @@
                       </div>
                       <div class="modal-body">
                         <div class="d-flex justify-content-around mb-3 row flex-wrap">
-                            <span><i class="circule circule-1"></i> Interior</span>
-                            <span><i class="circule circule-2"></i> Gruta - Interior</span>
-                            <span><i class="circule circule-3"></i> Plataforma</span>
-                            <span><i class="circule circule-4"></i> Mesa Redonda - Plataforma</span>
-                            <br>
-                            <span><i class="circule circule-5 mt-2"></i> Locales del Exterior</span>
-                            <span><i class="circule circule-6 mt-2"></i> Locales - Plataforma</span>
-                            <span><i class="circule circule-7 mt-2"></i> Locales del Interior</span>
-                            <span><i class="circule circule-8 mt-2"></i> Ambulantes</span>
-                            <span><i class="circule circule-9 mt-2"></i> Kioskos Plataforma</span>
-                            <span><i class="circule circule-10 mt-2"></i> Kioskos del Interior</span>
-                            <span><i class="circule circule-11 mt-2"></i> Kioskos del Exterior</span>
+
+                            <div class="form-check form-check-inline" v-for="radio in nombreRadios">
+                              <input class="form-check-input"
+                                    type="radio"
+                                    id="inlineRadio1"
+                                    v-model="color"
+                                    :value="radio.value"
+                                >
+                              <label class="form-check-label">
+                                {{ radio.text }}
+                              </label>
+                            </div>
+
+
                         </div>
+
                         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
                             <li class="list-group-item redond pointer d-flex justify-content-center flex-column text-white"
-                                v-for="puesto in puestos"
+                                v-for="puesto in searchPuesto"
                                 :class="verifyClassActive(puesto)"
                                 @click="choosepuesto($event, puesto)"
                                 :style="{'background-color': puesto['color']}"
                             >
-                            <!-- <a href="#"> -->
-                                <!-- <span class="text-center text-white"> -->
-                                    {{ puesto['num_puesto'] }}
-                                    <!-- <i class="nav-icon fas fa-home"></i> -->
-                                <!-- </span> -->
-                                <!-- <span class="text-center text-white" > -->
-                                    {{ puesto['ubicacion'] }}
-                                <!-- </span> -->
-                            <!-- </a> -->
+                                {{ puesto['num_puesto'] }}
+                                {{ puesto['ubicacion'] }}
                             </li>
                         </ul>
-<!-- genderless -->
+
                         <input type="hidden" name="lista_id[]" id="puestos">
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -101,23 +98,39 @@
                 habilidades: new Set(),
                 selects: [],
                 names: [],
+                color: '#49B3CB',
+                nombreRadios: [
+                    {value: '#5DD9F5', text: 'Interior', color: '#5DD9F5'},
+                    {value: '#49B3CB', text: 'Gruta - Interior', color: '#49B3CB'},
+                    {value: '#30BF3B', text: 'Plataforma', color: '#30BF3B'},
+                    {value: '#CD6B08', text: 'Mesa Redonda - Plataforma', color: '#CD6B08'},
+                    {value: '#F662BC', text: 'Locales del Exterior', color: '#F662BC'},
+                    {value: '#088A68', text: 'Locales - Plataforma', color: '#088A68'},
+                    {value: '#0080FF', text: 'Locales del Interior', color: '#0080FF'},
+                    {value: '#F7D358', text: 'Ambulantes', color: '#F7D358'},
+                    {value: '#BF00FF', text: 'Kioskos Plataforma', color: '#BF00FF'},
+                    {value: '#F6CED8', text: 'Kioskos del Interior', color: '#F6CED8'},
+                    {value: '#812D00', text: 'Tiendas del Exterior', color: '#812D00'},
+                ],
             }
         },
         created: function() {
             if (this.oldpuestos) {
                 const puestosArray = this.oldpuestos;
                 puestosArray.forEach( puesto => this.habilidades.add(puesto) );
-                // console.log(this.puestosArray);
             }
         },
         mounted: function() {
             // Llena el input con las puestos selecionadas antes de recargar la pagina
             document.querySelector('#puestos').value = this.oldpuestos;
-            // console.log(this.oldpuestos);
+        },
+        computed: {
+            searchPuesto: function () {
+                return this.puestos.filter((puesto) => puesto.color.includes(this.color));
+            }
         },
         methods: {
             choosepuesto(e, puesto) {
-                // console.log(puesto);
                 if (e.target.classList.contains('bg-danger')) {
                     e.target.classList.remove('bg-danger');
                     this.habilidades.delete(puesto.id);
@@ -127,7 +140,6 @@
                     this.habilidades.add(puesto.id);
                     this.names.push(puesto);
                 }
-                // e.target.textContent
                 // Agregar las puestos al input
                 const stringHabilidades = [...this.habilidades];
                 document.getElementById('puestos').value = stringHabilidades;

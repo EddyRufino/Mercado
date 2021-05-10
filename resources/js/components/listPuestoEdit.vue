@@ -39,21 +39,21 @@
                       </div>
                       <div class="modal-body">
                         <div class="d-flex justify-content-around mb-3 row">
-                            <span><i class="circule circule-1"></i> Interior</span>
-                            <span><i class="circule circule-2"></i> Gruta - Interior</span>
-                            <span><i class="circule circule-3"></i> Plataforma</span>
-                            <span><i class="circule circule-4"></i> Mesa Redonda - Plataforma</span>
-                            <span><i class="circule circule-5"></i> Locales de Exterior</span>
-                            <span><i class="circule circule-6"></i> Locales - Plataforma</span>
-                            <span><i class="circule circule-7 mt-2"></i> Locales del Interior</span>
-                            <span><i class="circule circule-8 mt-2"></i> Ambulantes</span>
-                            <span><i class="circule circule-9 mt-2"></i> Kioskos Plataforma</span>
-                            <span><i class="circule circule-10 mt-2"></i> Kioskos del Interior</span>
-                            <span><i class="circule circule-11 mt-2"></i> Kioskos del Exterior</span>
+                            <div class="form-check form-check-inline" v-for="radio in nombreRadios">
+                              <input class="form-check-input"
+                                    type="radio"
+                                    id="inlineRadio1"
+                                    v-model="color"
+                                    :value="radio.value"
+                                >
+                              <label class="form-check-label">
+                                {{ radio.text }}
+                              </label>
+                            </div>
                         </div>
                         <ul class="list-group list-group-horizontal-sm d-flex flex-wrap">
                             <li class="list-group-item redond pointer d-flex justify-content-center flex-column text-white"
-                               v-for="puesto in puestos"
+                               v-for="puesto in searchPuesto"
                                :class="verifyClassActive(puesto['id'])"
                                @click="choosepuesto($event, puesto)"
                                :style="{'background-color': puesto['color']}"
@@ -84,6 +84,20 @@
             return {
                 habilidades: new Set(),
                 selects: [],
+                color: '#5DD9F5',
+                nombreRadios: [
+                    {value: '#5DD9F5', text: 'Interior', color: '#5DD9F5'},
+                    {value: '#49B3CB', text: 'Gruta - Interior', color: '#49B3CB'},
+                    {value: '#30BF3B', text: 'Plataforma', color: '#30BF3B'},
+                    {value: '#CD6B08', text: 'Mesa Redonda - Plataforma', color: '#CD6B08'},
+                    {value: '#F662BC', text: 'Locales del Exterior', color: '#F662BC'},
+                    {value: '#088A68', text: 'Locales - Plataforma', color: '#088A68'},
+                    {value: '#0080FF', text: 'Locales del Interior', color: '#0080FF'},
+                    {value: '#F7D358', text: 'Ambulantes', color: '#F7D358'},
+                    {value: '#BF00FF', text: 'Kioskos Plataforma', color: '#BF00FF'},
+                    {value: '#F6CED8', text: 'Kioskos del Interior', color: '#F6CED8'},
+                    {value: '#812D00', text: 'Tiendas del Exterior', color: '#812D00'},
+                ],
             }
         },
         created: function() {
@@ -97,6 +111,11 @@
             document.querySelector('#puestos').value = this.oldpuestos;
             // console.log(this.oldpuestos);
             this.selects = this.oldpuestos;
+        },
+        computed: {
+            searchPuesto: function () {
+                return this.puestos.filter((puesto) => puesto.color.includes(this.color));
+            }
         },
         methods: {
             choosepuesto(e, puesto) {

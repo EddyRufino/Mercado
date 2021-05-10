@@ -11,150 +11,29 @@ class PuestoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('listas')->insert([
-            'num_puesto' => '1',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
+        for ($i=1; $i <= 322 ; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'I',
+                'color' => '#5DD9F5'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '2',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
+        for ($i=323; $i <= 380; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'G-I',
+                'color' => '#49B3CB'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '3',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '4',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '5',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '6',
-            'ubicacion' => 'I',
-            'color' => '#5DD9F5'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '7',
-            'ubicacion' => 'G-I',
-            'color' => '#49B3CB'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '8',
-            'ubicacion' => 'G-I',
-            'color' => '#49B3CB'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '9',
-            'ubicacion' => 'G-I',
-            'color' => '#49B3CB'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '10',
-            'ubicacion' => 'G-I',
-            'color' => '#49B3CB'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '11',
-            'ubicacion' => 'G-I',
-            'color' => '#49B3CB'
-        ]);
-
-
-        DB::table('listas')->insert([
-            'num_puesto' => '1',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '2',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '3',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '4',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '5',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '6',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '7',
-            'ubicacion' => 'P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '8',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '9',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '10',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '11',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '12',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '13',
-            'ubicacion' => 'MD-P',
-            'color' => '#CD6B08'
-        ]);
+        for ($i=1; $i <= 76; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'P',
+                'color' => '#30BF3B'
+            ]);
+        }
 
         DB::table('listas')->insert([
             'num_puesto' => '1',
@@ -170,105 +49,70 @@ class PuestoSeeder extends Seeder
 
         DB::table('listas')->insert([
             'num_puesto' => '3',
-            'ubicacion' => 'L-E',
-            'color' => '#F662BC'
+            'ubicacion' => 'L-P',
+            'color' => '#088A68'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '4',
-            'ubicacion' => 'L-E',
-            'color' => '#F662BC'
+            'ubicacion' => 'L-I',
+            'color' => '#0080FF'
         ]);
 
         DB::table('listas')->insert([
             'num_puesto' => '5',
-            'ubicacion' => 'L-E',
-            'color' => '#F662BC'
+            'ubicacion' => 'L-I',
+            'color' => '#0080FF'
         ]);
 
-        DB::table('listas')->insert([
-            'num_puesto' => '6',
-            'ubicacion' => 'L-E',
-            'color' => '#F662BC'
-        ]);
+        for ($i=77; $i <= 94; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'MD-P',
+                'color' => '#CD6B08'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '7',
-            'ubicacion' => 'L-E',
-            'color' => '#F662BC'
-        ]);
+        for ($i=1; $i <= 5; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'L-E',
+                'color' => '#F662BC'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '1',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
+        for ($i=1; $i <= 12; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'A',
+                'color' => '#F7D358'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '2',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
+        for ($i=1; $i <= 4; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'k-P',
+                'color' => '#BF00FF'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '3',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
+        for ($i=1; $i <= 11; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'k-I',
+                'color' => '#F6CED8'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '4',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
+        for ($i=1; $i <= 21; $i++) {
+            DB::table('listas')->insert([
+                'num_puesto' => "{$i}",
+                'ubicacion' => 'T-E',
+                'color' => '#812D00'
+            ]);
+        }
 
-        DB::table('listas')->insert([
-            'num_puesto' => '5',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '6',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '7',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '8',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '9',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '10',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '11',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
-
-        DB::table('listas')->insert([
-            'num_puesto' => '12',
-            'ubicacion' => 'A',
-            'color' => '#F7D358'
-        ]);
         // DB::table('puestos')->insert([
         //     // 'num_puesto' => '1 al 3',
         //     'cantidad_puesto' => '3',
