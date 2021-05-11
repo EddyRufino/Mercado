@@ -65,6 +65,14 @@
                             <td>{{ $deuda->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <th>Monto Deuda Sisa:</th>
+                            <td>{{ $deudaSisa }}</td>
+                        </tr>
+                        <tr>
+                            <th>Monto Deuda Agua:</th>
+                            <td>{{ $deudaAgua }}</td>
+                        </tr>
                 </tbody>
             </table>
     </div>

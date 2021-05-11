@@ -71,6 +71,14 @@
                             <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <th>Monto Pago Anticipado Sisa:</th>
+                            <td>{{ $pagoAntipadoSisa }}</td>
+                        </tr>
+                        <tr>
+                            <th>Monto Pago Anticipado Agua:</th>
+                            <td>{{ $pagoAntipadoAgua }}</td>
+                        </tr>
                 </tbody>
             </table>
     </div>

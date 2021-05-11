@@ -35,6 +35,9 @@ class PagoAnticipadoExport implements FromView
                                     ->get();
         }
 
-        return view('exports.exportEXCEL.reporte-pago-anticipados', compact('pagos'));
+        $pagoAntipadoSisa = $pagos->sum('monto_sisa_anticipada');
+        $pagoAntipadoAgua = $pagos->sum('monto_agua_anticipada');
+
+        return view('exports.exportEXCEL.reporte-pago-anticipados', compact('pagos', 'pagoAntipadoSisa', 'pagoAntipadoAgua'));
     }
 }

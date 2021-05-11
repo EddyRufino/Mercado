@@ -63,6 +63,10 @@
                             <td>{{ $pago->telefono }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <th>Monto Total Promociones:</th>
+                            <td>{{ $montoPromo }}</td>
+                        </tr>
                 </tbody>
             </table>
     </div>

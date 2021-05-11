@@ -60,11 +60,30 @@
                             <td>{{ $deuda->puesto->user->name }} {{ $deuda->puesto->user->apellido }}</td>
                             <td>{{ $deuda->fecha }}</td>
                             <td>{{ $deuda->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>S/. {{ $deuda->monto_sisa }}</td>
-                            <td>S/. {{ $deuda->monto_agua }}</td>
+
+                            @if (!is_Null($deuda->monto_sisa))
+                                <td>S/. {{ $deuda->monto_sisa }}</td>
+                            @else
+                                <td>{{ $deuda->monto_sisa }}</td>
+                            @endif
+
+                            @if (!is_Null($deuda->monto_agua))
+                                <td>S/. {{ $deuda->monto_agua }}</td>                                {{-- expr --}}
+                            @else
+                                <td>{{ $deuda->monto_agua }}</td>
+                            @endif
+
                             <td>{{ $deuda->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
+                       <tr>
+                            <th>Monto Deuda Sisa:</th>
+                            <td>S/. {{ $deudaSisa }}</td>
+                        </tr>
+                        <tr>
+                            <th>Monto Deuda Agua:</th>
+                            <td>S/. {{ $deudaAgua }}</td>
+                        </tr>
                 </tbody>
             </table>
     </div>

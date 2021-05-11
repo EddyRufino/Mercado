@@ -73,13 +73,13 @@ class PuestoSeeder extends Seeder
             ]);
         }
 
-        for ($i=1; $i <= 5; $i++) {
-            DB::table('listas')->insert([
-                'num_puesto' => "{$i}",
-                'ubicacion' => 'L-E',
-                'color' => '#F662BC'
-            ]);
-        }
+        // for ($i=1; $i <= 5; $i++) {
+        //     DB::table('listas')->insert([
+        //         'num_puesto' => "{$i}",
+        //         'ubicacion' => 'L-E',
+        //         'color' => '#F662BC'
+        //     ]);
+        // }
 
         for ($i=1; $i <= 12; $i++) {
             DB::table('listas')->insert([

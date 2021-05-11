@@ -43,6 +43,7 @@
             {{-- <img src="{{ asset('img/logo.png') }}" alt="Minu Castilla" class="circle"> --}}
         </div>
             <h4 class="text-center font-weight-bold">Lista de Deudas</h4>
+            {{-- Deudas por comerciante --}}
             <table class="table mt-2">
                 <thead>
                     <tr>
@@ -50,6 +51,7 @@
                         <th scope="col">Fecha</th>
                         <th scope="col">Puesto</th>
                         <th scope="col">Sisa Diaria</th>
+                        <th scope="col">Monto agua</th>
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
@@ -59,10 +61,19 @@
                             <td>{{ $deuda->puesto->user->name }} {{ $deuda->puesto->user->apellido }}</td>
                             <td>{{ $deuda->fecha }}</td>
                             <td>{{ $deuda->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>S/. {{ $deuda->puesto->sisa_diaria }}</td>
+                            <td>{{ $deuda->monto_sisa }}</td>
+                            <td>{{ $deuda->monto_agua }}</td>
                             <td>{{ $deuda->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <th>Monto Deuda Sisa:</th>
+                            <td>{{ $deudaSisa }}</td>
+                        </tr>
+                        <tr>
+                            <th>Monto Deuda Agua:</th>
+                            <td>{{ $deudaAgua }}</td>
+                        </tr>
                 </tbody>
             </table>
     </div>
