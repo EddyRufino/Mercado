@@ -20,7 +20,10 @@ class DeudasExport implements FromView
     {
         $deudas = Deuda::with('puesto')->where('puesto_id', $this->id)->get();
 
-        return view('exports.exportEXCEL.deudas-excel', compact('deudas'));
+        $deudaSisa = $deudas->sum('monto_sisa');
+        $deudaAgua = $deudas->sum('monto_agua');
+
+        return view('exports.exportEXCEL.deudas-excel', compact('deudas', 'deudaSisa', 'deudaAgua'));
     }
 
     // public function collection()

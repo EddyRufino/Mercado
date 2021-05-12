@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Ubicacion::class, function (Faker $faker) {
     return [
-        'nombre' => $faker->name,
+        'nombre' => $faker->randomElement(['Interior', 'Gruta - Interior', 'Plataforma', 'Mesa Redonda - Plataforma', 'Locales del Exterior', 'Locales - Plataforma', 'Locales del Interior', 'Ambulantes', 'Kioskos Plataforma', 'Kioskos del Interior', 'Tiendas del Exterior']),
     ];
 });

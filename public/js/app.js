@@ -2037,7 +2037,53 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   data: function data() {
     return {
       habilidades: new Set(),
-      selects: []
+      selects: [],
+      color: '#5DD9F5',
+      nombreRadios: [{
+        value: '#5DD9F5',
+        text: 'Interior',
+        color: '#5DD9F5'
+      }, {
+        value: '#49B3CB',
+        text: 'Gruta - Interior',
+        color: '#49B3CB'
+      }, {
+        value: '#30BF3B',
+        text: 'Plataforma',
+        color: '#30BF3B'
+      }, {
+        value: '#CD6B08',
+        text: 'Mesa Redonda - Plataforma',
+        color: '#CD6B08'
+      }, {
+        value: '#F662BC',
+        text: 'Locales del Exterior',
+        color: '#F662BC'
+      }, {
+        value: '#088A68',
+        text: 'Locales - Plataforma',
+        color: '#088A68'
+      }, {
+        value: '#0080FF',
+        text: 'Locales del Interior',
+        color: '#0080FF'
+      }, {
+        value: '#F7D358',
+        text: 'Ambulantes',
+        color: '#F7D358'
+      }, {
+        value: '#BF00FF',
+        text: 'Kioskos Plataforma',
+        color: '#BF00FF'
+      }, {
+        value: '#F6CED8',
+        text: 'Kioskos del Interior',
+        color: '#F6CED8'
+      }, {
+        value: '#812D00',
+        text: 'Tiendas del Exterior',
+        color: '#812D00'
+      }]
     };
   },
   created: function created() {
@@ -2055,6 +2101,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     document.querySelector('#puestos').value = this.oldpuestos; // console.log(this.oldpuestos);
 
     this.selects = this.oldpuestos;
+  },
+  computed: {
+    searchPuesto: function searchPuesto() {
+      var _this2 = this;
+
+      return this.puestos.filter(function (puesto) {
+        return puesto.color.includes(_this2.color);
+      });
+    }
   },
   methods: {
     choosepuesto: function choosepuesto(e, puesto) {
@@ -2197,16 +2252,59 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['puestos', 'oldpuestos'],
   data: function data() {
     return {
       habilidades: new Set(),
       selects: [],
-      names: []
+      names: [],
+      color: '#49B3CB',
+      nombreRadios: [{
+        value: '#5DD9F5',
+        text: 'Interior',
+        color: '#5DD9F5'
+      }, {
+        value: '#49B3CB',
+        text: 'Gruta - Interior',
+        color: '#49B3CB'
+      }, {
+        value: '#30BF3B',
+        text: 'Plataforma',
+        color: '#30BF3B'
+      }, {
+        value: '#CD6B08',
+        text: 'Mesa Redonda - Plataforma',
+        color: '#CD6B08'
+      }, {
+        value: '#F662BC',
+        text: 'Locales del Exterior',
+        color: '#F662BC'
+      }, {
+        value: '#088A68',
+        text: 'Locales - Plataforma',
+        color: '#088A68'
+      }, {
+        value: '#0080FF',
+        text: 'Locales del Interior',
+        color: '#0080FF'
+      }, {
+        value: '#F7D358',
+        text: 'Ambulantes',
+        color: '#F7D358'
+      }, {
+        value: '#BF00FF',
+        text: 'Kioskos Plataforma',
+        color: '#BF00FF'
+      }, {
+        value: '#F6CED8',
+        text: 'Kioskos del Interior',
+        color: '#F6CED8'
+      }, {
+        value: '#812D00',
+        text: 'Tiendas del Exterior',
+        color: '#812D00'
+      }]
     };
   },
   created: function created() {
@@ -2216,16 +2314,24 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var puestosArray = this.oldpuestos;
       puestosArray.forEach(function (puesto) {
         return _this.habilidades.add(puesto);
-      }); // console.log(this.puestosArray);
+      });
     }
   },
   mounted: function mounted() {
     // Llena el input con las puestos selecionadas antes de recargar la pagina
-    document.querySelector('#puestos').value = this.oldpuestos; // console.log(this.oldpuestos);
+    document.querySelector('#puestos').value = this.oldpuestos;
+  },
+  computed: {
+    searchPuesto: function searchPuesto() {
+      var _this2 = this;
+
+      return this.puestos.filter(function (puesto) {
+        return puesto.color.includes(_this2.color);
+      });
+    }
   },
   methods: {
     choosepuesto: function choosepuesto(e, puesto) {
-      // console.log(puesto);
       if (e.target.classList.contains('bg-danger')) {
         e.target.classList.remove('bg-danger');
         this.habilidades["delete"](puesto.id);
@@ -2234,8 +2340,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         e.target.classList.add('bg-danger');
         this.habilidades.add(puesto.id);
         this.names.push(puesto);
-      } // e.target.textContent
-      // Agregar las puestos al input
+      } // Agregar las puestos al input
 
 
       var stringHabilidades = _toConsumableArray(this.habilidades);
@@ -38010,7 +38115,48 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
-                    _vm._m(1),
+                    _c(
+                      "div",
+                      { staticClass: "d-flex justify-content-around mb-3 row" },
+                      _vm._l(_vm.nombreRadios, function(radio) {
+                        return _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.color,
+                                  expression: "color"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "radio", id: "inlineRadio1" },
+                              domProps: {
+                                value: radio.value,
+                                checked: _vm._q(_vm.color, radio.value)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.color = radio.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "form-check-label" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(radio.text) +
+                                  "\n                              "
+                              )
+                            ])
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
                     _c(
                       "ul",
@@ -38018,7 +38164,7 @@ var render = function() {
                         staticClass:
                           "list-group list-group-horizontal-sm d-flex flex-wrap"
                       },
-                      _vm._l(_vm.puestos, function(puesto) {
+                      _vm._l(_vm.searchPuesto, function(puesto) {
                         return _c(
                           "li",
                           {
@@ -38055,7 +38201,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(1)
                 ])
               ])
             ]
@@ -38090,71 +38236,6 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-flex justify-content-around mb-3 row" },
-      [
-        _c("span", [
-          _c("i", { staticClass: "circule circule-1" }),
-          _vm._v(" Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-2" }),
-          _vm._v(" Gruta - Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-3" }),
-          _vm._v(" Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-4" }),
-          _vm._v(" Mesa Redonda - Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-5" }),
-          _vm._v(" Locales de Exterior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-6" }),
-          _vm._v(" Locales - Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-7 mt-2" }),
-          _vm._v(" Locales del Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-8 mt-2" }),
-          _vm._v(" Ambulantes")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-9 mt-2" }),
-          _vm._v(" Kioskos Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-10 mt-2" }),
-          _vm._v(" Kioskos del Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-11 mt-2" }),
-          _vm._v(" Kioskos del Exterior")
-        ])
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -38261,7 +38342,51 @@ var render = function() {
                   _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
-                    _vm._m(1),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "d-flex justify-content-around mb-3 row flex-wrap"
+                      },
+                      _vm._l(_vm.nombreRadios, function(radio) {
+                        return _c(
+                          "div",
+                          { staticClass: "form-check form-check-inline" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.color,
+                                  expression: "color"
+                                }
+                              ],
+                              staticClass: "form-check-input",
+                              attrs: { type: "radio", id: "inlineRadio1" },
+                              domProps: {
+                                value: radio.value,
+                                checked: _vm._q(_vm.color, radio.value)
+                              },
+                              on: {
+                                change: function($event) {
+                                  _vm.color = radio.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { staticClass: "form-check-label" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(radio.text) +
+                                  "\n                              "
+                              )
+                            ])
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
                     _c(
                       "ul",
@@ -38269,7 +38394,7 @@ var render = function() {
                         staticClass:
                           "list-group list-group-horizontal-sm d-flex flex-wrap"
                       },
-                      _vm._l(_vm.puestos, function(puesto) {
+                      _vm._l(_vm.searchPuesto, function(puesto) {
                         return _c(
                           "li",
                           {
@@ -38285,15 +38410,11 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                                    " +
+                              "\n                                " +
                                 _vm._s(puesto["num_puesto"]) +
-                                "\n                                    "
-                            ),
-                            _vm._v(" "),
-                            _vm._v(
-                              "\n                                    " +
+                                "\n                                " +
                                 _vm._s(puesto["ubicacion"]) +
-                                "\n                                "
+                                "\n                            "
                             )
                           ]
                         )
@@ -38310,7 +38431,7 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _vm._m(1)
                 ])
               ])
             ]
@@ -38345,73 +38466,6 @@ var staticRenderFns = [
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "d-flex justify-content-around mb-3 row flex-wrap" },
-      [
-        _c("span", [
-          _c("i", { staticClass: "circule circule-1" }),
-          _vm._v(" Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-2" }),
-          _vm._v(" Gruta - Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-3" }),
-          _vm._v(" Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-4" }),
-          _vm._v(" Mesa Redonda - Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-5 mt-2" }),
-          _vm._v(" Locales del Exterior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-6 mt-2" }),
-          _vm._v(" Locales - Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-7 mt-2" }),
-          _vm._v(" Locales del Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-8 mt-2" }),
-          _vm._v(" Ambulantes")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-9 mt-2" }),
-          _vm._v(" Kioskos Plataforma")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-10 mt-2" }),
-          _vm._v(" Kioskos del Interior")
-        ]),
-        _vm._v(" "),
-        _c("span", [
-          _c("i", { staticClass: "circule circule-11 mt-2" }),
-          _vm._v(" Kioskos del Exterior")
-        ])
-      ]
-    )
   },
   function() {
     var _vm = this

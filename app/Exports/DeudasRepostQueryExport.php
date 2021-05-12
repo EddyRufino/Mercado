@@ -38,19 +38,9 @@ class DeudasRepostQueryExport implements FromView
                                     ->get();
         }
 
-        return view('exports.exportEXCEL.reporte-deudas', compact('deudas'));
+        $deudaSisa = $deudas->sum('monto_sisa');
+        $deudaAgua = $deudas->sum('monto_agua');
+
+        return view('exports.exportEXCEL.reporte-deudas', compact('deudas', 'deudaSisa', 'deudaAgua'));
     }
-
-    // public function query()
-    // {
-    //     $deudas = User::join('puestos', 'users.id', '=', 'puestos.user_id')
-    //                     ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-    //                     ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-    //                     ->join('deudas', 'puestos.id', '=', 'deudas.puesto_id')
-    //                     ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'puestos.sisa_diaria', 'deudas.fecha', 'deudas.monto_agua', 'ubicacions.nombre as ubicacion')
-    //                     ->whereDate('deudas.fecha', $this->date);
-
-    //     return $deudas;
-    // }
-
 }

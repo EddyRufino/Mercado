@@ -154,7 +154,7 @@
                                 @endforelse
 
                                 <div class="overflow-auto mt-1">
-                                    {{ $deudas->links() }}
+                                    {{ $aguaDeudas->links() }}
                                 </div>
                             </div>
                         </div>

@@ -24,10 +24,13 @@ class DeudaExportController extends Controller
 
         $deudas = Deuda::with('puesto')->where('puesto_id', $id)->get();
 
-        $pdf = PDF::loadView('exports.exportPDF.deudas-pdf', compact('deudas'));
+        $deudaSisa = $deudas->sum('monto_sisa');
+        $deudaAgua = $deudas->sum('monto_agua');
 
-        // return $pdf->stream();
-        return $pdf->download('deudas-pdf.pdf');
+        $pdf = PDF::loadView('exports.exportPDF.deudas-pdf', compact('deudas', 'deudaSisa', 'deudaAgua'));
+
+        return $pdf->stream();
+        // return $pdf->download('deudas-pdf.pdf');
     }
 
     // php artisan make:export DeudasExport --model=User

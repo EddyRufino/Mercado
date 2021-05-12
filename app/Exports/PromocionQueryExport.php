@@ -36,7 +36,8 @@ class PromocionQueryExport implements FromView
                                         ->get();
         }
 
+        $montoPromo = $promociones->sum('monto');
 
-        return view('exports.exportEXCEL.reporte-promociones', compact('promociones'));
+        return view('exports.exportEXCEL.reporte-promociones', compact('promociones', 'montoPromo'));
     }
 }
