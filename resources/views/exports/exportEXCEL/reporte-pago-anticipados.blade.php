@@ -53,7 +53,7 @@
                         <th scope="col">Número Operación</th>
                         <th scope="col">Puesto</th>
                         <th scope="col">Monto Sisa</th>
-                        {{-- <th scope="col">Monto Agua</th> --}}
+                        <th scope="col">Monto Agua</th>
                         <th scope="col">Ubicación</th>
                     </tr>
                 </thead>
@@ -67,7 +67,7 @@
                             <td>{{ $pago->num_operacion }}</td>
                             <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
                             <td>{{ $pago->monto_sisa_anticipada }}</td>
-                            {{-- <td>{{ $pago->monto_agua_anticipada }}</td> --}}
+                            <td>{{ $pago->monto_agua_anticipada }}</td>
                             <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                         </tr>
                     @endforeach

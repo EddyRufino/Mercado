@@ -76,7 +76,10 @@
                                                 Deuda Servicio
                                             </a>
                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
-                                               Pago Anticipado
+                                               Sisa Anticipada
+                                            </a>
+                                            <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
+                                               Agua Anticipada
                                             </a>
                                         </div>
                                     </div>

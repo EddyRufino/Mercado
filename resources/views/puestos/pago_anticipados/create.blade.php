@@ -66,7 +66,7 @@
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Pago Anticipado
+                                            Sisa Anticipada
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
@@ -83,6 +83,9 @@
                                             </a>
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Servicio
+                                            </a>
+                                            <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
+                                               Agua Anticipada
                                             </a>
                                         </div>
                                     </div>
