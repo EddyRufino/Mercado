@@ -30,6 +30,9 @@ Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('p
 Route::resource('puestos.pagoanticipados', 'PagoAnticipadoController')->only(['index', 'create', 'store']);
 Route::resource('puestos.aguaanticipados', 'AguaAnticipadoController')->only(['index', 'create', 'store']);
 
+// Chart
+Route::get('dashboard', 'Dashboard\dashboardChartController@index')->name('dashboard');
+
 // Promociones
 Route::resource('promociones', 'PromocionController');
 

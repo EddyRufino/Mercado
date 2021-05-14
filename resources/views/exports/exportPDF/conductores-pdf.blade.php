@@ -61,32 +61,32 @@
             <h3 class="header-title font-color"><strong >Gerencia De Desarrollo Local</strong></h3>
         </div>
 
-            <h4 class="text-center font-color">Lista De Conductores</h4>
+        <h4 class="text-center font-color">Lista De Conductores</h4>
 
-            <table class="table">
-                <thead>
-                    <tr bgcolor="#5D6D7E" class="font-color-white">
-                        <th scope="col">Conductor</th>
-                        <th scope="col">DNI</th>
-                        <th scope="col">Puesto</th>
-                        <th scope="col">R. Exposición</th>
-                        <th scope="col">Actividad</th>
-                        <th scope="col">Ubicación</th>
+        <table class="table">
+            <thead>
+                <tr bgcolor="#5D6D7E" class="font-color-white">
+                    <th scope="col">Conductor</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">R. Exposición</th>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($conductores as $conductor)
+                    <tr>
+                        <td>{{ $conductor->user->name }} {{ $conductor->user->apellido }}</td>
+                        <td>{{ $conductor->user->dni }}</td>
+                        <td>{{ $conductor->lists->pluck('num_puesto')->implode(', ') }}</td>
+                        <td>{{ $conductor->riesgo_exposicion }}</td>
+                        <td>{{ $conductor->ubicacion->nombre }}</td>
+                        <td>{{ $conductor->actividad->nombre }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($conductores as $conductor)
-                        <tr>
-                            <td>{{ $conductor->user->name }} {{ $conductor->user->apellido }}</td>
-                            <td>{{ $conductor->user->dni }}</td>
-                            <td>{{ $conductor->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>{{ $conductor->riesgo_exposicion }}</td>
-                            <td>{{ $conductor->ubicacion->nombre }}</td>
-                            <td>{{ $conductor->actividad->nombre }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

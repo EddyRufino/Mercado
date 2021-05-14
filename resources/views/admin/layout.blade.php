@@ -137,7 +137,7 @@
 <!-- ./wrapper -->
 </div>
 <!-- REQUIRED SCRIPTS -->
-
+@stack('scripts')
 <!-- jQuery -->
 <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->

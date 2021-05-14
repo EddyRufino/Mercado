@@ -31,6 +31,15 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
+            <a href="{{ route('dashboard') }}" class="nav-link">
+              <i class="nav-icon fa fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
               <p>
