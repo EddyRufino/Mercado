@@ -86,4 +86,12 @@ class ReporteDeudaController extends Controller
         return (new PromocionQueryExport)->forDate($date, $year, $day)->download('promociones-excel.xlsx');
     }
 
+    public function sisaMonth(Request $request)
+    {
+        $year = $request->year;
+        $month = $request->search;
+
+        return (new SisaRepostQueryExport)->forDate($year, $month)->download('sisa-mes-excel.xlsx');
+    }
+
 }

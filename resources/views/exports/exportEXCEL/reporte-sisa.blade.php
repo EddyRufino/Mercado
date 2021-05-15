@@ -58,46 +58,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sisas as $pago)
+                    @foreach ($dataPago as $key => $pago)
                         <tr>
-{{--                             @if ($loop->first)
-                                <td>{{ $pago->fecha }}</td>
-                                <td>{{ $khaaa }}</td>
-                                <td>{{ $pago->sum('monto_sisa') + $pago->puesto->deudas->sum('monto_sisa') }}</td>
-                                <td>{{ $pago->sum('monto_sisa') }}</td>
-                                <td></td>
-                                <td>{{ $pago->puesto->deudas->sum('monto_sisa') }}</td>
-                            @endif --}}
-
-
-{{--                             <td>{{ $pago->fecha }}</td>
-                            <td></td>
-                            <td>{{ $pago->sum('monto_sisa') + $pago->puesto->deudas->sum('monto_sisa') }}</td>
-                            <td>{{ $pago->sum('monto_sisa') }}</td>
-                            <td></td>
-                            <td>{{ $pago->puesto->deudas->sum('monto_sisa') }}</td>
-                            <td></td>
-                            <td>{{ $pago->sum('monto_agua') }}</td>
-                            <td></td> --}}
-
-                            <td>{{ $pago->fecha }}</td>
-                            <td></td>
-                            <td></td>
-                            <td>{{ $pago->monto_sisa }}</td>
-                            <td></td>
-                            {{-- {{ $pago->puesto->deudas->pluck('monto_sisa')->implode(' ') }} --}}
-                            <td>{{ $pago->monto_agua }}</td>
-                            <td></td>
-                            <td>{{ $pago->monto_remodelacion }}</td>
-
-
-{{--                             <td>{{ $pago->num_operacion }}</td>
-                            <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                            <td>S/. {{ $pago->monto_sisa }}</td>
-                            <td>S/. {{ $pago->monto_agua }}</td>
-                            <td>S/. {{ $pago->monto_remodelacion }}</td>
-                            <td>S/. {{ $pago->monto_constancia }}</td>
-                            <td>{{ $pago->puesto->ubicacion->nombre }}</td> --}}
+                            <td>{{ $pago->pluck('fecha')->implode(' ') }}</td>
+                            <td>{{ $pago->pluck('total_sisa')->implode(' ') }}</td>
                         </tr>
                     @endforeach
                 </tbody>

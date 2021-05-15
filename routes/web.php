@@ -69,6 +69,7 @@ Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('repo
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
+Route::get('reporte-sisa-mes', 'Reporte\ReporteDeudaController@sisaMonth')->name('reporte.sisa.mes');
 
 Auth::routes(['register' => false]);
 

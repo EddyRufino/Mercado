@@ -20,9 +20,13 @@ class SisaRepostQueryExport implements FromView
 {
     use Exportable;
 
-    public function forDate($date)
+    private $year;
+    private $month;
+
+    public function forDate($year, $month)
     {
-        $this->date = $date;
+        $this->year = $year;
+        $this->month = $month;
 
         return $this;
     }
@@ -32,8 +36,49 @@ class SisaRepostQueryExport implements FromView
         // $sisas = Pago::with(['puesto'])->whereDate('fecha', $this->date)->get();
         // $sisas = Pago::with('puesto')->select('fecha')->distinct()->whereMonth('fecha', $this->date)->get();
 
+        $pagos = Pago::select(['fecha', 'monto_sisa'])
+                        ->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_sisa');
 
-        $fechas = collect(['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05']);
+        // dd($pagos);
+
+        $today = "{$this->year}-{$this->month}";
+        $dateStart = "{$today}-01";
+        $dateLast = "{$today}-31";
+
+        $dataPago = collect([]);
+        $dataDeuda = collect([]);
+        $dataFecha = collect([]);
+
+        for ($days_backwards = $dateStart; $days_backwards <= $dateLast; $days_backwards++)
+        {
+            // $dataPago->push(
+            //     Pago::whereDate('fecha', $days_backwards)->get()->sum('monto_sisa')
+            // );
+
+            // $dataFecha->push($days_backwards);
+
+            $dataPago->push(
+                Pago::whereDate('fecha', $days_backwards)
+                        ->addSelect(['total_sisa' => Pago::select(DB::raw('SUM(monto_sisa)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                ])->get()->unique('fecha')
+            );
+
+            // $dataDeuda->push(Deuda::whereDate('fecha', $days_backwards)->count());
+        }
+        // $collection = $dataPago->toArray();
+        // $collection2 = $dataFecha->toArray();
+        // $merge = $dataPago->mergeRecursive($dataFecha);
+
+        // $dataPagos = collect();
+        // for ($i=0; $i <= 31; $i++) {
+        //     $dataPagos->push($dataPago[$i++]);
+        // }
+
+        // dd($dataPagos);
 
         // $sisas = Puesto::addSelect(['count_sisa' => Pago::selectRaw('SUM(monto_sisa)')
         //             ->whereColumn('puesto_id', 'puestos.id')
@@ -69,10 +114,10 @@ class SisaRepostQueryExport implements FromView
         // dd($sisas);
 
 
-        $sisa_anti = Pago::where('fecha', '>', Carbon::now());
+        // $sisa_anti = Pago::where('fecha', '>', Carbon::now());
 
 
-        $sisas  = Pago::whereMonth('fecha', $this->date)->orderBy('fecha', 'ASC')->get();
+        // $sisas  = Pago::whereMonth('fecha', $this->date)->orderBy('fecha', 'ASC')->get();
         // $deudas = Deuda::whereDate('fecha', $this->date)->get()->unique('fecha');
 
         // La más cercana a la meta
@@ -90,20 +135,20 @@ class SisaRepostQueryExport implements FromView
         //                 ->get()
         //                 ->unique('fecha');
 
-        $fecha1 = "2021-05-01";
-        $fecha2 = "2021-05-05";
+        // $fecha1 = "2021-05-01";
+        // $fecha2 = "2021-05-05";
 
-        for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+        // for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
             // echo $i . "<br />";
          //aca puedes comparar $i a una fecha en la bd y guardar el resultado en un arreglo
 
-            $pagos = Pago::select('monto_sisa')->whereMonth('fecha', '05')
-                ->each(function ($item) use ($i) {
-                                $item->whereDate('fecha', $i)
-                                ->get()
-                                ->sum('monto_sisa');
-                });
-        }
+        //     $pagos = Pago::select('monto_sisa')->whereMonth('fecha', '05')
+        //         ->each(function ($item) use ($i) {
+        //                         $item->whereDate('fecha', $i)
+        //                         ->get()
+        //                         ->sum('monto_sisa');
+        //         });
+        // }
 
 
 
@@ -195,8 +240,9 @@ class SisaRepostQueryExport implements FromView
 
         // dd($total_diario);
         // dd($sisas->each->puesto->each->deudas->sum('monto_sisa'));
-        $khaaa = 'sd';
+        // $khaaa = 'sd';
 
-        return view('exports.exportEXCEL.reporte-sisa', compact('sisas', 'pagos'));
+        return view('exports.exportEXCEL.reporte-sisa', compact('dataPago', 'dataFecha'));
     }
 }
+
