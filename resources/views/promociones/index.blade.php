@@ -17,10 +17,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nombre Empresa</th>
+                                <th scope="col">R.U.C</th>
                                 <th scope="col">Monto Pago</th>
                                 <th scope="col">Fecha Inicio</th>
-                                <th scope="col">Fecha Fin</th>
                                 <th scope="col">Teléfono</th>
+                                <th scope="col">N. Recibo</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -28,10 +29,11 @@
                             @forelse ($promociones as $promocion)
                                 <tr>
                                     <td>{{ $promocion->nombre_empresa }}</td>
+                                    <td>{{ $promocion->ruc }}</td>
                                     <td>S/. {{ $promocion->monto }}</td>
                                     <td>{{ $promocion->fecha_inicio }}</td>
-                                    <td>{{ $promocion->fecha_fin }}</td>
                                     <td>{{ $promocion->telefono }}</td>
+                                    <td>{{ $promocion->num_recibo }}</td>
                                     <td>
                                         <div class="d-flex">
 {{--                                             <a href="{{ route('promociones.edit', $promocion->id) }}" data-toggle="tooltip" data-placement="top" title="Editar" class="text-warning mr-2">

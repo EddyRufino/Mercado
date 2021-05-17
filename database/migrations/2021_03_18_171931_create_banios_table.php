@@ -15,8 +15,12 @@ class CreateBaniosTable extends Migration
     {
         Schema::create('banios', function (Blueprint $table) {
             $table->id();
-            $table->string('monto_taza');
-            $table->string('monto_ducha');
+            $table->integer('num_correlativo');
+            $table->date('fecha');
+            $table->integer('tipo_servicio');
+            $table->string('monto_taza')->nullable();
+            $table->string('monto_ducha')->nullable();
+            $table->string('num_operacion')->nullable()->unique();
             $table->timestamps();
         });
     }

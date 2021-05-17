@@ -97,7 +97,7 @@
                                 <label for="monto_remodelacion" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Remodelación</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_remodelacion" type="number" step="any" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}"autocomplete="monto_remodelacion" required autofocus>
+                                    <input id="monto_remodelacion" type="number" step="any" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}"autocomplete="monto_remodelacion" autofocus>
 
                                     @error('monto_remodelacion')
                                         <span class="invalid-feedback" role="alert">
@@ -111,7 +111,7 @@
                                 <label for="monto_constancia" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Constancia</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_constancia" type="number" step="any" class="form-control @error('monto_constancia') is-invalid @enderror" name="monto_constancia" value="{{ old('monto_constancia') }}" autocomplete="monto_constancia" required autofocus>
+                                    <input id="monto_constancia" type="number" step="any" class="form-control @error('monto_constancia') is-invalid @enderror" name="monto_constancia" value="{{ old('monto_constancia') }}" autocomplete="monto_constancia" autofocus>
 
                                     @error('monto_constancia')
                                         <span class="invalid-feedback" role="alert">

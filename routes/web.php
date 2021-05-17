@@ -62,6 +62,9 @@ Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('pro
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
 // Route::post('operaciones/{id}', 'Operacion\OperacionController@store')->name('operaciones.store');
 
+// Baños
+Route::resource('baños', 'BanioController')->only(['index', 'create', 'store']);
+
 
 // Reportes
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');

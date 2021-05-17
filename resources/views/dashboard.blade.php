@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+    @if (auth()->user()->hasRoles(['admin', 'cobrador']))
         <div class="row mt-2">
             <div class="col-lg-3 col-6">
 
@@ -9,7 +10,7 @@
                     <div class="inner">
                         <h3>S/. {{ $payDay }}</h3>
 
-                        <p>Total Pago {{ today()->format('d/m/Y') }}</p>
+                        <p>Sisa Pago Total {{ today()->format('d/m') }}</p>
                         {{-- Si quieres quitarle horas ponlo en formato horas --}}
                     </div>
                     <div class="icon">
@@ -24,7 +25,7 @@
                     <div class="inner">
                         <h3>S/. {{ $payAnticipado }}</h3>
 
-                        <p>Total Pago Anticipado {{ today()->format('d/m/Y') }}</p>
+                        <p>Sisa Anticipada  {{ today()->format('d/m') }}</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-chart-bar"></i>
@@ -38,7 +39,7 @@
                     <div class="inner">
                         <h3>S/. {{ $deuda }}</h3>
 
-                        <p>Total Deuda {{ today()->format('d/m/Y') }}</p>
+                        <p>Deuda Sisa  total  {{ today()->format('d/m') }}</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-chart-bar"></i>
@@ -54,6 +55,7 @@
                 {!! $chart->script() !!}
             </div>
         </div>
+    @endif
     </div>
 @endsection
 

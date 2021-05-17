@@ -30,14 +30,18 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-          <li class="nav-item">
-            <a href="{{ route('dashboard') }}" class="nav-link">
-              <i class="nav-icon fa fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
+        @auth
+            @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+              <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link">
+                  <i class="nav-icon fa fa-tachometer-alt"></i>
+                  <p>
+                    Dashboard
+                  </p>
+                </a>
+              </li>
+            @endif
+        @endauth
 
           <li class="nav-item">
             <a href="{{ route('home') }}" class="nav-link">
@@ -260,89 +264,33 @@
           @endif
         @endauth
 
- {{--        @auth
-          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-car"></i>
-              <p>
-                Vehículos
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Vehículos</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Vehículos</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
-        @endauth
-
-        @auth
-          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Certificados
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Certificados</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Certificados</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
-        @endauth
-
-        @auth
-          @if (auth()->user()->hasRoles(['admin', 'cobrador']))
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fa fa-folder-open"></i>
-              <p>
-                Soats
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Soats</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Soats</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @endif
-        @endauth --}}
+          @auth
+            @if (auth()->user()->hasRoles(['admin']))
+            <li class="nav-item has-treeview ">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-ad"></i>
+                <p>
+                  Baños
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('baños.create') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Nuevo Ticket</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('baños.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tickets Del Día</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            @endif
+          @endauth
 
           @auth
             @if (auth()->user()->hasRoles(['admin']))

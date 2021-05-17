@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Banio extends Model
 {
-    //
+    protected $guarded = [];
 }

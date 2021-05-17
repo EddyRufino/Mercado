@@ -36,9 +36,16 @@
                                {{--  <a href="{{ route('puestos.deudas.create', $conductor->id) }}" class="btn btn-danger text-white btn-sm">
                                     Deuda
                                 </a> --}}
+
+                                @if ($conductor->user_id === auth()->user()->id)
+                                    <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
+                                        Ver Deudas
+                                    </a>
+                                @endif
+
                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
                                     <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
-                                        Ver Deuda Sisa
+                                        Ver Deudas
                                     </a>
                                 @endif
                             </div>

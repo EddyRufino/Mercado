@@ -19,13 +19,13 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Comerciante',
+            'name' => 'comerciante',
             'display_name' => 'Comerciante',
             'description' => 'Soy un comerciante'
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'Cobrador',
+            'name' => 'cobrador',
             'display_name' => 'Cobrador',
             'description' => 'Soy un cobrador'
         ]);

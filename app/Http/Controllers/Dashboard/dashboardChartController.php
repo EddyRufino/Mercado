@@ -37,6 +37,7 @@ class dashboardChartController extends Controller
 
         // Count Pays by day
         $pays = Pago::select('monto_remodelacion', 'monto_constancia', 'monto_agua', 'monto_sisa')
+                    ->whereYear('fecha', today()->format('Y'))
                     ->whereMonth('fecha', today()->format('m'))
                     ->whereDay('fecha', today()->format('d'))
                     ->get();
@@ -50,6 +51,7 @@ class dashboardChartController extends Controller
 
         // Count Pays Anticipado by day
         $anticipados = PagoAnticipado::select('monto_agua_anticipada', 'monto_sisa_anticipada')
+                    ->whereYear('fecha', today()->format('Y'))
                     ->whereMonth('fecha', today()->format('m'))
                     ->whereDay('fecha', today()->format('d'))
                     ->get();
@@ -61,6 +63,7 @@ class dashboardChartController extends Controller
 
         // Count Debts by day
         $deudas = Deuda::select('monto_agua', 'monto_sisa')
+                    ->whereYear('fecha', today()->format('Y'))
                     ->whereMonth('fecha', today()->format('m'))
                     ->whereDay('fecha', today()->format('d'))
                     ->get();

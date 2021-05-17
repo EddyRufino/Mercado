@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PromocionRequest extends FormRequest
+class BanioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class PromocionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_empresa' => ['required'],
-            'ruc' => ['required'],
-            'fecha_inicio' => ['required'],
-            'monto' => ['required'],
-            'telefono' => ['nullable'],
-            'num_recibo' => ['nullable', 'unique:promocions']
+            'num_correlativo' => ['nullable', 'required'],
+            'fecha' => ['nullable', 'required'],
+            'tipo_servicio' => ['nullable', 'required'],
+            'monto_taza' => ['nullable'],
+            'monto_ducha' => ['nullable'],
+            'num_operacion' => ['nullable', 'unique:banios'],
         ];
     }
 }
