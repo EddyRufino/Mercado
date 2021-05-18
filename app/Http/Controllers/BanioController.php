@@ -15,7 +15,8 @@ class BanioController extends Controller
 
     public function index()
     {
-        return view('banios.index');
+        $tickets = Banio::latest()->paginate(7);
+        return view('banios.index', compact('tickets'));
     }
 
     public function create()
@@ -25,7 +26,8 @@ class BanioController extends Controller
 
     public function store(BanioRequest $request)
     {
-        dd($request->all());
+        Banio::create($request->all());
+        return redirect()->route('banios.index');
     }
 
     public function show(Banio $banio)
@@ -35,12 +37,16 @@ class BanioController extends Controller
 
     public function edit(Banio $banio)
     {
-        //
+        $ticket = $banio;
+        return view('banios.edit', compact('ticket'));
     }
 
-    public function update(Request $request, Banio $banio)
+    public function update(BanioRequest $request, Banio $banio)
     {
-        //
+        dd($request->all());
+        $banio->update($request->all());
+
+        return redirect()->route('banios.index');
     }
 
     public function destroy(Banio $banio)

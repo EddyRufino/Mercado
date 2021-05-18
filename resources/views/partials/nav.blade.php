@@ -30,19 +30,6 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
-        @auth
-            @if (auth()->user()->hasRoles(['admin', 'cobrador']))
-              <li class="nav-item">
-                <a href="{{ route('dashboard') }}" class="nav-link">
-                  <i class="nav-icon fa fa-tachometer-alt"></i>
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-            @endif
-        @endauth
-
           <li class="nav-item">
             <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fas fa-search"></i>
@@ -51,6 +38,47 @@
               </p>
             </a>
           </li>
+
+        @auth
+            @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+
+               <li class="nav-item has-treeview ">
+                 <a href="#" class="nav-link ">
+                   <i class="nav-icon fa fa-tachometer-alt"></i>
+                   <p>
+                     Dashboard
+                     <i class="right fas fa-angle-left"></i>
+                   </p>
+                 </a>
+                 <ul class="nav nav-treeview">
+                   <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
+                      <i class="nav-icon far fa-circle"></i>
+                      <p>
+                        Dashboard Sisa
+                      </p>
+                    </a>
+                   </li>
+                   @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+                     <li class="nav-item">
+                       <a href="{{ route('dashboard.banio') }}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                         <p>Dashboard Baño</p>
+                       </a>
+                     </li>
+                     <li class="nav-item">
+                       <a href="{{ route('users.create') }}" class="nav-link">
+                         <i class="far fa-circle nav-icon"></i>
+                         <p>Dashboard Promoción</p>
+                       </a>
+                     </li>
+                   @endif
+                 </ul>
+               </li>
+            @endif
+        @endauth
+
+
 
             @auth
                @if (auth()->user()->hasRoles(['admin', 'cobrador']))
@@ -276,13 +304,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ route('baños.create') }}" class="nav-link">
+                  <a href="{{ route('banios.create') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Nuevo Ticket</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('baños.index') }}" class="nav-link">
+                  <a href="{{ route('banios.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tickets Del Día</p>
                   </a>

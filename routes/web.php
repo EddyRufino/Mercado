@@ -32,6 +32,7 @@ Route::resource('puestos.aguaanticipados', 'AguaAnticipadoController')->only(['i
 
 // Chart
 Route::get('dashboard', 'Dashboard\dashboardChartController@index')->name('dashboard');
+Route::get('dashboard-banios', 'Dashboard\banioChartController@index')->name('dashboard.banio');
 
 // Promociones
 Route::resource('promociones', 'PromocionController');
@@ -63,7 +64,7 @@ Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaci
 // Route::post('operaciones/{id}', 'Operacion\OperacionController@store')->name('operaciones.store');
 
 // Baños
-Route::resource('baños', 'BanioController')->only(['index', 'create', 'store']);
+Route::resource('banios', 'BanioController')->except(['delete', 'show']);
 
 
 // Reportes

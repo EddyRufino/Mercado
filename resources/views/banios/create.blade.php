@@ -7,10 +7,10 @@
                 <div class="card mt-3">
                     @include('partials.card-header', [
                         'title' => 'Nuevo Ticket',
-                        'link' => 'baños.index'
+                        'link' => 'banios.index'
                     ])
                     <div class="card-body">
-                        <form method="POST" action="{{ route('baños.store') }}">
+                        <form method="POST" action="{{ route('banios.store') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -48,7 +48,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-check">
-                                      <input class="form-check-input" type="radio" name="tipo_servicio" value="1"  onclick="mostrarTaza()">
+                                      <input class="form-check-input" type="radio" name="tipo_servicio" value="1"  onclick="mostrarTaza()" checked>
                                       <label class="form-check-label">
                                         Taza
                                       </label>
@@ -67,7 +67,7 @@
                                 <label for="monto_taza" class="col-md-4 col-form-label text-md-right font-weight-normal">Monto Taza</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_taza" type="text" class="form-control @error('monto_taza') is-invalid @enderror" name="monto_taza" required autocomplete="monto_taza" autofocus readonly>
+                                    <input id="monto_taza" type="text" class="form-control @error('monto_taza') is-invalid @enderror" name="monto_taza" required autocomplete="monto_taza" autofocus readonly value="0.50">
 
                                     @error('monto_taza')
                                         <span class="invalid-feedback" role="alert">
@@ -101,6 +101,7 @@
                                     </a>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -111,16 +112,21 @@
 
 @push('scripts')
     <script type="text/javascript">
+
+        document.getElementById("ducha").style.display = "none";
+
         function mostrarTaza() {
             document.getElementById("taza").style.display = "flex";
             document.getElementById("ducha").style.display = "none";
-            document.getElementById("monto_taza").value = 0.5;
+            document.getElementById("monto_taza").value = '0.50';
+            document.getElementById("monto_ducha").value = '';
         }
 
         function mostrarDucha() {
             document.getElementById("ducha").style.display = "flex";
             document.getElementById("taza").style.display = "none";
             document.getElementById("monto_ducha").value = 1;
+            document.getElementById("monto_taza").value = '';
         }
     </script>
 @endpush
