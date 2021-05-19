@@ -284,7 +284,13 @@
               <li class="nav-item">
                 <a href="{{ route('reporte.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Generar Reporte</p>
+                  <p>Reporte Sisa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('reporte.banio.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reporte Baños</p>
                 </a>
               </li>
             </ul>

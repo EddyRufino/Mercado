@@ -67,12 +67,17 @@ Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaci
 Route::resource('banios', 'BanioController')->except(['delete', 'show']);
 
 
-// Reportes
+// Reporte Sisa
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
+
+// Reporte Baño
+Route::get('reporte-banios', 'Reporte\ReporteBanioController@index')->name('reporte.banio.index');
+Route::get('reporte-banios-mes', 'Reporte\ReporteBanioController@month')->name('reporte.banio.month');
+Route::get('reporte-banios-dia', 'Reporte\ReporteBanioController@day')->name('reporte.banio.day');
 
 Auth::routes(['register' => false]);
 

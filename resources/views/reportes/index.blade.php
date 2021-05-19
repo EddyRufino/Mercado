@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'comerciante']))
+    @if (auth()->user()->hasRoles(['admin', 'cobrador']))
         <div class="accordion" id="accordionExample">
             <div class="card-header" >
                 <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -59,16 +59,6 @@
     @else
         <h2 class="text-secondary p-2">No Tienes permisos para ver esta vista</h2>
     @endif
-
-
-
-
-
-
-
-
-
-
 
 </div>
 @endsection

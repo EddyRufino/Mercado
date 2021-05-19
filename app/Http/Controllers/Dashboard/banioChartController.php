@@ -29,10 +29,21 @@ class banioChartController extends Controller
 
         $today = today()->format('M Y');
         $chart->labels($days);
-        $chart->dataset("Taza Diario - {$today}", 'line', $dataTaza)->backgroundColor('rgba(63, 191, 127, .6)');
-        $chart->dataset("Ducha Diaria - {$today}", 'line', $dataDucha)->backgroundColor('rgba(255, 66, 69, .6)');
+        $chart->dataset("Taza Diario - {$today}", 'line', $dataTaza)->backgroundColor('rgba(0, 206, 209, .6)');
+        $chart->dataset("Ducha Diaria - {$today}", 'line', $dataDucha)->backgroundColor('rgba(218, 165, 32, .6)');
 
 
-        return view('dashboards/dashboard-banio', compact('chart'));
+        // Count Pays
+        $tickets = Banio::select('monto_taza', 'monto_ducha')
+                    ->whereYear('fecha', today()->format('Y'))
+                    ->whereMonth('fecha', today()->format('m'))
+                    ->whereDay('fecha', today()->format('d'))
+                    ->get();
+
+        // dd($tickets);
+        $taza = $tickets->pluck('monto_taza')->sum();
+        $ducha = $tickets->pluck('monto_ducha')->sum();
+
+        return view('dashboards/dashboard-banio', compact('chart', 'taza', 'ducha'));
     }
 }
