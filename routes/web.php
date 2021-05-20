@@ -49,7 +49,6 @@ Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->na
 // Export
 Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');
 Route::get('puestos-pdf', 'Export\PuestoExportController@pdf')->name('puestos.pdf');
-// Route::get('puestos-excel-query', 'Export\PuestoExportController@queryExcel')->name('puestos.query');
 Route::get('conductores-excel', 'Export\ComercianteExportController@excel')->name('conductores.excel');
 Route::get('conductores-pdf', 'Export\ComercianteExportController@pdf')->name('conductores.pdf');
 Route::get('users-excel', 'Export\UserExportController@excel')->name('users.excel');
@@ -61,7 +60,8 @@ Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('pro
 
 // Operaciones
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
-// Route::post('operaciones/{id}', 'Operacion\OperacionController@store')->name('operaciones.store');
+Route::get('num-operacion-banios', 'Operacion\OperacionBanioController@create')->name('operacion.banio.create');
+Route::post('operacionbanios', 'Operacion\OperacionBanioController@store')->name('operacion.banio.store');
 
 // Baños
 Route::resource('banios', 'BanioController')->except(['delete', 'show']);
@@ -73,6 +73,7 @@ Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('repo
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
+Route::get('reporte-tramites', 'Reporte\ReporteDeudaController@tramite')->name('reporte.tramite');
 
 // Reporte Baño
 Route::get('reporte-banios', 'Reporte\ReporteBanioController@index')->name('reporte.banio.index');

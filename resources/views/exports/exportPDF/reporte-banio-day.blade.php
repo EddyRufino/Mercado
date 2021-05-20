@@ -70,29 +70,29 @@
         <h4 class="font-color">LIQUIDACION DE COBRANZA DE SERVICIOS HIGIENICOS</h4>
 
         <span >DIA {{today()->format('d')}} DE {{today()->format('m')}} del {{today()->format('Y')}}</span><br>
-        <span>N. DE OPERACION: </span>
+        <span>N. DE OPERACION: {{ $num_operacion->implode(' ') }}</span>
 
 
         <table class="table mt">
             <thead>
-                <tr bgcolor="#5D6D7E" class="font-color-white">
-                    <th scope="col">CONCEPTO</th>
-                    <th scope="col">DESDE</th>
-                    <th scope="col">HASTA</th>
-                    <th scope="col">T. RECIBOS</th>
-                    <th scope="col">SUBTOTAL</th>
+                <tr bgcolor="#5D6D7E" class="font-color-white" >
+                    <th>CONCEPTO</th>
+                    <th>DESDE</th>
+                    <th>HASTA</th>
+                    <th>T. RECIBOS</th>
+                    <th>SUBTOTAL</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>TAZA</td>
+                    <td>TAZA <br> <span>S/. 0.50</span></td>
                     <td>{{ $desdeTaza->num_correlativo }}</td>
                     <td>{{ $hastaTaza->num_correlativo }}</td>
                     <td>{{ $tazaCount }}</td>
                     <td>S/. {{ $tazaTotal }}</td>
                 </tr>
                 <tr>
-                    <td>DUCHA</td>
+                    <td>DUCHA <br> <span>S/. 1</span></td>
                     <td>{{ $desdeDucha->num_correlativo }}</td>
                     <td>{{ $hastaDucha->num_correlativo }}</td>
                     <td>{{ $duchaCount }}</td>

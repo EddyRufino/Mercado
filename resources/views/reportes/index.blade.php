@@ -5,6 +5,9 @@
     @if (auth()->user()->hasRoles(['admin', 'cobrador']))
         <div class="accordion" id="accordionExample">
             <div class="card-header" >
+                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseTramite" aria-expanded="true" aria-controls="collapseTramite">
+                    <span id="headingTramite">Reporte Trámites</span>
+                </div>
                 <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <span id="headingOne">Reporte Deudas</span>
                 </div>
@@ -19,6 +22,15 @@
                 </div>
             </div>
 
+            <div id="collapseTramite" class="collapse " aria-labelledby="headingTramite" data-parent="#accordionExample">
+                <div class="card-body">
+                    @include('partials.search-reporte', [
+                            'title' => 'Generar Reporte Pagos Trámite',
+                            'placeholder' => 'Agosto',
+                            'link' => 'reporte.tramite'
+                        ])
+                </div>
+            </div>
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [

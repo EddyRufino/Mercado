@@ -14,7 +14,6 @@ class OperacionController extends Controller
     public function create()
     {
         $pagos = Pago::select('fecha')->distinct()->whereNull('num_operacion')->get();
-        // dd($pagos);
 
         return view('operaciones.create', compact('pagos'));
     }

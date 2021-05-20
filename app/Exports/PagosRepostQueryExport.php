@@ -38,7 +38,9 @@ class PagosRepostQueryExport implements FromView
 
         $pagoSisa = $pagos->sum('monto_sisa');
         $pagoAgua = $pagos->sum('monto_agua');
+        $pagoRemodelacion = $pagos->sum('monto_remodelacion');
+        $pagoConstancia = $pagos->sum('monto_constancia');
 
-        return view('exports.exportEXCEL.reporte-pagos', compact('pagos', 'pagoSisa', 'pagoAgua'));
+        return view('exports.exportEXCEL.reporte-pagos', compact('pagos', 'pagoSisa', 'pagoAgua', 'pagoRemodelacion', 'pagoConstancia'));
     }
 }
