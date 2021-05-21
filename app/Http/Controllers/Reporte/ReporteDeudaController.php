@@ -94,8 +94,8 @@ class ReporteDeudaController extends Controller
         $year = $request->year;
 
         return (new TramiteExport)->forDate($day, $month, $year)->download('tramites-excel.xlsx');
-    {
-      
+    }
+
     public function sisaMonth(Request $request)
     {
         $year = $request->year;

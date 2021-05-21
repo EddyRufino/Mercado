@@ -29,21 +29,27 @@ class banioChartController extends Controller
 
         $today = today()->format('M Y');
         $chart->labels($days);
-        $chart->dataset("Taza Diario - {$today}", 'line', $dataTaza)->backgroundColor('rgba(0, 206, 209, .6)');
-        $chart->dataset("Ducha Diaria - {$today}", 'line', $dataDucha)->backgroundColor('rgba(218, 165, 32, .6)');
+        $chart->dataset("Taza - {$today}", 'line', $dataTaza)->backgroundColor('rgba(0, 206, 209, .6)');
+        $chart->dataset("Ducha - {$today}", 'line', $dataDucha)->backgroundColor('rgba(218, 165, 32, .6)');
 
-
+        $banios = Banio::query();
+        $baniosDuchaCounts = Banio::query();
         // Count Pays
-        $tickets = Banio::select('monto_taza', 'monto_ducha')
+        $tickets = $banios->select('monto_taza', 'monto_ducha')
                     ->whereYear('fecha', today()->format('Y'))
                     ->whereMonth('fecha', today()->format('m'))
                     ->whereDay('fecha', today()->format('d'))
                     ->get();
 
-        // dd($tickets);
         $taza = $tickets->pluck('monto_taza')->sum();
         $ducha = $tickets->pluck('monto_ducha')->sum();
 
-        return view('dashboards/dashboard-banio', compact('chart', 'taza', 'ducha'));
+        // Count Tickets
+        $tazaCount = $banios->select('monto_taza')->where('tipo_servicio', 1)->count();
+        $duchaCount = $baniosDuchaCounts->select('monto_ducha')->where('tipo_servicio', 2)->count();
+
+        // dd($duchaCount);
+
+        return view('dashboards/dashboard-banio', compact('chart', 'taza', 'ducha', 'tazaCount', 'duchaCount'));
     }
 }

@@ -5,8 +5,8 @@
         <div class="row justify-content-center">
             <div class="col-md-7">
                 <div class="card mt-3">
-                    <div class="card-header bg-secondary d-flex justify-content-between align-items-center">
-                        <span class="w-100">
+                    <div class="card-header bg-info d-flex justify-content-between align-items-center">
+                        <span class="w-100 font-weight-bold">
                             {{ $puesto->user->name }} {{ $puesto->user->apellido }} <strong>-</strong> Puesto {{ $puesto->lists->pluck('num_puesto')->implode(',  ') }}
                         </span>
                     </div>
@@ -15,7 +15,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
+                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
 
                                 <div class="col-md-6">
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Recibo</label>
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
 
                                 <div class="col-md-6">
                                     <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" >
@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Tipo Pago</label>
+                                <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Tipo Pago</label>
 
                                 <div class="col-md-6">
 
@@ -92,7 +92,7 @@
 
 
                             <div class="form-group row">
-                                <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal">M. Agua</label>
+                                <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">M. Agua</label>
 
                                 <div class="col-md-6">
                                     <input id="monto_agua" type="number" step="any" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua') }}"autocomplete="monto_agua" required autofocus>
@@ -110,7 +110,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Guardar Pago
                                     </button>
-                                    <a href="{{ route('home') }}" class="btn btn-secondary text-white">
+                                    <a href="{{ route('home') }}" class="btn btn-light text-dark">
                                         Cancelar
                                     </a>
                                 </div>

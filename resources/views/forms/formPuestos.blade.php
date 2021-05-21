@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="user_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Conductor</label>
+            <label for="user_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Conductor</label>
 
             <div class="col-md-6">
                 <select class="form-control selectpicker" name="user_id" data-live-search="true">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="lista_id" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Puesto</label>
+            <label for="lista_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Puesto</label>
 
             <div class="col-md-6">
 
@@ -81,7 +81,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="medidas" class="col-md-4 col-form-label text-md-right font-weight-normal">Medidas</label>
+            <label for="medidas" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Medidas</label>
 
             <div class="col-md-6">
                 <input id="medidas" type="text" class="form-control @error('medidas') is-invalid @enderror" name="medidas" value="{{ old('medidas', $puesto->medidas) }}" required autocomplete="medidas" autofocus>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="ubicacion_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Ubicación</label>
+            <label for="ubicacion_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Ubicación</label>
 
             <div class="col-md-6">
                 <select class="form-control selectpicker" name="ubicacion_id" data-live-search="true">
@@ -118,7 +118,7 @@
 
     <div class="col-md-6">
         <div class="form-group row">
-            <label for="sisa" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Puesto</label>
+            <label for="sisa" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Sisa Puesto</label>
 
             <div class="col-md-6">
                 <input id="sisa" type="number" step="any" class="form-control @error('sisa') is-invalid @enderror" name="sisa" value="{{ old('sisa', $puesto->sisa) }}" required autocomplete="sisa" autofocus>
@@ -132,7 +132,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="sisa_diaria" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
+            <label for="sisa_diaria" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Sisa Diaria</label>
 
             <div class="col-md-6">
                 <input id="sisa_diaria" type="number" step="any" class="form-control @error('sisa_diaria') is-invalid @enderror" name="sisa_diaria" value="{{ old('sisa_diaria', $puesto->sisa_diaria) }}" required autocomplete="sisa_diaria" autofocus>
@@ -146,7 +146,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="cantidad_puesto" class="col-md-4 col-form-label text-md-right font-weight-normal">Cant. Puesto</label>
+            <label for="cantidad_puesto" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Cant. Puesto</label>
 
             <div class="col-md-6">
                 <input id="cantidad_puesto" type="number" class="form-control @error('cantidad_puesto') is-invalid @enderror" name="cantidad_puesto" value="{{ old('cantidad_puesto', $puesto->cantidad_puesto) }}" required autocomplete="cantidad_puesto" autofocus>
@@ -160,7 +160,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="actividad_id" class="col-md-4 col-form-label text-md-right font-weight-normal">Actividad</label>
+            <label for="actividad_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Actividad</label>
 
             <div class="col-md-6">
                 <select class="form-control selectpicker" name="actividad_id" data-live-search="true">
@@ -183,7 +183,7 @@
 </div>
 
 <div class="form-group row">
-    <label for="riesgo_exposicion" class="col-md-4 col-form-label text-md-right font-weight-normal">R. Exposición</label>
+    <label for="riesgo_exposicion" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">R. Exposición</label>
 
     <div class="col-md-5">
         <input id="riesgo_exposicion" type="text" class="form-control @error('riesgo_exposicion') is-invalid @enderror" name="riesgo_exposicion" value="{{ old('riesgo_exposicion', $puesto->riesgo_exposicion) }}" required autocomplete="riesgo_exposicion" autofocus>
@@ -201,7 +201,7 @@
         <button type="submit" class="btn btn-primary">
             {{ $btn }}
         </button>
-        <a href="{{ route('home') }}" class="btn btn-secondary text-white">
+        <a href="{{ route('home') }}" class="btn btn-light text-dark">
             Cancelar
         </a>
     </div>

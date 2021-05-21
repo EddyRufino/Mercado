@@ -131,7 +131,7 @@
 
       <!-- Main Footer -->
       <footer class="main-footer">
-        <strong>Gerencia De Desarrollo Local</strong>
+        <strong>Gerencia De Desarrollo Local <strong>-</strong> Administración Del Mercado</strong>
       </footer>
     </div>
 <!-- ./wrapper -->

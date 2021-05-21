@@ -1,9 +1,19 @@
+/** Cascada **/
+.card-header {
+    border-bottom: 0px solid;
+}
+
+/**/
 thead {
-    background-color: #343a40;
+    background-color: #17a2b8 !important;
 }
 
 th {
-    color: #dce0e3;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #F4F6F7;
 }
 
 a.d-block.up {

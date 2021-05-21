@@ -6,10 +6,10 @@
             <div class="">
                 <div class="accordion" id="accordionExample">
                     <div class="card-header" >
-                        <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <div class="btn btn-info text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           <span id="headingOne">Deuda Sisa</span>
                         </div>
-                        <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <div class="btn btn-info d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                           <span id="headingTwo">Deuda Agua</span>
                         </div>
                     </div>

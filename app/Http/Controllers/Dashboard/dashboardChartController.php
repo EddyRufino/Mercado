@@ -31,8 +31,8 @@ class dashboardChartController extends Controller
 
         $today = today()->format('M Y');
         $chart->labels($days);
-        $chart->dataset("Pago Diario - {$today}", 'line', $dataPago)->backgroundColor('rgba(63, 191, 127, .6)');
-        $chart->dataset("Deuda Diaria - {$today}", 'line', $dataDeuda)->backgroundColor('rgba(255, 66, 69, .6)');
+        $chart->dataset("Pagos - {$today}", 'line', $dataPago)->backgroundColor('rgba(63, 191, 127, .6)');
+        $chart->dataset("Deudas - {$today}", 'line', $dataDeuda)->backgroundColor('rgba(255, 66, 69, .6)');
 
 
         // Count Pays by day

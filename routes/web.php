@@ -31,8 +31,8 @@ Route::resource('puestos.pagoanticipados', 'PagoAnticipadoController')->only(['i
 Route::resource('puestos.aguaanticipados', 'AguaAnticipadoController')->only(['index', 'create', 'store']);
 
 // Chart
-Route::get('dashboard', 'Dashboard\dashboardChartController@index')->name('dashboard');
-Route::get('dashboard-banios', 'Dashboard\banioChartController@index')->name('dashboard.banio');
+Route::get('dashboard-sisa', 'Dashboard\dashboardChartController@index')->name('dashboard');
+Route::get('dashboard-servicios-higienicos', 'Dashboard\banioChartController@index')->name('dashboard.banio');
 
 // Promociones
 Route::resource('promociones', 'PromocionController');

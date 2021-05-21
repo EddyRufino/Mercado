@@ -12,7 +12,6 @@
                     <table class="table mt-2">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -20,7 +19,6 @@
                         <tbody>
                             @forelse ($ubicaciones as $ubicacion)
                                 <tr>
-                                    <th scope="row">{{ $ubicacion->id }}</th>
                                     <td>{{ $ubicacion->nombre }}</td>
                                     <td>
                                         <div class="d-flex">
