@@ -4,25 +4,30 @@ namespace App\Exports;
 
 use App\Deuda;
 use App\Pago;
+use App\PagoAnticipado;
 use App\Puesto;
 use App\User;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromView;
-use Illuminate\Database\Eloquent\Builder;
-use DateTime;
+use Carbon\Carbon;
+use DB;
 use DateInterval;
 use DatePeriod;
-use DB;
-use Carbon\Carbon;
+use DateTime;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromView;
 
 class SisaRepostQueryExport implements FromView
 {
     use Exportable;
 
-    public function forDate($date)
+    private $year;
+    private $month;
+
+    public function forDate($year, $month)
     {
-        $this->date = $date;
+        $this->year = $year;
+        $this->month = $month;
 
         return $this;
     }
@@ -32,171 +37,92 @@ class SisaRepostQueryExport implements FromView
         // $sisas = Pago::with(['puesto'])->whereDate('fecha', $this->date)->get();
         // $sisas = Pago::with('puesto')->select('fecha')->distinct()->whereMonth('fecha', $this->date)->get();
 
+        $pagoQuery = Pago::query();
+        $pagoAnticipadoQuery = PagoAnticipado::query();
+        $deudaQuery = Deuda::query();
 
-        $fechas = collect(['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05']);
+        // dd($deudaDia);
 
-        // $sisas = Puesto::addSelect(['count_sisa' => Pago::selectRaw('SUM(monto_sisa)')
-        //             ->whereColumn('puesto_id', 'puestos.id')
-        //             ->whereDate('fecha', $this->date)
-        //             ->limit(1)
-        //         ])->get()
-        //         ->unique('fecha');
+        $today = "{$this->year}-{$this->month}";
+        $dateStart = "{$today}-01";
+        $dateLast = "{$today}-31";
 
-        // $deudas = Puesto::addSelect(['count_sisa' => Deuda::selectRaw('SUM(monto_sisa)')
-        //             ->whereColumn('puesto_id', 'puestos.id')
-        //             ->whereDate('fecha', $this->date)
-        //             ->limit(1)
-        //         ])->get()
-        //         ->unique('fecha');
+        $dataPago = collect([]);
+        $dataDeuda = collect([]);
+        $dataFecha = collect([]);
 
+        for ($days_backwards = $dateStart; $days_backwards <= $dateLast; $days_backwards++)
+        {
+            // $dataPago->push(
+            //     Pago::whereDate('fecha', $days_backwards)->get()->sum('monto_sisa')
+            // );
 
+            // $dataFecha->push($days_backwards);
 
-        // $sisas = Pago::addSelect(['count_sisa' => Pago::selectRaw('SUM(monto_sisa)')
-        //             ->whereDate('fecha', $this->date)
-        //             ->limit(1)
-        //         ])->get()
-        //         ->unique('fecha')
-
-
-        // $sisas = DB::table('Pagos')
-        //         ->select('monto_sisa', DB::raw('count(*) as user_count, monto_sisa  '))
-        //         ->whereDate('fecha', $this->date)
-        //         ->groupBy('monto_sisa')
-        //         ->havingRaw('SUM(monto_sisa)')
-        //         ->get();
-
-
-        // dd($sisas);
-
-
-        $sisa_anti = Pago::where('fecha', '>', Carbon::now());
-
-
-        $sisas  = Pago::whereMonth('fecha', $this->date)->orderBy('fecha', 'ASC')->get();
-        // $deudas = Deuda::whereDate('fecha', $this->date)->get()->unique('fecha');
-
-        // La más cercana a la meta
-        // $sisas  = Pago::where('fecha', '<=', $this->date)
-        //             ->addSelect(['total_sisa' => Pago::select(DB::raw('SUM(monto_sisa)'))
-        //                 ->where('fecha', '<=', $this->date)
-        //                 ->limit(1)
-        //             ])
-        //             ->get()
-        //             ->unique('fecha');
-
-        // dd($sisas);
-
-        // $sisas = Pago::whereMonth('fecha', '05')
-        //                 ->get()
-        //                 ->unique('fecha');
-
-        $fecha1 = "2021-05-01";
-        $fecha2 = "2021-05-05";
-
-        for($i = $fecha1; $i <= $fecha2; $i = date("Y-m-d", strtotime($i ."+ 1 days"))){
-            // echo $i . "<br />";
-         //aca puedes comparar $i a una fecha en la bd y guardar el resultado en un arreglo
-
-            $pagos = Pago::select('monto_sisa')->whereMonth('fecha', '05')
-                ->each(function ($item) use ($i) {
-                                $item->whereDate('fecha', $i)
-                                ->get()
-                                ->sum('monto_sisa');
-                });
+            $dataPago->push(
+                Pago::whereDate('fecha', $days_backwards)
+                        ->addSelect(['total_sisa' => Pago::select(DB::raw('SUM(monto_sisa)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_sisa_anticipada' => PagoAnticipado::select(DB::raw('SUM(monto_sisa_anticipada)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_deuda_sisa' => Deuda::select(DB::raw('SUM(monto_sisa)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_agua' => Pago::select(DB::raw('SUM(monto_agua)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_agua_anticipada' => PagoAnticipado::select(DB::raw('SUM(monto_agua_anticipada)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_constancia' => Pago::select(DB::raw('SUM(monto_constancia)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                        ->addSelect(['total_remodelacion' => Pago::select(DB::raw('SUM(monto_remodelacion)'))
+                            ->whereDate('fecha', $days_backwards)
+                            ->limit(1)
+                    ])
+                    ->get()
+                    ->unique('fecha')
+            );
         }
 
+        $sisaDia = $pagoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_sisa');
 
+        $aguaDia = $pagoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_agua');
 
+        $constanciaDia = $pagoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_constancia');
 
+        $remodelacionDia = $pagoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_remodelacion');
 
+        $sisaDiaAnticipada = $pagoAnticipadoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_sisa_anticipada');
 
+        $aguaDiaAnticipada = $pagoAnticipadoQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_agua_anticipada');
 
+        $deudaDia = $deudaQuery->whereYear('fecha', $this->year)
+                        ->whereMonth('fecha', $this->month)
+                        ->sum('monto_sisa');
 
-        // $sisas = DB::table('pagos')
-        //             ->join('puestos', 'puestos.id', '=', 'pagos.puesto_id')
-        //             ->where(function ($query) {
-        //                 $query->select(DB::raw(1))
-        //                      ->from('deudas')
-        //                      ->whereRaw('deudas.puesto_id = deudas.id');
-        //             })
-        //             ->get();
-
-
-
-        // $sisas = Pago::whereMonth('fecha', $this->date)->get();
-
-        // $start = new DateTime('2021-05-01');
-        // $last = new DateTime('2021-05-03');
-
-        // dd($pagos);
-        // dd($deudas);
-
-        // for ($date = $start; $date <= $last; $date++) {
-            // $monto_sisa = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->sum('monto_sisa');
-            // $sisas = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->unique('fecha');
-
-
-            // $sisas = Pago::join('puestos', 'puestos.id', '=', 'pagos.puesto_id')
-            //                 ->join('deudas', 'deudas.id', '=', 'deudas.puesto_id')
-            //                 ->whereDate('pagos.fecha', $this->date)
-            //                 ->orWhere(function($query) {
-            //                     $query->whereDate('deudas.fecha', $this->date);
-            //                 })
-            //                 ->select('pagos.fecha', 'pagos.monto_sisa as sisa_pago', 'deudas.monto_sisa as sisa_deuda')
-            //                 ->get()
-            //                 ->unique('pagos.fecha');
-
-        // $sees = collect(['2021-05-01', '2021-05-02', '2021-05-03', '2021-05-04', '2021-05-05']);
-
-        // $sees->each(function ($item, $key) {
-        //     dd($item);
-        // });
-
-
-        // }
-            // $sisas->each(function ($sisa) {
-            //     dd($sisa->where('fecha', $this->date)->sum('monto_sisa'));
-            // });
-        // dd($fecha->pluck('fecha'));
-        // $fd = $sisas->map(function($sisa, $key) use ($last) {
-        //     return $sisa->where('fecha', $last);
-        // });
-
-
-
-        // for ($datew = $start; $datew <= $last; $datew++) {
-            // $sisas = Pago::whereDate('fecha', $this->date)->whereDate('fecha', $this->date)->get()->unique('fecha');
-        // }
-
-
-
-
-        // $pago = $pagos->sum('monto_sisa');
-        // $deuda = $deudas->sum('monto_sisa');
-        // $agua = $pagos->sum('monto_agua');
-        // $constancia = $pagos->sum('monto_constancia');
-        // $remodalacion = $pagos->sum('monto_remodalacion');
-
-        // $total_diario = $pago + $deuda + $agua + $constancia + $remodalacion;
-        // $sisa = $pago + $deuda;
-
-        // $sisas = Puesto::with(['pagos', 'deudas'])
-        //         ->whereHas('pagos', function (Builder $query) {
-        //             return $query->where('fecha', $this->date);
-        //         })
-        //         ->whereHas('deudas', function (Builder $query) {
-        //             return $query->where('fecha', $this->date);
-        //         })
-        //         ->get();
-
-        // $fecha = $sisas->pluck('fecha')->unique();
-        // $sisa_dia = $sisas->each->puesto->sum('monto_sisa');
-        // $sisa_deuda = $sisas->each->puesto->each->deudas->sum('monto_sisa');
-
-        // dd($total_diario);
-        // dd($sisas->each->puesto->each->deudas->sum('monto_sisa'));
-        $khaaa = 'sd';
-
-        return view('exports.exportEXCEL.reporte-sisa', compact('sisas', 'pagos'));
+        return view('exports.exportEXCEL.reporte-sisa', compact('dataPago', 'sisaDia', 'sisaDiaAnticipada', 'aguaDiaAnticipada', 'deudaDia', 'aguaDia', 'constanciaDia', 'remodelacionDia'));
     }
 }
+

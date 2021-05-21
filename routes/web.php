@@ -37,14 +37,12 @@ Route::get('dashboard-banios', 'Dashboard\banioChartController@index')->name('da
 // Promociones
 Route::resource('promociones', 'PromocionController');
 
-
 // Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');
 Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
 Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
-
 
 // Export
 Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');
@@ -66,13 +64,13 @@ Route::post('operacionbanios', 'Operacion\OperacionBanioController@store')->name
 // Baños
 Route::resource('banios', 'BanioController')->except(['delete', 'show']);
 
-
 // Reporte Sisa
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
+Route::get('reporte-sisa-mes', 'Reporte\ReporteDeudaController@sisaMonth')->name('reporte.sisa.mes');
 Route::get('reporte-tramites', 'Reporte\ReporteDeudaController@tramite')->name('reporte.tramite');
 
 // Reporte Baño
