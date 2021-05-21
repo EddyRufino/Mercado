@@ -6,26 +6,26 @@
         <div class="col-md-6">
             <div class="card mt-3">
                 @include('partials.card-header', [
-                    'title' => 'N. Operaciión Baño',
-                    'link' => 'operacion.banio.create'
+                    'title' => 'N. Operación Promoción',
+                    'link' => 'operacion.promocion.create'
                 ])
                 <div class="card-body">
-                    <form method="POST" action="{{ route('operacion.banio.store') }}">
+                    <form method="POST" action="{{ route('operacion.promocion.store') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha Pagos</label>
+                            <label for="fecha_inicio" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha Pagos</label>
 
                             <div class="col-md-6">
-                                <select class="form-control selectpicker" name="fecha" required data-live-search="true">
-                                    @foreach ($banios as $banio)
-                                        <option class="" value="{{ $banio->fecha }}">
-                                            {{ ($banio->fecha) }}
+                                <select class="form-control selectpicker" name="fecha_inicio" required data-live-search="true">
+                                    @foreach ($promociones as $promocion)
+                                        <option class="" value="{{ $promocion->fecha_inicio }}">
+                                            {{ ($promocion->fecha_inicio) }}
                                         </option>
                                     @endforeach
                                 </select>
 
-                                @error('fecha')
+                                @error('fecha_inicio')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="fecha_deposito" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha Deposito</label>
+                            <label for="fecha_deposito" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha Deposito</label>
 
                             <div class="col-md-6">
                                 <input type="date" id="start" name="fecha_deposito" class="form-control @error('fecha_deposito') is-invalid @enderror" value="<?php echo date("Y-m-d"); ?>" min="2018-01-01" max="2030-12-31" required >

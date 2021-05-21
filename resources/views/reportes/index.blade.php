@@ -17,9 +17,6 @@
                 <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                     <span id="headingThree">Reporte Pago Anticipados</span>
                 </div>
-                <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                    <span id="headingFour">Reporte Promociones</span>
-                </div>
                 <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
                     <span id="headingFive">Reporte Sisa Mes</span>
                 </div>
@@ -58,15 +55,6 @@
                             'title' => 'Generar Reporte Pago Anticipados',
                             'placeholder' => 'Ejemplo 2020-08-26',
                             'link' => 'reporte.sisa'
-                        ])
-                </div>
-            </div>
-            <div id="collapseFour" class="collapse " aria-labelledby="headingFour" data-parent="#accordionExample">
-                <div class="card-body">
-                    @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Promociones',
-                            'placeholder' => 'Ejemplo 2020-08-26',
-                            'link' => 'reporte.promocion'
                         ])
                 </div>
             </div>

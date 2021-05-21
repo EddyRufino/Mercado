@@ -43,7 +43,7 @@ class BanioController extends Controller
 
     public function update(BanioRequest $request, Banio $banio)
     {
-        dd($request->all());
+        // dd($request->all());
         $banio->update($request->all());
 
         return redirect()->route('banios.index');

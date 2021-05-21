@@ -16,11 +16,14 @@ class CreatePromocionsTable extends Migration
         Schema::create('promocions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_empresa');
-            $table->integer('ruc');
+            $table->string('ruc');
             $table->date('fecha_inicio');
             $table->string('monto');
             $table->string('telefono')->nullable();
             $table->string('num_recibo')->unique();
+            $table->string('num_operacion')->nullable();
+            $table->string('monto_deposito')->nullable();
+            $table->date('fecha_deposito')->nullable();
             $table->timestamps();
         });
     }

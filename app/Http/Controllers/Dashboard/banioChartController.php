@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Banio;
 use App\Charts\BanioChart;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class banioChartController extends Controller
 {

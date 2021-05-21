@@ -30,9 +30,11 @@ Route::post('puestos/{puesto}/sdfsdf', 'PuestoServicioController@save')->name('p
 Route::resource('puestos.pagoanticipados', 'PagoAnticipadoController')->only(['index', 'create', 'store']);
 Route::resource('puestos.aguaanticipados', 'AguaAnticipadoController')->only(['index', 'create', 'store']);
 
-// Chart
+// Charts
 Route::get('dashboard-sisa', 'Dashboard\dashboardChartController@index')->name('dashboard');
 Route::get('dashboard-servicios-higienicos', 'Dashboard\banioChartController@index')->name('dashboard.banio');
+Route::get('dashboard-promociones', 'Dashboard\PromocionChartController@index')->name('dashboard.promocion');
+Route::get('dashboard-general', 'Dashboard\GeneralChartController@index')->name('dashboard.general');
 
 // Promociones
 Route::resource('promociones', 'PromocionController');
@@ -56,10 +58,12 @@ Route::get('deudas-pdf/{id}', 'Export\DeudaExportController@pdf')->name('deudas.
 Route::get('promociones-excel', 'Export\PromocionExportController@excel')->name('promociones.excel');
 Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('promociones.pdf');
 
-// Operaciones
+// N. Operaciones
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
 Route::get('num-operacion-banios', 'Operacion\OperacionBanioController@create')->name('operacion.banio.create');
 Route::post('operacionbanios', 'Operacion\OperacionBanioController@store')->name('operacion.banio.store');
+Route::get('num-operacion-promociones', 'Operacion\OperacionPromocionController@create')->name('operacion.promocion.create');
+Route::post('operacionpromociones', 'Operacion\OperacionPromocionController@store')->name('operacion.promocion.store');
 
 // Baños
 Route::resource('banios', 'BanioController')->except(['delete', 'show']);
@@ -69,7 +73,6 @@ Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('re
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
-Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
 Route::get('reporte-sisa-mes', 'Reporte\ReporteDeudaController@sisaMonth')->name('reporte.sisa.mes');
 Route::get('reporte-tramites', 'Reporte\ReporteDeudaController@tramite')->name('reporte.tramite');
 
@@ -77,6 +80,10 @@ Route::get('reporte-tramites', 'Reporte\ReporteDeudaController@tramite')->name('
 Route::get('reporte-banios', 'Reporte\ReporteBanioController@index')->name('reporte.banio.index');
 Route::get('reporte-banios-mes', 'Reporte\ReporteBanioController@month')->name('reporte.banio.month');
 Route::get('reporte-banios-dia', 'Reporte\ReporteBanioController@day')->name('reporte.banio.day');
+
+// Reporte Promociones
+Route::get('reporte-promociones', 'Reporte\ReportePromocionController@index')->name('reporte.promocion.index');
+Route::get('reporte-promociones-mes', 'Reporte\ReportePromocionController@month')->name('reporte.promocion.month'); // Genera Reportes por DIA y MES
 
 Auth::routes(['register' => false]);
 

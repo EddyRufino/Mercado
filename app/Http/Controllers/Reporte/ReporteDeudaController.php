@@ -70,23 +70,6 @@ class ReporteDeudaController extends Controller
         return (new PagoAnticipadoExport)->forDate($date, $year, $day)->download('pago-anticipado-mensual.xlsx');
     }
 
-    public function promocion()
-    {
-        $date = request()->validate([
-            'search' => 'required',
-        ]);
-
-        $year = request()->validate([
-            'year' => 'required'
-        ]);
-
-        $day = request()->validate([
-            'day' => 'required'
-        ]);
-
-        return (new PromocionQueryExport)->forDate($date, $year, $day)->download('promociones-excel.xlsx');
-    }
-
     public function tramite(Request $request)
     {
         $day = $request->day;

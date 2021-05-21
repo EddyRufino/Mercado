@@ -50,6 +50,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('dashboard.general') }}" class="nav-link">
+                                <i class="nav-icon far fa-circle"></i>
+                                <p>
+                                    Dashboard General
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
@@ -65,6 +73,12 @@
                             </a>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.promocion') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard Promoción</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endif
@@ -197,6 +211,12 @@
                                 <p>Baño</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('operacion.promocion.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Promoción</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 @endif
@@ -221,6 +241,12 @@
                             <a href="{{ route('reporte.banio.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Reporte Baños</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('reporte.promocion.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Reporte Promociones</p>
                             </a>
                         </li>
                     </ul>
