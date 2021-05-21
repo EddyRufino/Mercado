@@ -46,9 +46,9 @@
             <table class="table mt-2">
                 <thead>
                     <tr>
-                        <th scope="col">Empresa</th>
+                        <th scope="col">Nombre Empresa</th>
+                        <th scope="col">RUC</th>
                         <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha Fin</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Teléfono</th>
                     </tr>
@@ -56,17 +56,17 @@
                 <tbody>
                     @foreach ($promociones as $pago)
                         <tr>
-                            <td>{{ $pago->nombre_empresa }}</td>
-                            <td>{{ $pago->fecha_inicio }}</td>
-                            <td>{{ $pago->fecha_fin }}</td>
-                            <td>{{ $pago->monto }}</td>
-                            <td>{{ $pago->telefono }}</td>
+                            <td>{{ $promocion->nombre_empresa }}</td>
+                            <td>{{ $promocion->ruc }}</td>
+                            <td>{{ $promocion->fecha_inicio }}</td>
+                            <td>{{ $promocion->monto }}</td>
+                            <td>{{ $promocion->telefono }}</td>
                         </tr>
                     @endforeach
-                        <tr>
+                        {{-- <tr>
                             <th>Monto Total Promociones:</th>
                             <td>{{ $montoPromo }}</td>
-                        </tr>
+                        </tr> --}}
                 </tbody>
             </table>
     </div>

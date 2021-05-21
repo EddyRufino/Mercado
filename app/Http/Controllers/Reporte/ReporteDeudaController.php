@@ -7,6 +7,7 @@ use App\Exports\PagoAnticipadoExport;
 use App\Exports\PagosRepostQueryExport;
 use App\Exports\PromocionQueryExport;
 use App\Exports\SisaRepostQueryExport;
+use App\Exports\TramiteExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -86,6 +87,15 @@ class ReporteDeudaController extends Controller
         return (new PromocionQueryExport)->forDate($date, $year, $day)->download('promociones-excel.xlsx');
     }
 
+    public function tramite(Request $request)
+    {
+        $day = $request->day;
+        $month = $request->search;
+        $year = $request->year;
+
+        return (new TramiteExport)->forDate($day, $month, $year)->download('tramites-excel.xlsx');
+    {
+      
     public function sisaMonth(Request $request)
     {
         $year = $request->year;
@@ -93,5 +103,4 @@ class ReporteDeudaController extends Controller
 
         return (new SisaRepostQueryExport)->forDate($year, $month)->download('sisa-mes-excel.xlsx');
     }
-
 }

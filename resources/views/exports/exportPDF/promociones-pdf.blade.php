@@ -66,8 +66,8 @@
                 <thead>
                     <tr bgcolor="#5D6D7E" class="font-color-white">
                         <th scope="col">Nombre Empresa</th>
+                        <th scope="col">RUC</th>
                         <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha Fin</th>
                         <th scope="col">Monto</th>
                         <th scope="col">Teléfono</th>
                     </tr>
@@ -76,8 +76,8 @@
                     @foreach ($promociones as $promocion)
                         <tr>
                             <td>{{ $promocion->nombre_empresa }}</td>
+                            <td>{{ $promocion->ruc }}</td>
                             <td>{{ $promocion->fecha_inicio }}</td>
-                            <td>{{ $promocion->fecha_fin }}</td>
                             <td>S/. {{ $promocion->monto }}</td>
                             <td>{{ $promocion->telefono }}</td>
                         </tr>

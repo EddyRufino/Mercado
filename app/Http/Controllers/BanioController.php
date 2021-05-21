@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Banio;
 use Illuminate\Http\Request;
+use App\Http\Requests\BanioRequest;
 
 class BanioController extends Controller
 {
@@ -11,77 +12,43 @@ class BanioController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $tickets = Banio::latest()->paginate(7);
+        return view('banios.index', compact('tickets'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('banios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(BanioRequest $request)
     {
-        //
+        Banio::create($request->all());
+        return redirect()->route('banios.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Banio  $banio
-     * @return \Illuminate\Http\Response
-     */
     public function show(Banio $banio)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Banio  $banio
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Banio $banio)
     {
-        //
+        $ticket = $banio;
+        return view('banios.edit', compact('ticket'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Banio  $banio
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Banio $banio)
+    public function update(BanioRequest $request, Banio $banio)
     {
-        //
+        dd($request->all());
+        $banio->update($request->all());
+
+        return redirect()->route('banios.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Banio  $banio
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Banio $banio)
     {
         //

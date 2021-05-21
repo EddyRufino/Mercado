@@ -24,12 +24,12 @@ class PromocionRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_representante' => ['nullable'],
             'nombre_empresa' => ['required'],
+            'ruc' => ['required'],
             'fecha_inicio' => ['required'],
-            'fecha_fin' => ['required'],
             'monto' => ['required'],
-            'telefono' => ['nullable']
+            'telefono' => ['nullable'],
+            'num_recibo' => ['nullable', 'unique:promocions']
         ];
     }
 }

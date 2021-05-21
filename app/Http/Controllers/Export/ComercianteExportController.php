@@ -13,12 +13,6 @@ class ComercianteExportController extends Controller
 {
     public function pdf()
     {
-        // $conductores = User::join('puestos', 'users.id', '=', 'puestos.user_id')
-        //             ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-        //             ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-        //             ->select('users.name', 'users.apellido', 'users.dni', 'puestos.num_puesto','puestos.riesgo_exposicion', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad')
-        //             ->get();
-
         $conductores = Puesto::with('user')->get();
 
         $pdf = PDF::loadView('exports.exportPDF.conductores-pdf', compact('conductores'));

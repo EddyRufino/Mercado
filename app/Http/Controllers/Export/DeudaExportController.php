@@ -13,15 +13,6 @@ class DeudaExportController extends Controller
 {
     public function pdf($id)
     {
-
-        // $deudas = User::join('puestos', 'users.id', '=', 'puestos.user_id')
-        //                 ->join('ubicacions', 'ubicacions.id', '=', 'puestos.ubicacion_id')
-        //                 ->join('actividads', 'actividads.id', '=', 'puestos.actividad_id')
-        //                 ->join('deudas', 'puestos.id', '=', 'deudas.puesto_id')
-        //                 ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'puestos.sisa_diaria', 'deudas.fecha', 'deudas.monto_agua', 'ubicacions.nombre as ubicacion')
-        //                 ->where('deudas.puesto_id', $id)
-        //                 ->get();
-
         $deudas = Deuda::with('puesto')->where('puesto_id', $id)->get();
 
         $deudaSisa = $deudas->sum('monto_sisa');
@@ -39,6 +30,3 @@ class DeudaExportController extends Controller
         return Excel::download(new DeudasExport($id), 'deudas-excel.xlsx');
     }
 }
-
-
-                        // ->select('users.name', 'users.apellido', 'puestos.num_puesto', 'puestos.medidas', 'puestos.sisa', 'puestos.sisa_diaria', 'deudas.fecha', 'deudas.monto_remodelacion', 'deudas.monto_constancia', 'deudas.monto_agua', 'ubicacions.nombre as ubicacion', 'actividads.nombre as actividad')

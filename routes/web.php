@@ -32,10 +32,10 @@ Route::resource('puestos.aguaanticipados', 'AguaAnticipadoController')->only(['i
 
 // Chart
 Route::get('dashboard', 'Dashboard\dashboardChartController@index')->name('dashboard');
+Route::get('dashboard-banios', 'Dashboard\banioChartController@index')->name('dashboard.banio');
 
 // Promociones
 Route::resource('promociones', 'PromocionController');
-
 
 // Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
@@ -44,11 +44,9 @@ Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
 Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
 
-
 // Export
 Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');
 Route::get('puestos-pdf', 'Export\PuestoExportController@pdf')->name('puestos.pdf');
-// Route::get('puestos-excel-query', 'Export\PuestoExportController@queryExcel')->name('puestos.query');
 Route::get('conductores-excel', 'Export\ComercianteExportController@excel')->name('conductores.excel');
 Route::get('conductores-pdf', 'Export\ComercianteExportController@pdf')->name('conductores.pdf');
 Route::get('users-excel', 'Export\UserExportController@excel')->name('users.excel');
@@ -60,16 +58,25 @@ Route::get('promociones-pdf', 'Export\PromocionExportController@pdf')->name('pro
 
 // Operaciones
 Route::get('operaciones', 'Operacion\OperacionController@create')->name('operaciones.create');
-// Route::post('operaciones/{id}', 'Operacion\OperacionController@store')->name('operaciones.store');
+Route::get('num-operacion-banios', 'Operacion\OperacionBanioController@create')->name('operacion.banio.create');
+Route::post('operacionbanios', 'Operacion\OperacionBanioController@store')->name('operacion.banio.store');
 
+// Baños
+Route::resource('banios', 'BanioController')->except(['delete', 'show']);
 
-// Reportes
+// Reporte Sisa
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');
 Route::get('reporte-deudas', 'Reporte\ReporteDeudaController@deuda')->name('reporte.deuda');
 Route::get('reporte-pagos', 'Reporte\ReporteDeudaController@pago')->name('reporte.pago');
 Route::get('reporte-sisas', 'Reporte\ReporteDeudaController@sisa')->name('reporte.sisa');
 Route::get('reporte-promociones', 'Reporte\ReporteDeudaController@promocion')->name('reporte.promocion');
 Route::get('reporte-sisa-mes', 'Reporte\ReporteDeudaController@sisaMonth')->name('reporte.sisa.mes');
+Route::get('reporte-tramites', 'Reporte\ReporteDeudaController@tramite')->name('reporte.tramite');
+
+// Reporte Baño
+Route::get('reporte-banios', 'Reporte\ReporteBanioController@index')->name('reporte.banio.index');
+Route::get('reporte-banios-mes', 'Reporte\ReporteBanioController@month')->name('reporte.banio.month');
+Route::get('reporte-banios-dia', 'Reporte\ReporteBanioController@day')->name('reporte.banio.day');
 
 Auth::routes(['register' => false]);
 
