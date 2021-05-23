@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="container">
-    @include('partials.search', [
-        'title' => 'Buscar Conductor',
-        'placeholder' => 'Buscar por apellido',
-        'link' => 'comerciante.search'
-    ])
+    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
+        @include('partials.search', [
+            'title' => 'Buscar Conductor',
+            'placeholder' => 'Buscar por apellido',
+            'link' => 'comerciante.search'
+        ])
+    @endif
 </div>
 @endsection

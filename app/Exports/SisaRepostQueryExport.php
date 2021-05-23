@@ -2,20 +2,17 @@
 
 namespace App\Exports;
 
-use App\Deuda;
-use App\Pago;
-use App\PagoAnticipado;
-use App\Puesto;
-use App\User;
-use Carbon\Carbon;
 use DB;
-use DateInterval;
-use DatePeriod;
-use DateTime;
+use App\User;
+use App\Pago;
+use App\Deuda;
+use App\Puesto;
+use Carbon\Carbon;
+use App\PagoAnticipado;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromView;
 
 class SisaRepostQueryExport implements FromView
 {
@@ -93,6 +90,7 @@ class SisaRepostQueryExport implements FromView
                     ->unique('fecha')
             );
         }
+        // dd($dataPago);
 
         $sisaDia = $pagoQuery->whereYear('fecha', $this->year)
                         ->whereMonth('fecha', $this->month)

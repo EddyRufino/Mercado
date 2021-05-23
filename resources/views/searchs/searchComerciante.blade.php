@@ -26,9 +26,12 @@
 
                             <div class="mt-3">
                                 @auth
-                                    @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+                                    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
                                         <a href="{{ route('puestos.pagos.create', $conductor->id) }}" class="btn btn-primary text-white btn-sm">
                                             Pagar
+                                        </a>
+                                        <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
+                                            Ver Deudas
                                         </a>
                                     @endif
                                 @endauth
@@ -37,17 +40,15 @@
                                     Deuda
                                 </a> --}}
 
-                                @if ($conductor->user_id === auth()->user()->id)
+{{--                                 @if ($conductor->user_id === auth()->user()->id)
                                     <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
                                         Ver Deudas
                                     </a>
-                                @endif
+                                @endif --}}
 
-                                @if (auth()->user()->hasRoles(['admin', 'cobrador']))
-                                    <a href="{{ route('puestos.deudas.index', $conductor->id) }}" class="btn btn-secondary text-white btn-sm">
-                                        Ver Deudas
-                                    </a>
-                                @endif
+                                {{-- @if (auth()->user()->hasRoles(['admin', 'cobrador'])) --}}
+
+                                {{-- @endif --}}
                             </div>
                         </div>
                     </div>

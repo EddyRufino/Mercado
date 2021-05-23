@@ -42,6 +42,19 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger" style="height: 6rem;">
+                    <div class="inner">
+                        <h3>S/. {{ $payMonthDeuda }}</h3>
+
+                        <p>Total Deuda <strong>-</strong> {{ today()->format('m/y') }}</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">

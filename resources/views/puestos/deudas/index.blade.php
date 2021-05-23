@@ -2,31 +2,51 @@
 
 @section('content')
     <div class="container">
-        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'comerciante']))
+        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
             <div class="">
                 <div class="accordion" id="accordionExample">
                     <div class="card-header" >
-                        <div class="btn btn-info text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          <span id="headingOne">Deuda Sisa</span>
+                        <div class="btn btn-info text-left d-inline"
+                            data-toggle="collapse"
+                            data-target="#collapseOne"
+                            aria-expanded="true"
+                            aria-controls="collapseOne"
+                        >
+                            <span id="headingOne" class="font-weight-bold">Deuda Sisa</span>
                         </div>
-                        <div class="btn btn-info d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                          <span id="headingTwo">Deuda Agua</span>
+
+                        <div class="btn btn-info d-inline"
+                            data-toggle="collapse"
+                            data-target="#collapseTwo"
+                            aria-expanded="true"
+                            aria-controls="collapseTwo"
+                        >
+                            <span id="headingTwo" class="font-weight-bold">Deuda Agua</span>
                         </div>
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="col-md-6 m-auto">
+                            <div class="col-md-8 m-auto">
                                 <li class="list-group mt-3">
-                                  <li class="list-group-item list-group-item-action bg-secondary d-flex justify-content-between">
-                                    <span>Listado Deuda Sisa</span>
+                                  <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
+                                    <span class="font-weight-bold">Listado Deuda Sisa</span>
                                 @if ($deudas->count() >= 1 )
                                     <div>
-                                        <a href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}" class="text-white mr-1" data-toggle="tooltip" data-placement="top" title="Exportar PDF">
+                                        <a class="text-white mr-1 font-weight-bold"
+                                            href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Exportar PDF"
+                                        >
                                             PDF
                                         </a>
-                                        <a href="{{ route('deudas.excel', $deudas->pluck('puesto_id')->first()) }}" class="text-white"
-                                        data-toggle="tooltip" data-placement="top" title="Exportar EXCEL">
+                                        <a class="text-white font-weight-bold"
+                                            href="{{ route('deudas.excel', $deudas->pluck('puesto_id')->first()) }}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Exportar EXCEL"
+                                        >
                                             EXCEL
                                         </a>
                                     </div>
@@ -87,17 +107,26 @@
                     </div>
                     <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                            <div class="col-md-6 m-auto">
+                            <div class="col-md-8 m-auto">
                                 <li class="list-group mt-3">
-                                  <li class="list-group-item list-group-item-action bg-secondary d-flex justify-content-between">
-                                    <span>Listado Deuda Agua</span>
+                                  <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
+                                    <span class="font-weight-bold">Listado Deuda Agua</span>
                                 @if ($deudas->count() >= 1 )
                                     <div>
-                                        <a href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}" class="text-white mr-1" data-toggle="tooltip" data-placement="top" title="Exportar PDF">
+                                        <a class="text-white mr-1 font-weight-bold"
+                                            href="{{ route('deudas.pdf', $deudas->pluck('puesto_id')->first()) }}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Exportar PDF"
+                                        >
                                             PDF
                                         </a>
-                                        <a href="{{ route('deudas.excel', $deudas->pluck('puesto_id')->first()) }}" class="text-white"
-                                        data-toggle="tooltip" data-placement="top" title="Exportar EXCEL">
+                                        <a class="text-white font-weight-bold"
+                                            href="{{ route('deudas.excel', $deudas->pluck('puesto_id')->first()) }}"
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title="Exportar EXCEL"
+                                        >
                                             EXCEL
                                         </a>
                                     </div>

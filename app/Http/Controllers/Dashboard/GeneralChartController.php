@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Pago;
+use App\Deuda;
 use App\Banio;
 use App\Promocion;
 use App\PagoAnticipado;
@@ -18,6 +19,7 @@ class GeneralChartController extends Controller
         $sisaAnticipados = PagoAnticipado::query();
         $banios = Banio::query();
         $promos = Promocion::query();
+        $deudas = Deuda::query();
 
         $months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         $dateStart = "1";
@@ -26,21 +28,28 @@ class GeneralChartController extends Controller
         $dataPago = collect([]);
         $dataBanio = collect([]);
         $dataPromo = collect([]);
+        $dataDeuda = collect([]);
 
         for ($days_backwards = $dateStart; $days_backwards <= $dateLast; $days_backwards++)
         {
             $dataPago->push(Pago::whereMonth('fecha', $days_backwards)->count());
             $dataBanio->push(Banio::whereMonth('fecha', $days_backwards)->count());
             $dataPromo->push(Promocion::whereMonth('fecha_inicio', $days_backwards)->count());
+            $dataDeuda->push(Deuda::whereMonth('fecha', $days_backwards)->count());
         }
 
         $chart = new generalChart;
 
         $today = today()->format('M Y');
         $chart->labels($months);
-        $chart->dataset("Sisa - {$today}", 'line', $dataPago)->backgroundColor('rgba(63, 191, 127, .6)');
-        $chart->dataset("Baño - {$today}", 'line', $dataBanio)->backgroundColor('rgba(250, 250, 0, .6)');
-        $chart->dataset("Promoción - {$today}", 'line', $dataPromo)->backgroundColor('rgba(128, 128, 128, .6)');
+        $chart->dataset("Sisa - {$today}", 'line', $dataPago)
+                                ->backgroundColor('rgba(63, 191, 127, .6)');
+        $chart->dataset("Baño - {$today}", 'line', $dataBanio)
+                                ->backgroundColor('rgba(250, 250, 0, .6)');
+        $chart->dataset("Promoción - {$today}", 'line', $dataPromo)
+                                ->backgroundColor('rgba(128, 128, 128, .6)');
+        $chart->dataset("Deuda - {$today}", 'line', $dataDeuda)
+                                ->backgroundColor('rgba(255, 66, 69, .6)');
 
         // Count Sisa - Sisa Anticipada Pays
         $pays = $sisas->select('monto_remodelacion', 'monto_constancia', 'monto_agua', 'monto_sisa')
@@ -85,6 +94,17 @@ class GeneralChartController extends Controller
 
         $payMonthPromo = $paysPromos->pluck('monto')->sum();
 
-        return view('dashboards.dashboard-general', compact('chart', 'payMonthSisa', 'payMonthBanio', 'payMonthPromo'));
+        // Count Deudas
+        $paysDeudas = $deudas->select('monto_sisa', 'monto_agua')
+                    ->whereYear('fecha', today()->format('Y'))
+                    ->whereMonth('fecha', today()->format('m'))
+                    ->get();
+
+        $payDeudaSisa = $paysDeudas->pluck('monto_sisa')->sum();
+        $payDeudaAgua = $paysDeudas->pluck('monto_agua')->sum();
+
+        $payMonthDeuda = $payDeudaSisa + $payDeudaAgua;
+
+        return view('dashboards.dashboard-general', compact('chart', 'payMonthSisa', 'payMonthBanio', 'payMonthPromo', 'payMonthDeuda'));
     }
 }

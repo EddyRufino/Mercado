@@ -17,6 +17,7 @@ Route::resource('ubicaciones', 'UbicacionController')->except('show');
 Route::resource('actividades', 'ActividadController')->except('show');
 Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
+// Route::get('puestos-deudas-agua', 'PuestoDeudaAguaController@index')->name('puesto.deuda.agua');
 Route::resource('pagos', 'PagoController')->only('store');
 
 Route::resource('puestos.pagos', 'PuestoPagoController')->only(['index', 'create', 'store']);
@@ -84,6 +85,10 @@ Route::get('reporte-banios-dia', 'Reporte\ReporteBanioController@day')->name('re
 // Reporte Promociones
 Route::get('reporte-promociones', 'Reporte\ReportePromocionController@index')->name('reporte.promocion.index');
 Route::get('reporte-promociones-mes', 'Reporte\ReportePromocionController@month')->name('reporte.promocion.month'); // Genera Reportes por DIA y MES
+
+// Mis Deudas - Comerciante
+Route::get('mis-deudas-sisa', 'Debts\MyDebtsController@index')->name('my-debts');
+Route::get('mis-deudas-agua', 'Debts\MyDebtsAguaController@index')->name('my-debts-agua');
 
 Auth::routes(['register' => false]);
 

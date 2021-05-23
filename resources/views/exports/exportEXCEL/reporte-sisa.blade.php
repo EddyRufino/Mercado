@@ -9,7 +9,7 @@
 </head>
 <body>
     <div>
-        <h2>Lista de Deudas</h2>
+        <h2>Pagos Del Mes</h2>
         <table class="table mt-2">
             <thead>
                 <tr>
@@ -30,7 +30,13 @@
                     <tr>
                         <td>{{ $pago->pluck('fecha')->implode(' ') }}</td>
                         <td></td>
-                        <td></td>
+                        <td>
+                        {{
+                            intval($pago->pluck('total_sisa')->implode(' ')) +
+                            intval($pago->pluck('total_sisa_anticipada')->implode(' ')) +
+                            intval($pago->pluck('total_deuda_sisa')->implode(' '))
+                        }}
+                        </td>
                         <td>{{ $pago->pluck('total_sisa')->implode(' ') }}</td>
                         <td>{{ $pago->pluck('total_sisa_anticipada')->implode(' ') }}</td>
                         <td>{{ $pago->pluck('total_deuda_sisa')->implode(' ') }}</td>
@@ -40,10 +46,11 @@
                         <td>{{ $pago->pluck('total_remodelacion')->implode(' ') }}</td>
                     </tr>
                 @endforeach
+                <tr><td></td></tr>
                     <tr>
                         <td>Monto Total</td>
                         <td></td>
-                        <td></td>
+                        <td>{{ $sisaDia + $sisaDiaAnticipada + $deudaDia }}</td>
                         <td>{{ $sisaDia }}</td>
                         <td>{{ $sisaDiaAnticipada }}</td>
                         <td>{{ $deudaDia }}</td>

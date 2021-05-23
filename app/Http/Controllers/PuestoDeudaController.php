@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Deuda;
-use App\Http\Requests\PuestoDeudaRequest;
-use App\Pago;
-use App\Puesto;
 use App\User;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
+use App\Pago;
+use App\Deuda;
+use App\Puesto;
 use Carbon\Carbon;
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\Request;
+use App\Http\Requests\PuestoDeudaRequest;
+use Illuminate\Database\Eloquent\Builder;
 
 class PuestoDeudaController extends Controller
 {
@@ -26,11 +25,11 @@ class PuestoDeudaController extends Controller
 
         $deudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
             $query->where('user_id', $puesto->user_id)->whereNotNull('monto_sisa');
-        })->paginate(4);
+        })->orderBy('fecha', 'asc')->paginate(4);
 
         $aguaDeudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
             $query->where('user_id', $puesto->user_id)->whereNotNull('monto_agua');
-        })->paginate(4);
+        })->orderBy('fecha', 'asc')->paginate(4);
 
         // dd($deudas);
 
