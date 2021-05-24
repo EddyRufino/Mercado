@@ -34,14 +34,10 @@ class BanioController extends Controller
         return redirect()->route('banios.index');
     }
 
-    public function show(Banio $banio)
-    {
-        //
-    }
-
     public function edit(Banio $banio)
     {
         $ticket = $banio;
+        // dd($ticket);
         return view('banios.edit', compact('ticket'));
     }
 
@@ -55,6 +51,8 @@ class BanioController extends Controller
 
     public function destroy(Banio $banio)
     {
-        //
+        $banio->delete();
+
+        return redirect()->route('banios.index');
     }
 }

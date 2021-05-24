@@ -19,6 +19,12 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
+            'name' => 'secretaria',
+            'display_name' => 'Secretaria',
+            'description' => 'Soy una secretaria'
+        ]);
+
+        DB::table('roles')->insert([
             'name' => 'comerciante',
             'display_name' => 'Comerciante',
             'description' => 'Soy un comerciante'
@@ -26,7 +32,13 @@ class RoleSeeder extends Seeder
 
         DB::table('roles')->insert([
             'name' => 'cobrador',
-            'display_name' => 'Cobrador',
+            'display_name' => 'Cobrador Sisa',
+            'description' => 'Soy un cobrador'
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'banio',
+            'display_name' => 'Cobrador Baño',
             'description' => 'Soy un cobrador'
         ]);
     }
