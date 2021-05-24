@@ -27,7 +27,7 @@
                                     <td>{{ $ticket->num_correlativo }}</td>
                                     <td>{{ $ticket->fecha }}</td>
 
-                                    @if ($ticket->tipo_servicio === 1)
+                                    @if ($ticket->tipo_servicio == 1)
                                         <td>Taza</td>
                                         <td>S/. {{ $ticket->monto_taza }}</td>
                                     @else

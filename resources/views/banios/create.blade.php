@@ -99,7 +99,7 @@
     </div>
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
 
 
     <script type="text/javascript">
@@ -120,4 +120,4 @@
             document.getElementById("monto_taza").value = '';
         }
     </script>
-@endpush
+@endpush --}}
