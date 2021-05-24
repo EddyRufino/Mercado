@@ -1,7 +1,7 @@
 <div class="row justify-content-center mt-3">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header bg-secondary">{{ $title }}</div>
+            <div class="card-header bg-info font-weight-bold">{{ $title }}</div>
 
             <div class="card-body">
                 <div class="row justify-content-center">

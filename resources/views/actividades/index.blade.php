@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                     <div class="d-flex justify-content-around align-items-center mt-3">
                         <h4 class="text-secondary text-center font-weight-bold mt-1">Actividades</h4>
-                        <a class="btn btn-primary btn-sm" href="{{ route('actividades.create') }}">Crear Actividad</a>
+                        <a class="btn btn-info font-weight-bold btn-sm" href="{{ route('actividades.create') }}">Crear Actividad</a>
                     </div>
                     <table class="table mt-2">
                         <thead>

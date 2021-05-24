@@ -45,8 +45,16 @@ class banioChartController extends Controller
         $ducha = $tickets->pluck('monto_ducha')->sum();
 
         // Count Tickets
-        $tazaCount = $banios->select('monto_taza')->where('tipo_servicio', 1)->count();
-        $duchaCount = $baniosDuchaCounts->select('monto_ducha')->where('tipo_servicio', 2)->count();
+        $tazaCount = $banios->select('monto_taza')->where('tipo_servicio', 1)
+                    ->whereYear('fecha', today()->format('Y'))
+                    ->whereMonth('fecha', today()->format('m'))
+                    ->whereDay('fecha', today()->format('d'))
+                    ->count();
+        $duchaCount = $baniosDuchaCounts->select('monto_ducha')->where('tipo_servicio', 2)
+                    ->whereYear('fecha', today()->format('Y'))
+                    ->whereMonth('fecha', today()->format('m'))
+                    ->whereDay('fecha', today()->format('d'))
+                    ->count();
 
         // dd($duchaCount);
 

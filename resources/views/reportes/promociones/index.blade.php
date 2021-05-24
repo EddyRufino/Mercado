@@ -5,7 +5,12 @@
     @if (auth()->user()->hasRoles(['admin', 'cobrador']))
         <div class="accordion" id="accordionExample">
             <div class="card-header" >
-                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="btn btn-info font-weight-bold text-left d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                >
                     <span id="headingOne">Reporte Baños Excel</span>
                 </div>
 {{--                 <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -16,7 +21,7 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Promociones',
+                            'title' => 'Generar Reporte Promociones - Día o Mes',
                             'placeholder' => 'Ejemplo 2020-08-26',
                             'link' => 'reporte.promocion.month'
                         ])

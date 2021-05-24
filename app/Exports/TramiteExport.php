@@ -25,12 +25,14 @@ class TramiteExport implements FromView
         $wfechaw = "{$this->year}-{$this->month}-{$this->day}";
 
         $tramites = Pago::with('puesto')->whereDate('fecha', $wfechaw)
+                                    ->where('tipo_id', 3)
                                     ->orderBy('fecha', 'ASC')
                                     ->get();
 
-        if (count($tramites) <= 0) {
+        if (!empty($tramites)) {
             $tramites = Pago::with('puesto')->whereYear('fecha', $this->year)
                                         ->whereMonth('fecha', $this->month)
+                                        ->where('tipo_id', 3)
                                         ->orderBy('fecha', 'ASC')
                                         ->get();
         }

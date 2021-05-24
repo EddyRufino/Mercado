@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card mt-3">
-                    <div class="card-header bg-secondary d-flex justify-content-between align-items-center">
+                    <div class="card-header bg-info font-weight-bold d-flex justify-content-between align-items-center">
                         <span class="w-100">{{ $puesto->user->name }} {{ $puesto->user->apellido }} <strong>-</strong> Puesto {{ $puesto->lists->pluck('num_puesto')->implode(', ') }}</span>
                         <a href="{{ route('conductores.index') }}" class="flex-shrink-1" data-toggle="tooltip" data-placement="top" title="Atrás">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Actividad:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Actividad:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">{{ $puesto->actividad->nombre }}</span>
@@ -26,7 +26,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Ubicación:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Ubicación:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">{{ $puesto->ubicacion->nombre }}</span>
@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Cant. Puesto:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Cant. Puesto:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">{{ $puesto->cantidad_puesto }}</span>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Medidas:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Medidas:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">{{ $puesto->medidas }}</span>
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Sisa Puesto:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Sisa Puesto:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">S/. {{ $puesto->sisa }}</span>
@@ -59,7 +59,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">Sisa Diaria:</label>
+                                    <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">Sisa Diaria:</label>
 
                                     <div class="col-md-6">
                                         <span class="form-control">S/. {{ $puesto->sisa_diaria }}</span>
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal">R. Exposición:</label>
+                            <label for="num_puesto" class="col-form-label col-md-4 text-md-right font-weight-normal text-dark">R. Exposición:</label>
 
                             <div class="col-md-4">
                                 <span class="form-control">{{ $puesto->riesgo_exposicion }}</span>

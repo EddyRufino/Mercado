@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="nombre" class="col-md-4 col-form-label text-md-right font-weight-normal">Nombre</label>
+    <label for="nombre" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Nombre</label>
 
     <div class="col-md-6">
         <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre', $actividade->nombre) }}" required autocomplete="nombre" autofocus>

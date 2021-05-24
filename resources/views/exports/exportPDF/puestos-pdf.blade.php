@@ -9,27 +9,24 @@
     <style>
         .circle {
             display: block;
-            width: 160px;
-            height: 50px;
+            width: 200px;
+            height: 70px;
+            padding-bottom: .7rem;
         }
 
         .text-center {
-            display: block;
+            display: inline-block;
             text-align: center;
-            font-size: 1.2em;
-        }
-
-        .header {
+            font-size: 1.1em;
         }
 
         .header-title {
             display: inline-block;
-            margin-left: 40%;
-            margin-top: -8px;
+            margin-left: 4.5rem;
         }
 
         .font-color {
-            color: #34495E;
+            color: #1F2937;
         }
 
         .font-color-white {
@@ -49,7 +46,11 @@
         }
 
         tr:nth-child(even) {
-          background-color: #F4F6F7;
+          background-color: #F3F4F6;
+        }
+
+        .center {
+            text-align: center;
         }
     </style>
 
@@ -58,23 +59,26 @@
     <div>
         <div class="header">
             <img src="{{ asset('img/logo.png') }}" alt="Minucipalidad De Castilla" class="circle">
-            <h3 class="header-title font-color"><strong >Gerencia De Desarrollo Local</strong></h3>
+            <span class="text-center header-title font-color">
+                <strong >MUNICIPALIDAD DISTRITAL DE CASTILLA <br> GERENCIA DE DESARROLLO LOCAL <br> SUBGERENCIA DE COMERCIALIZACION <br> ADMINISTRACION DEL MERCADO DE CASTILLA
+                </strong>
+            </span>
         </div>
 
-        <h4 class="text-center font-color">Lista De Puestos</h4>
+        <h4 class="center font-color">LISTADO DE PUESTOS DEL MERCADO DE CASTILLA - PIURA</h4>
 
         <table class="table">
             <thead>
                 <tr bgcolor="#5D6D7E" class="font-color-white">
-                    <th scope="col">Conductor</th>
-                    <th scope="col">N. Puesto</th>
+                    <th scope="col">CONDUCTOR</th>
+                    <th scope="col">N. PUESTO</th>
                     {{-- <th scope="col">C. Puesto</th> --}}
                     {{-- <th scope="col">Medidas</th> --}}
-                    <th scope="col">Sisa Puesto</th>
-                    <th scope="col">Sisa Diaria</th>
+                    <th scope="col">SISA PUESTO</th>
+                    <th scope="col">SISA DIARIA</th>
                     {{-- <th scope="col">R. Exposición</th> --}}
-                    <th scope="col">Ubicación</th>
-                    <th scope="col">Actividad</th>
+                    <th scope="col">UBICACIÓN</th>
+                    <th scope="col">ACTIVIDAD</th>
                 </tr>
             </thead>
             <tbody>

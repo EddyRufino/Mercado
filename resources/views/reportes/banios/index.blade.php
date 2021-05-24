@@ -2,14 +2,24 @@
 
 @section('content')
 <div class="container">
-    @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
         <div class="accordion" id="accordionExample">
             <div class="card-header" >
-                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <span id="headingOne">Reporte Baños Excel</span>
+                <div class="btn btn-info font-weight-bold text-left d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                >
+                    <span id="headingOne">Reporte Baños Excel - Mes</span>
                 </div>
-                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <span id="headingTwo">Reporte Baños PDF</span>
+                <div class="btn btn-info font-weight-bold text-left d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="true"
+                    aria-controls="collapseTwo"
+                >
+                    <span id="headingTwo">Reporte Baños PDF - Día</span>
                 </div>
             </div>
 

@@ -2,22 +2,47 @@
 
 @section('content')
 <div class="container">
-    @if (auth()->user()->hasRoles(['admin', 'cobrador']))
+    @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
         <div class="accordion" id="accordionExample">
-            <div class="card-header" >
-                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseTramite" aria-expanded="true" aria-controls="collapseTramite">
+            <div class="card-header">
+                <div class="btn btn-info font-weight-bold text-left d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseTramite"
+                    aria-expanded="true"
+                    aria-controls="collapseTramite"
+                >
                     <span id="headingTramite">Reporte Trámites</span>
                 </div>
-                <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="btn btn-info font-weight-bold text-left d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                >
                     <span id="headingOne">Reporte Deudas</span>
                 </div>
-                <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <div class="btn btn-info font-weight-bold d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="true"
+                    aria-controls="collapseTwo"
+                >
                     <span id="headingTwo">Reporte Pagos</span>
                 </div>
-                <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <div class="btn btn-info font-weight-bold d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseThree"
+                    aria-expanded="true"
+                    aria-controls="collapseThree"
+                >
                     <span id="headingThree">Reporte Pago Anticipados</span>
                 </div>
-                <div class="btn btn-primary d-inline" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                <div class="btn btn-info font-weight-bold d-inline"
+                    data-toggle="collapse"
+                    data-target="#collapseFive"
+                    aria-expanded="true"
+                    aria-controls="collapseFive"
+                >
                     <span id="headingFive">Reporte Sisa Mes</span>
                 </div>
             </div>
@@ -25,7 +50,7 @@
             <div id="collapseTramite" class="collapse " aria-labelledby="headingTramite" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Pagos Trámite',
+                            'title' => 'Trámites - Generar Reporte',
                             'placeholder' => 'Agosto',
                             'link' => 'reporte.tramite'
                         ])
@@ -34,7 +59,7 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Deudas',
+                            'title' => 'Deudas - Generar Reporte',
                             'placeholder' => 'Ejemplo 2020-08-26',
                             'link' => 'reporte.deuda'
                         ])
@@ -43,7 +68,7 @@
             <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Pagos',
+                            'title' => 'Pagos - Generar Reporte',
                             'placeholder' => 'Agosto',
                             'link' => 'reporte.pago'
                         ])
@@ -52,7 +77,7 @@
             <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Pago Anticipados',
+                            'title' => 'Pagos Anticipados - Generar Reporte',
                             'placeholder' => 'Ejemplo 2020-08-26',
                             'link' => 'reporte.sisa'
                         ])
@@ -61,7 +86,7 @@
             <div id="collapseFive" class="collapse " aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
-                            'title' => 'Generar Reporte Sisa Mes',
+                            'title' => 'Sisa Mes - Generar Reporte',
                             'placeholder' => 'Ejemplo 2020-08-26',
                             'link' => 'reporte.sisa.mes'
                         ])

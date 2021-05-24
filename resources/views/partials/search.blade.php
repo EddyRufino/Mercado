@@ -5,7 +5,7 @@
 
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <form action="{{ route($link) }}" class="form-inline">
                             @csrf
                           <div class="input-group input-group-md">

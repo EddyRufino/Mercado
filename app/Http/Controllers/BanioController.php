@@ -15,7 +15,11 @@ class BanioController extends Controller
 
     public function index()
     {
-        $tickets = Banio::latest()->paginate(7);
+        $tickets = Banio::whereYear('fecha', today()->format('Y'))
+                    ->whereMonth('fecha', today()->format('m'))
+                    ->whereDay('fecha', today()->format('d'))
+                    ->latest()
+                    ->paginate(7);
         return view('banios.index', compact('tickets'));
     }
 

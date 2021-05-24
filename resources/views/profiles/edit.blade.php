@@ -135,7 +135,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     Guardar Cambios
                                 </button>
-                                <a href="{{ route('home') }}" class="btn btn-secondary text-white">
+                                <a href="{{ route('home') }}" class="btn btn-light text-dark">
                                     Cancelar
                                 </a>
                             </div>

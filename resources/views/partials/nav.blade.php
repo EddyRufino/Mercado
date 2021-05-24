@@ -56,7 +56,7 @@
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fa fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Panel De Control
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -65,7 +65,7 @@
                             <a href="{{ route('dashboard.general') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
-                                    Dashboard General
+                                    Panel General
                                 </p>
                             </a>
                         </li>
@@ -73,7 +73,7 @@
                             <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon far fa-circle"></i>
                                 <p>
-                                    Dashboard Sisa
+                                    Panel Sisa
                                 </p>
                             </a>
                         </li>
@@ -81,14 +81,14 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard.banio') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard Baño</p>
+                                <p>Panel Baño</p>
                             </a>
                         </li>
                         @endif
                         <li class="nav-item">
                             <a href="{{ route('dashboard.promocion') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard Promoción</p>
+                                <p>Panel Promoción</p>
                             </a>
                         </li>
                     </ul>

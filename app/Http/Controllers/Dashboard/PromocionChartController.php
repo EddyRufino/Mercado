@@ -31,7 +31,13 @@ class PromocionChartController extends Controller
 
         $promociones = Promocion::query();
 
-        $promocionCount = $promociones->pluck('monto')->sum();
+        $promos = $promociones->select('monto')
+                    ->whereYear('fecha_inicio', today()->format('Y'))
+                    ->whereMonth('fecha_inicio', today()->format('m'))
+                    ->whereDay('fecha_inicio', today()->format('d'))
+                    ->get();
+
+        $promocionCount = $promos->pluck('monto')->sum();
 
         return view('dashboards.dashboard-promocion', compact('chart', 'promocionCount'));
     }
