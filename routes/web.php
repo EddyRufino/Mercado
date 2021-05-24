@@ -67,7 +67,9 @@ Route::get('num-operacion-promociones', 'Operacion\OperacionPromocionController@
 Route::post('operacionpromociones', 'Operacion\OperacionPromocionController@store')->name('operacion.promocion.store');
 
 // Baños
-Route::resource('banios', 'BanioController')->except(['delete', 'show']);
+Route::resource('banios', 'BanioController')->except(['show']);
+Route::get('banioduchas', 'BanioDuchaController@create')->name('banio.ducha.create');
+Route::post('banioduchas', 'BanioDuchaController@store')->name('banio.ducha.store');
 
 // Reporte Sisa
 Route::get('generar-reportes', 'Reporte\ReporteDeudaController@index')->name('reporte.index');

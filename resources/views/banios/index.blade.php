@@ -1,18 +1,20 @@
 @extends('admin.layout')
 
 @section('content')
-    @if (auth()->user()->hasRoles(['admin']))
+    @if (auth()->user()->hasRoles(['admin', 'banio', 'secretaria']))
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="d-flex justify-content-around align-items-center mt-3">
                         <h4 class="text-secondary text-center font-weight-bold mt-1">Tickets</h4>
-                        <a class="btn btn-primary btn-sm" href="{{ route('banios.create') }}">Crear Ticket</a>
+                        <a class="btn btn-info font-weight-bold btn-sm" href="{{ route('banios.create') }}">
+                            Crear Ticket
+                        </a>
                     </div>
                     <table class="table mt-2">
                         <thead>
                             <tr>
-                                <th scope="col">N.</th>
+                                <th scope="col">N. Correlativo</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Servicio</th>
                                 <th scope="col">Monto</th>
@@ -35,11 +37,36 @@
 
 
                                     <td>
-                                        @if (auth()->user()->hasRoles(['admin']))
+                                        @if (auth()->user()->hasRoles(['admin', 'banio', 'secretaria']))
                                         <div class="d-flex">
-                                            <a href="{{ route('banios.edit', $ticket) }}" data-toggle="tooltip" data-placement="top" title="Editar" class="text-warning mr-2">
+                                            <a href="{{ route('banios.edit', $ticket) }}"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                title="Editar"
+                                                class="text-warning mr-2"
+                                            >
                                                 @include('icons.icon-edit')
                                             </a>
+
+                                        @endif
+
+                                        @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                                        <form method="POST" action="{{ route('banios.destroy', $ticket) }}"
+                                                style="display: inline;"
+                                        >
+                                                {{ csrf_field() }} {{ method_field('DELETE') }}
+
+                                            <button class="btn btn-xs btn-link p-0 m-0"
+                                                onclick="return confirm('¿Estás seguro de eliminarlo?')"
+                                                data-toggle="tooltip"
+                                                data-placement="top"
+                                                title="Eliminar"
+                                            >
+
+                                                @include('icons.icon-delete')
+
+                                            </button>
+                                        </form>
                                         @endif
                                         </div>
                                     </td>

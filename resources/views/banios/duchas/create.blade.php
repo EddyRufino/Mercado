@@ -43,6 +43,9 @@
                                 </div>
                             </div>
 
+                            {{-- Tipo Servicio --}}
+                            <input type="hidden" name="tipo_servicio" value="2">
+
                             <div class="form-group row">
                                 <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Tipo Servicio</label>
 
@@ -50,29 +53,26 @@
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Taza
+                                            Ducha
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <a href="{{ route('banio.ducha.create') }}" class="dropdown-item">
-                                               Ducha
+                                            <a href="{{ route('banios.create') }}" class="dropdown-item">
+                                               Taza
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- Tipo Servicio --}}
-                            <input type="hidden" name="tipo_servicio" value="1">
-
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right font-weight-normal">
-                                    Monto Taza
+                                    Monto Ducha
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_taza" type="text" class="form-control @error('monto_taza') is-invalid @enderror" name="monto_taza" value="0.50" required autocomplete="monto_taza" autofocus readonly>
+                                    <input id="monto_ducha" type="text" class="form-control @error('monto_ducha') is-invalid @enderror" name="monto_ducha" value="1" required autocomplete="monto_ducha" autofocus readonly>
 
-                                    @error('monto_taza')
+                                    @error('monto_ducha')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -85,7 +85,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Guardar
                                     </button>
-                                    <a href="{{ route('home') }}" class="btn btn-light text-dark">
+                                    <a href="{{ route('home') }}" class="btn btn-secondary text-white">
                                         Cancelar
                                     </a>
                                 </div>
@@ -99,25 +99,3 @@
     </div>
 @endsection
 
-@push('scripts')
-
-
-    <script type="text/javascript">
-
-        document.getElementById("ducha").style.display = "none";
-
-        function mostrarTaza() {
-            document.getElementById("taza").style.display = "flex";
-            document.getElementById("ducha").style.display = "none";
-            document.getElementById("monto_taza").value = '0.50';
-            document.getElementById("monto_ducha").value = '';
-        }
-
-        function mostrarDucha() {
-            document.getElementById("ducha").style.display = "flex";
-            document.getElementById("taza").style.display = "none";
-            document.getElementById("monto_ducha").value = 1;
-            document.getElementById("monto_taza").value = '';
-        }
-    </script>
-@endpush

@@ -35,19 +35,19 @@
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
-        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
+        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
             <li class="nav-item d-none d-sm-inline-block">
               <a href="{{ route('home') }}" class="nav-link">Buscar Conductor</a>
             </li>
+        @endif
             {{-- <li class="nav-item d-none d-sm-inline-block">
               <a href="#" class="nav-link">Contact</a>
             </li> --}}
           </ul>
-        @endif
 
         <!-- SEARCH FORM -->
         {{-- <form class="form-inline ml-3">
