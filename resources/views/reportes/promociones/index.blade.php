@@ -11,7 +11,7 @@
                     aria-expanded="true"
                     aria-controls="collapseOne"
                 >
-                    <span id="headingOne">Reporte Baños Excel</span>
+                    <span id="headingOne">Reporte Promociones Excel</span>
                 </div>
 {{--                 <div class="btn btn-primary text-left d-inline" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <span id="headingTwo">Reporte Baños PDF</span>

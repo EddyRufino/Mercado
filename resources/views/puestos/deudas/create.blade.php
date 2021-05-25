@@ -48,15 +48,6 @@
                                 <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Tipo Pago</label>
 
                                 <div class="col-md-6">
-{{--                                     <select class="form-control select2" name="tipo_id">
-                                        @foreach($tipos as $tipo)
-                                            @if ($tipo->nombre == 'Pago')
-                                                <option class="" value="{{ $tipo->id }}">
-                                                    {{ $tipo->nombre }}
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select> --}}
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

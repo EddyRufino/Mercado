@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Pago;
 use App\Deuda;
-use App\Puesto;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Requests\PuestoDeudaRequest;
+use App\Http\Requests\PuestoPagoRequest;
+use App\Pago;
+use App\Puesto;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class PuestoDeudaController extends Controller
 {
@@ -56,6 +57,9 @@ class PuestoDeudaController extends Controller
 
     public function destroy(Puesto $puesto, Deuda $deuda)
     {
+        // dd($request->all());
+        request()->validate(['num_recibo' => 'required']);
+
         $deuda->delete();
 
         $fecha = Carbon::now();
@@ -65,7 +69,7 @@ class PuestoDeudaController extends Controller
             'fecha' => $fecha,
             'fecha_deuda' => $deuda->fecha,
             'num_operacion' => NULL,
-            'num_recibo' => rand(0, 9999999999),
+            'num_recibo' => request()->num_recibo,
             'monto_remodelacion' => $deuda->monto_remodelacion,
             'monto_constancia' => $deuda->monto_constancia,
             'monto_agua' => $deuda->monto_agua,

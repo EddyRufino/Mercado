@@ -15,6 +15,20 @@
                             @csrf
 
                             <div class="form-group row">
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
+
+                                <div class="col-md-6">
+                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $puesto->num_recibo }}" autocomplete="num_recibo" autofocus>
+
+                                    @error('num_recibo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
 
                                 <div class="col-md-6">
@@ -75,20 +89,6 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
-
-                                <div class="col-md-6">
-                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" autofocus>
-
-                                    @error('num_recibo')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
 
