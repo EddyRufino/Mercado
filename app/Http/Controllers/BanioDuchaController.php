@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Banio;
-use App\Http\Requests\BanioRequest;
+use App\Talonario;
 use Illuminate\Http\Request;
+use App\Http\Requests\BanioRequest;
 
 class BanioDuchaController extends Controller
 {
@@ -15,12 +16,21 @@ class BanioDuchaController extends Controller
 
     public function create()
     {
-        return view('banios.duchas.create');
+        $duchaInicio = Talonario::where('tipo', 3)->pluck('num_inicio_correlativo')->implode(' ');
+        $duchaFin = Talonario::where('tipo', 3)->pluck('num_fin')->implode(' ');
+
+        return view('banios.duchas.create', compact('duchaInicio', 'duchaFin'));
     }
 
     public function store(BanioRequest $request)
     {
+
+        Talonario::where('id', 2)->update([
+            'num_inicio_correlativo' => $request->num_correlativo
+        ]);
+
         Banio::create($request->all());
+
         return redirect()->route('banios.index');
     }
 
