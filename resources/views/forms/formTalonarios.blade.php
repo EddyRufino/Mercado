@@ -40,9 +40,6 @@
             <option {{ old('tipo', 3) == $talonario->tipo ? 'selected' : '' }} value="3">
                 Ducha
             </option>
-            <option {{ old('tipo', 4) == $talonario->tipo ? 'selected' : '' }} value="4">
-                Promoción
-            </option>
         </select>
 
         @error('tipo')

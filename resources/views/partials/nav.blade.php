@@ -317,10 +317,10 @@
                 </li>
                 @endif
 
-                @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                @if (auth()->user()->hasRoles(['admin', 'secretaria', 'cobrador']))
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-map-marker-alt"></i>
+                        <i class="nav-icon fas fa-clipboard"></i>
                         <p>
                           Talonarios
                           <i class="right fas fa-angle-left"></i>

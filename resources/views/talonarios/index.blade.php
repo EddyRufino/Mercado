@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    @if (auth()->user()->hasRoles(['admin']))
+    @if (auth()->user()->hasRoles(['admin', 'secretaria', 'cobrador']))
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -35,15 +35,11 @@
                                     @endif
 
                                     @if ($talonario->tipo == 2)
-                                        <td>Baño - Taza</td>
+                                        <td>Taza - Baño</td>
                                     @endif
 
                                     @if ($talonario->tipo == 3)
-                                        <td>Baño - Ducha</td>
-                                    @endif
-
-                                    @if ($talonario->tipo == 4)
-                                        <td>Promoción</td>
+                                        <td>Ducha - Baño</td>
                                     @endif
 
                                     <td>

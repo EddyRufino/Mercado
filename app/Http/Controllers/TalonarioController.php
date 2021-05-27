@@ -39,11 +39,15 @@ class TalonarioController extends Controller
 
     public function update(TalonarioRequest $request, Talonario $talonario)
     {
-        //
+        $talonario->update(request()->all());
+
+        return redirect()->route('talonarios.index', compact('talonario'));
     }
 
     public function destroy(Talonario $talonario)
     {
-        //
+        $talonario->delete();
+
+        return redirect()->route('talonarios.index');
     }
 }

@@ -18,7 +18,7 @@
                                 <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
 
                                 <div class="col-md-6">
-                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $puesto->num_recibo }}" autocomplete="num_recibo" autofocus>
+                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" autocomplete="num_recibo" autofocus readonly>
 
                                     @error('num_recibo')
                                         <span class="invalid-feedback" role="alert">
@@ -32,11 +32,10 @@
                                 <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="datepicker" type="text" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha') }}" required readonly> --}}
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
                                            value="<?php echo date("Y-m-d"); ?>"
                                            min="2018-01-01" max="2030-12-31" required >
-{{-- <?php echo date("Y-m-d"); ?> --}}
+
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

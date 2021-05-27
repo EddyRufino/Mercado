@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Deuda;
-use App\Http\Requests\PuestoDeudaRequest;
-use App\Http\Requests\PuestoPagoRequest;
-use App\Pago;
-use App\Puesto;
 use App\User;
+use App\Pago;
+use App\Deuda;
+use App\Puesto;
+use App\Talonario;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use App\Http\Requests\PuestoPagoRequest;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\PuestoDeudaRequest;
 
 class PuestoDeudaController extends Controller
 {
@@ -32,9 +33,21 @@ class PuestoDeudaController extends Controller
             $query->where('user_id', $puesto->user_id)->whereNotNull('monto_agua');
         })->orderBy('fecha', 'asc')->paginate(4);
 
-        // dd($deudas);
+        // Obtiene el num del talonario
+        $inicio = Talonario::select('num_inicio_correlativo')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
 
-        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas'));
+        $fin = Talonario::select('num_fin')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $tazaInicio = $inicio->num_inicio_correlativo;
+        $tazaFin = $fin->num_fin;
+
+        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
     }
 
     public function create(Puesto $puesto)
@@ -76,6 +89,10 @@ class PuestoDeudaController extends Controller
             'monto_sisa' => $deuda->monto_sisa,
             'puesto_id' => $puesto->id,
             'tipo_id' => $deuda->tipo_id,
+        ]);
+
+        Talonario::where('tipo', 1)->update([
+            'num_inicio_correlativo' => request()->num_recibo
         ]);
 
         return back()->with('status', 'Pago de la deuda fue un éxito!');

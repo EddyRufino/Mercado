@@ -15,14 +15,12 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
+                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
 
                                 <div class="col-md-6">
-                                    <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
-                                           value="<?php echo date("Y-m-d"); ?>"
-                                           min="2018-01-01" max="2030-12-31" required>
+                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" autocomplete="num_recibo" readonly>
 
-                                    @error('fecha')
+                                    @error('num_recibo')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -31,12 +29,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
+                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
 
                                 <div class="col-md-6">
-                                    <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ old('num_recibo') }}" autocomplete="num_recibo" >
+                                    <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
+                                           value="<?php echo date("Y-m-d"); ?>"
+                                           min="2018-01-01" max="2030-12-31" required>
 
-                                    @error('num_recibo')
+                                    @error('fecha')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

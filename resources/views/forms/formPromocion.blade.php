@@ -72,7 +72,7 @@
     <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
 
     <div class="col-md-6">
-        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ mt_rand(0, 9999999999) }}" readonly autocomplete="num_recibo" autofocus>
+        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" readonly autocomplete="num_recibo" autofocus>
 
         @error('num_recibo')
             <span class="invalid-feedback" role="alert">
@@ -81,6 +81,7 @@
         @enderror
     </div>
 </div>
+
 
 <div class="form-group row mb-0">
     <div class="col-md-6 offset-md-4">
