@@ -40,6 +40,9 @@ Route::get('dashboard-general', 'Dashboard\GeneralChartController@index')->name(
 // Promociones
 Route::resource('promociones', 'PromocionController');
 
+// Talonarios
+Route::resource('talonarios', 'TalonarioController')->except('show');
+
 // Search
 Route::get('/buscar', 'Search\SearchComerciante@search')->name('comerciante.search');
 Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('puestos.search');

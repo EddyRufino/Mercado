@@ -14,10 +14,23 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="num_correlativo" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Correlativo</label>
+                                <label class="col-md-4 col-form-label text-md-right font-weight-normal"
+                                    for="num_correlativo"
+                                >
+                                    N. Correlativo
+                                </label>
 
                                 <div class="col-md-6">
-                                    <input id="num_correlativo" type="number" class="form-control @error('num_correlativo') is-invalid @enderror" name="num_correlativo" value="{{ old('num_correlativo') }}" required autocomplete="num_correlativo" autofocus>
+                                    <input class="form-control @error('num_correlativo') is-invalid @enderror"
+                                        value="{{ $tazaInicio == $tazaFin ? 0 : $tazaInicio + 1 }}"
+                                        autocomplete="num_correlativo"
+                                        name="num_correlativo"
+                                        id="num_correlativo"
+                                        type="number"
+                                        autofocus
+                                        required
+                                        readonly
+                                    >
 
                                     @error('num_correlativo')
                                         <span class="invalid-feedback" role="alert">
@@ -28,12 +41,22 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
+                                <label class="col-md-4 col-form-label text-md-right font-weight-normal"
+                                    for="fecha"
+                                >
+                                    Fecha
+                                </label>
 
                                 <div class="col-md-6">
-                                    <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
-                                           value="<?php echo date("Y-m-d"); ?>"
-                                           min="2018-01-01" max="2030-12-31" required>
+                                    <input class="form-control @error('fecha') is-invalid @enderror"
+                                        value="<?php echo date("Y-m-d"); ?>"
+                                        min="2018-01-01"
+                                        max="2030-12-31"
+                                        name="fecha"
+                                        type="date"
+                                        id="start"
+                                        required
+                                    >
 
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">
@@ -44,14 +67,24 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="tipo_id" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Tipo Servicio</label>
+                                <label class="col-md-4 col-form-label text-md-right font-weight-normal text-dark"
+                                    for="tipo_id"
+                                >
+                                    Tipo Servicio
+                                </label>
 
                                 <div class="col-md-6">
 
                                     <div class="dropdown">
-                                        <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn-s btn-select dropdown-toggle w-100"
+                                            data-toggle="dropdown"
+                                            aria-expanded="false"
+                                            aria-haspopup="true"
+                                            id="dropdownMenu2"
+                                        >
                                             Taza
                                         </button>
+
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('banio.ducha.create') }}" class="dropdown-item">
                                                Ducha

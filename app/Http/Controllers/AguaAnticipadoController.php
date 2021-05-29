@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tipo;
 use App\Puesto;
+use App\Talonario;
 use Carbon\Carbon;
 use App\PagoAnticipado;
 use Illuminate\Http\Request;
@@ -19,7 +20,22 @@ class AguaAnticipadoController extends Controller
     public function create(Puesto $puesto)
     {
         $tipos = Tipo::all();
-        return view('puestos.agua_anticipados.create', compact('puesto', 'tipos'));
+
+        // Obtiene el num del talonario
+        $inicio = Talonario::select('num_inicio_correlativo')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $fin = Talonario::select('num_fin')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $tazaInicio = $inicio->num_inicio_correlativo;
+        $tazaFin = $fin->num_fin;
+
+        return view('puestos.agua_anticipados.create', compact('puesto', 'tipos', 'tazaInicio', 'tazaFin'));
     }
 
     public function store(PagoAnticipadoRequest $request, Puesto $puesto)
@@ -38,6 +54,10 @@ class AguaAnticipadoController extends Controller
             'monto_sisa_anticipada' => NULL,
             'puesto_id' => $puesto->id,
             'tipo_id' => $request->tipo_id,
+        ]);
+
+        Talonario::where('tipo', 1)->update([
+            'num_inicio_correlativo' => $request->num_recibo
         ]);
 
         return redirect()->route('home')->with('status', "El pago fue procesado con éxito $request->num_recibo ");

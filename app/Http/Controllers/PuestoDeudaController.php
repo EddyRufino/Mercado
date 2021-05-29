@@ -6,10 +6,12 @@ use App\User;
 use App\Pago;
 use App\Deuda;
 use App\Puesto;
+use App\Talonario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Requests\PuestoDeudaRequest;
+use App\Http\Requests\PuestoPagoRequest;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\PuestoDeudaRequest;
 
 class PuestoDeudaController extends Controller
 {
@@ -31,9 +33,21 @@ class PuestoDeudaController extends Controller
             $query->where('user_id', $puesto->user_id)->whereNotNull('monto_agua');
         })->orderBy('fecha', 'asc')->paginate(4);
 
-        // dd($deudas);
+        // Obtiene el num del talonario
+        $inicio = Talonario::select('num_inicio_correlativo')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
 
-        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas'));
+        $fin = Talonario::select('num_fin')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $tazaInicio = $inicio->num_inicio_correlativo;
+        $tazaFin = $fin->num_fin;
+
+        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
     }
 
     public function create(Puesto $puesto)
@@ -56,6 +70,9 @@ class PuestoDeudaController extends Controller
 
     public function destroy(Puesto $puesto, Deuda $deuda)
     {
+        // dd($request->all());
+        request()->validate(['num_recibo' => 'required']);
+
         $deuda->delete();
 
         $fecha = Carbon::now();
@@ -65,13 +82,17 @@ class PuestoDeudaController extends Controller
             'fecha' => $fecha,
             'fecha_deuda' => $deuda->fecha,
             'num_operacion' => NULL,
-            'num_recibo' => rand(0, 9999999999),
+            'num_recibo' => request()->num_recibo,
             'monto_remodelacion' => $deuda->monto_remodelacion,
             'monto_constancia' => $deuda->monto_constancia,
             'monto_agua' => $deuda->monto_agua,
             'monto_sisa' => $deuda->monto_sisa,
             'puesto_id' => $puesto->id,
             'tipo_id' => $deuda->tipo_id,
+        ]);
+
+        Talonario::where('tipo', 1)->update([
+            'num_inicio_correlativo' => request()->num_recibo
         ]);
 
         return back()->with('status', 'Pago de la deuda fue un éxito!');

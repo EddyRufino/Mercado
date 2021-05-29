@@ -72,10 +72,15 @@
                                                     {{ $deuda->fecha }}
                                                 </span>
                                             </div>
+
+
+
+
+
                                             <div class="col-sm-12 col-md-5 d-flex justify-content-around">
                                                 <span class="text-secondary">S/. {{ $deuda->monto_sisa }}</span>
 
-                                              @auth
+{{--                                               @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
                                                 <form method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
@@ -90,7 +95,68 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth
+                                              @endauth --}}
+                        {{-- <button type="button" class="btn btn-primary btn-sm" >
+                            Open
+                        </button> --}}
+                                    <button class="btn btn-xs btn-link p-0 m-0"
+                                        title="Pagar Deuda"
+                                        onclick="javascript:showModal();"
+                                    >
+
+                                        @include('icons.icon-pay')
+
+                                    </button>
+
+                                    <div id="openModal" class="modalDialog">
+                                        <div class="p-4 col-sm-10 col-md-6">
+
+                                            <div class="">
+                                                <h4 class="font-weight-bold text-secondary">N. Correlativo</h4>
+                                            </div>
+                                            <hr>
+
+                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                                    method="POST"
+                                                    style="display: inline;"
+                                                >
+                                                    @csrf @method('DELETE')
+
+                                                <div class="form-group row mt-4">
+                                                    <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
+
+                                                    <div class="col-md-6">
+                                                        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
+
+                                                        @error('num_recibo')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row mb-0">
+                                                    <div class="col-md-8 offset-md-4 mt-2 d-flex">
+                                                        <button type="submit"
+                                                            class="btn btn-primary"
+                                                            onclick="return confirm('¿Estás seguro del pago?')"
+                                                        >
+                                                            Guardar Pago
+                                                        </button>
+                                                        <a href="#"
+                                                            class="btn btn-light text-dark ml-2"
+                                                            onclick="javascript:CloseModal();">
+                                                            Cancelar
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+
+                                        </div>
+                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -157,12 +223,74 @@
                                                     S/. {{ $deuda->monto_agua }}
                                                 </span>
 
-                                              @auth
+
+                                    <button class="btn btn-xs btn-link p-0 m-0"
+                                        title="Pagar Deuda"
+                                        onclick="javascript:showModalAgua();"
+                                    >
+
+                                        @include('icons.icon-pay')
+
+                                    </button>
+
+                                    <div id="openModalAgua" class="modalDialog">
+                                        <div class="p-4 col-sm-10 col-md-6">
+
+                                            <div class="">
+                                                <h4 class="font-weight-bold text-secondary">N. Correlativo</h4>
+                                            </div>
+                                            <hr>
+
+                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                                    method="POST"
+                                                    style="display: inline;"
+                                                >
+                                                    @csrf @method('DELETE')
+
+                                                <div class="form-group row mt-4">
+                                                    <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
+
+                                                    <div class="col-md-6">
+                                                        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
+
+                                                        @error('num_recibo')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row mb-0">
+                                                    <div class="col-md-8 offset-md-4 mt-2 d-flex">
+                                                        <button type="submit"
+                                                            class="btn btn-primary"
+                                                            onclick="return confirm('¿Estás seguro del pago?')"
+                                                        >
+                                                            Guardar Pago
+                                                        </button>
+                                                        <a href="#" class="btn btn-light text-dark ml-2" onclick="javascript:CloseModalAgua();">
+                                                            Cancelar
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+
+
+
+{{--                                               @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
-                                                <form method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
-                                                        style="display: inline;">
-                                                        {{ csrf_field() }} {{ method_field('DELETE') }}
+                                                <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                                        method="POST"
+                                                        style="display: inline;"
+                                                    >
+                                                        @csrf @method('DELETE')
 
                                                     <button class="btn btn-xs btn-link p-0 m-0"
                                                     onclick="return confirm('¿Estás seguro del pago?')" data-toggle="tooltip" data-placement="top" title="Pagar Deuda">
@@ -173,7 +301,7 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth
+                                              @endauth --}}
                                             </div>
                                         </div>
                                     </div>
@@ -197,3 +325,77 @@
     </div>
 @endsection
 
+@push('scripts')
+    <script>
+        function showModal() {
+          document.getElementById('openModal').style.display = 'block';
+        }
+
+        function CloseModal() {
+          document.getElementById('openModal').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        function showModalAgua() {
+          document.getElementById('openModalAgua').style.display = 'block';
+        }
+
+        function CloseModalAgua() {
+          document.getElementById('openModalAgua').style.display = 'none';
+        }
+    </script>
+@endpush
+
+@push('styles')
+  <style>
+    .content-modal {
+
+    }
+    .modalDialog {
+      position: fixed;
+      font-family: Arial, Helvetica, sans-serif;
+      top: 15px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 99999;
+      display:none;
+      -webkit-transition: opacity 400ms ease-in;
+      -moz-transition: opacity 400ms ease-in;
+      transition: opacity 400ms ease-in;
+      pointer-events: auto;
+    }
+    .modalDialog > div {
+      width: 100%;
+      position: relative;
+      margin: 10% auto;
+      padding: 5px 20px 13px 20px;
+      border-radius: 10px;
+      background: #fff;
+      -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    }
+    .close {
+      background: #606061;
+      color: #FFFFFF;
+      line-height: 25px;
+      position: absolute;
+      right: -12px;
+      text-align: center;
+      top: -10px;
+      width: 24px;
+      text-decoration: none;
+      font-weight: bold;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      border-radius: 12px;
+      -moz-box-shadow: 1px 1px 3px #000;
+      -webkit-box-shadow: 1px 1px 3px #000;
+      box-shadow: 1px 1px 3px #000;
+    }
+    .close:hover { background: #00d9ff; }
+  </style>
+@endpush

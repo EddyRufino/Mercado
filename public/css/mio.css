@@ -3,6 +3,11 @@
     border-bottom: 0px solid;
 }
 
+.form-control:disabled, .form-control[readonly] {
+    background-color: #F3F4F6;
+    opacity: 1;
+}
+
 /**/
 thead {
     background-color: #17a2b8 !important;
@@ -60,7 +65,7 @@ tbody {
 
 .btn-select {
     color: #495057;
-    background-color: #e9ecef;
+    /*background-color: #e9ecef;*/
     border-color: #ced4da;
 }
 

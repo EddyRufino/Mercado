@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PromocionRequest;
 use App\Promocion;
+use App\Talonario;
 use Illuminate\Http\Request;
+use App\Http\Requests\PromocionRequest;
 
 class PromocionController extends Controller
 {
@@ -21,12 +22,30 @@ class PromocionController extends Controller
 
     public function create()
     {
-        return view('promociones.create');
+        $inicio = Talonario::select('num_inicio_correlativo')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $fin = Talonario::select('num_fin')
+                            ->where('tipo', 1)
+                            ->orderBy('created_at', 'desc')
+                            ->first();
+
+        $tazaInicio = $inicio->num_inicio_correlativo;
+        $tazaFin = $fin->num_fin;
+
+        return view('promociones.create', compact('tazaInicio', 'tazaFin'));
     }
 
     public function store(PromocionRequest $request)
     {
         Promocion::create($request->all());
+
+        Talonario::where('tipo', 1)->update([
+            'num_inicio_correlativo' => $request->num_recibo
+        ]);
+
         return redirect()->route('promociones.index');
     }
 

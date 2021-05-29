@@ -10,14 +10,23 @@
                         'link' => 'banios.index'
                     ])
                     <div class="card-body">
-                        <form method="POST" action="{{ route('banios.store') }}">
+                        <form method="POST" action="{{ route('banio.ducha.store') }}">
                             @csrf
 
                             <div class="form-group row">
                                 <label for="num_correlativo" class="col-md-4 col-form-label text-md-right font-weight-normal">N. Correlativo</label>
 
                                 <div class="col-md-6">
-                                    <input id="num_correlativo" type="number" class="form-control @error('num_correlativo') is-invalid @enderror" name="num_correlativo" value="{{ old('num_correlativo') }}" required autocomplete="num_correlativo" autofocus>
+                                    <input class="form-control @error('num_correlativo') is-invalid @enderror"
+                                        name="num_correlativo"
+                                        value="{{ $duchaInicio == $duchaFin ? 0 : $duchaInicio + 1 }}"
+                                        autocomplete="num_correlativo"
+                                        id="num_correlativo"
+                                        type="number"
+                                        autofocus
+                                        required
+                                        readonly
+                                    >
 
                                     @error('num_correlativo')
                                         <span class="invalid-feedback" role="alert">
