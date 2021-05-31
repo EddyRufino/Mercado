@@ -20,7 +20,7 @@ class BanioController extends Controller
                     ->whereMonth('fecha', today()->format('m'))
                     ->whereDay('fecha', today()->format('d'))
                     ->latest()
-                    ->paginate(7);
+                    ->paginate(6);
         return view('banios.index', compact('tickets'));
     }
 

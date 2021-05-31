@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                    <li> {{ $error }} </li>
+                @endforeach
+            @endif
             <div class="card">
                 <div class="card-header bg-info text-white font-weight-bold">
                     Administración del mercado
@@ -38,6 +43,23 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group {{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }} row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div name="g-recaptcha-response"
+                                    class="g-recaptcha"
+                                    data-sitekey="{{ env('RECAPTCHA_SITE_KEY') }}"
+                                >
+                                </div>
+
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

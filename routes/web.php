@@ -49,6 +49,11 @@ Route::get('/buscar-puesto', 'Search\PuestoSearchController@search')->name('pues
 Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name('conductores.search');
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
 Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
+Route::get('/buscar-banios', 'Search\BanioSearchController@search')->name('banio.search');
+Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
+
+// Pago Sisa - Index
+Route::get('/pagos-sisa', 'Search\SearchPagoSisa@index')->name('pago.sisa.index');
 
 // Export
 Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');

@@ -106,7 +106,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($tickets as $ticket)
+                            @forelse ($banios as $ticket)
                                 <tr>
                                     <td>{{ $ticket->num_correlativo }}</td>
                                     <td>{{ $ticket->fecha }}</td>
@@ -162,7 +162,7 @@
                     </table>
 
                     <div class="overflow-auto">
-                        {{ $tickets->links() }}
+                        {{ $banios->links() }}
                     </div>
                 </div>
             </div>
