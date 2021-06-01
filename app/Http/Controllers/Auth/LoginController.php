@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -37,4 +38,33 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+        $token = $request->input('g-recaptcha-response');
+        // dd($token);
+        if ($token) {
+            $this->validateLogin($request);
+                    if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+        $this->incrementLoginAttempts($request);
+            return $this->sendFailedLoginResponse($request);
+        } else {
+            return back();
+        }
+    }
+
+    // protected function validateLogin(Request $request)
+    // {
+    //     $request->validate([
+    //         'g-recaptcha-response' => 'required'
+    //     ]);
+    // }
 }

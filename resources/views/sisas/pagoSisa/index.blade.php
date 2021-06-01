@@ -1,14 +1,14 @@
 @extends('admin.layout')
 
 @section('content')
-    @if (auth()->user()->hasRoles(['admin', 'banio', 'secretaria']))
+    @if (auth()->user()->hasRoles(['admin', 'secretaria']))
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                        <h4 class="text-secondary text-center font-weight-bold mt-2 ">Tickets</h4>
+                        <h4 class="text-secondary text-center font-weight-bold mt-2 ">Listado De Pagos</h4>
                         <a class="btn btn-info font-weight-bold btn-sm" href="{{ route('banios.create') }}">
-                            Crear Ticket
+                            Nuevo Pago
                         </a>
                     </div>
 
@@ -17,8 +17,10 @@
                             @csrf
                           <div class="input-group input-group-md">
                             <select name="tipo_servicio" class="form-control">
-                                <option value="1">Taza</option>
-                                <option value="2">Ducha</option>
+                                <option value="1">Sisa</option>
+                                <option value="4">Agua</option>
+                                <option value="3">Constancia</option>
+                                <option value="3">Remodelación</option>
                             </select>
                             <select name="day" class="form-control">
                                 <option>Día</option>
@@ -98,32 +100,50 @@
                     <table class="table mt-2">
                         <thead>
                             <tr>
-                                <th scope="col">N. Correlativo</th>
                                 <th scope="col">Fecha</th>
-                                <th scope="col">Servicio</th>
-                                <th scope="col">Monto</th>
+                                <th scope="col">Fecha Concepto</th>
+                                <th scope="col">N. Recibo</th>
+                                <th scope="col">M. Sisa</th>
+                                <th scope="col">M. Agua</th>
+                                <th scope="col">M. Remodelación</th>
+                                <th scope="col">M. Constancia</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($tickets as $ticket)
+                            @forelse ($pagos as $pago)
                                 <tr>
-                                    <td>{{ $ticket->num_correlativo }}</td>
-                                    <td>{{ $ticket->fecha }}</td>
+                                    <td>{{ $pago->fecha }}</td>
+                                    <td>{{ $pago->fecha_deuda }}</td>
+                                    <td>{{ $pago->num_recibo }}</td>
 
-                                    @if ($ticket->tipo_servicio == 1)
-                                        <td>Taza</td>
-                                        <td>S/. {{ $ticket->monto_taza }}</td>
+                                    @if ($pago->monto_sisa)
+                                        <td>S/. {{ $pago->monto_sisa }}</td>
                                     @else
-                                        <td>Ducha</td>
-                                        <td>S/. {{ $ticket->monto_ducha }}</td>
+                                        <td></td>
                                     @endif
 
+                                    @if ($pago->monto_agua)
+                                        <td>S/. {{ $pago->monto_agua }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
 
+                                    @if ($pago->monto_remodelacion)
+                                        <td>S/. {{ $pago->monto_remodelacion }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
+
+                                    @if ($pago->monto_constancia)
+                                        <td>S/. {{ $pago->monto_constancia }}</td>
+                                    @else
+                                        <td></td>
+                                    @endif
                                     <td>
-                                        @if (auth()->user()->hasRoles(['admin', 'banio', 'secretaria']))
+                                        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
                                         <div class="d-flex">
-                                            <a href="{{ route('banios.edit', $ticket) }}"
+                                            <a href="{{ route('pagos.edit', $pago) }}"
                                                 data-toggle="tooltip"
                                                 data-placement="top"
                                                 title="Editar"
@@ -134,8 +154,8 @@
 
                                         @endif
 
-                                        @if (auth()->user()->hasRoles(['admin', 'secretaria']))
-                                        <form method="POST" action="{{ route('banios.destroy', $ticket) }}"
+                                        {{-- @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                                        <form method="POST" action="{{ route('banios.destroy', $pago) }}"
                                                 style="display: inline;"
                                         >
                                                 {{ csrf_field() }} {{ method_field('DELETE') }}
@@ -151,7 +171,7 @@
 
                                             </button>
                                         </form>
-                                        @endif
+                                        @endif --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -162,7 +182,7 @@
                     </table>
 
                     <div class="overflow-auto">
-                        {{ $tickets->links() }}
+                        {{ $pagos->links() }}
                     </div>
                 </div>
             </div>

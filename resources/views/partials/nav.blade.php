@@ -268,6 +268,32 @@
                 @if (auth()->user()->hasRoles(['admin', 'secretaria']))
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>
+                            Control De Pagos
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('pago.sisa.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Listar Pagos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('home') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nuevo Pago</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+
+                @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-map-marker-alt"></i>
                         <p>
                           Ubicaciones
