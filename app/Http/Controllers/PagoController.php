@@ -61,12 +61,15 @@ class PagoController extends Controller
     public function edit(Pago $pago)
     {
         $puesto = Puesto::all();
-        return view('pagos.create', compact('pago', 'puesto'));
+        $tipos = Tipo::all();
+        return view('pagos.edit', compact('pago', 'puesto', 'tipos'));
     }
 
     public function update(Request $request, Pago $pago)
     {
-        //
+        // dd($request->all());
+        $pago->update($request->all());
+        return redirect()->route('pago.sisa.index');
     }
 
     public function destroy(Pago $pago)

@@ -18,7 +18,7 @@ Route::resource('actividades', 'ActividadController')->except('show');
 Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
 // Route::get('puestos-deudas-agua', 'PuestoDeudaAguaController@index')->name('puesto.deuda.agua');
-Route::resource('pagos', 'PagoController')->only('store');
+Route::resource('pagos', 'PagoController');
 
 Route::resource('puestos.pagos', 'PuestoPagoController')->only(['index', 'create', 'store']);
 Route::resource('puestos.deudas', 'PuestoDeudaController')->only(['index', 'create', 'store', 'destroy']);

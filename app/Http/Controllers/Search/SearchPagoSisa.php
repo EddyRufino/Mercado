@@ -16,6 +16,6 @@ class SearchPagoSisa extends Controller
 
     public function search()
     {
-        # code...
+        # code..
     }
 }

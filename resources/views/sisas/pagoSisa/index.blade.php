@@ -140,10 +140,10 @@
                                     @else
                                         <td></td>
                                     @endif
-{{--                                     <td>
-                                        @if (auth()->user()->hasRoles(['admin', 'banio', 'secretaria']))
+                                    <td>
+                                        @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
                                         <div class="d-flex">
-                                            <a href="{{ route('banios.edit', $pago) }}"
+                                            <a href="{{ route('pagos.edit', $pago) }}"
                                                 data-toggle="tooltip"
                                                 data-placement="top"
                                                 title="Editar"
@@ -154,8 +154,8 @@
 
                                         @endif
 
-                                        @if (auth()->user()->hasRoles(['admin', 'secretaria']))
-                                        <form method="POST" action="{{ route('banios.destroy', $ticket) }}"
+                                        {{-- @if (auth()->user()->hasRoles(['admin', 'secretaria']))
+                                        <form method="POST" action="{{ route('banios.destroy', $pago) }}"
                                                 style="display: inline;"
                                         >
                                                 {{ csrf_field() }} {{ method_field('DELETE') }}
@@ -171,9 +171,9 @@
 
                                             </button>
                                         </form>
-                                        @endif
+                                        @endif --}}
                                         </div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @empty
                                 <li class="list-group-item border-0 mb-3 shadow-sm">No hay nada para mostrar</li>
