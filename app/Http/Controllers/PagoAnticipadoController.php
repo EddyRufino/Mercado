@@ -42,7 +42,7 @@ class PagoAnticipadoController extends Controller
     {
         $fecha = Carbon::now();
         $fecha = $fecha->format('Y-m-d');
-        // dd($request->all());
+
         $data = PagoAnticipado::create([
             'fecha' => $fecha,
             'fecha_anticipada' => $request->fecha_anticipada,
