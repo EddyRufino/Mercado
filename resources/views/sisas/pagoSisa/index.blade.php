@@ -7,20 +7,20 @@
                 <div class="col-md-12">
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <h4 class="text-secondary text-center font-weight-bold mt-2 ">Listado De Pagos</h4>
-                        <a class="btn btn-info font-weight-bold btn-sm" href="{{ route('banios.create') }}">
+                        <a class="btn btn-info font-weight-bold btn-sm" href="{{ route('home') }}">
                             Nuevo Pago
                         </a>
                     </div>
 
                     <div class="row justify-content-center mt-2">
-                        <form action="{{ route('banio.search') }}" class="form-inline">
+                        <form action="{{ route('pago.sisa.search') }}" class="form-inline">
                             @csrf
                           <div class="input-group input-group-md">
                             <select name="tipo_servicio" class="form-control">
-                                <option value="1">Sisa</option>
-                                <option value="4">Agua</option>
-                                <option value="3">Constancia</option>
-                                <option value="3">Remodelación</option>
+                                <option value="">Elige</option>
+                                <option value="1">Pago Sisa</option>
+                                <option value="4">Pago Agua</option>
+                                <option value="3">Pago Trámite</option>
                             </select>
                             <select name="day" class="form-control">
                                 <option>Día</option>
@@ -103,6 +103,7 @@
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Fecha Concepto</th>
                                 <th scope="col">N. Recibo</th>
+                                <th scope="col">N. Operación</th>
                                 <th scope="col">M. Sisa</th>
                                 <th scope="col">M. Agua</th>
                                 <th scope="col">M. Remodelación</th>
@@ -116,6 +117,7 @@
                                     <td>{{ $pago->fecha }}</td>
                                     <td>{{ $pago->fecha_deuda }}</td>
                                     <td>{{ $pago->num_recibo }}</td>
+                                    <td>{{ $pago->num_operacion }}</td>
 
                                     @if ($pago->monto_sisa)
                                         <td>S/. {{ $pago->monto_sisa }}</td>

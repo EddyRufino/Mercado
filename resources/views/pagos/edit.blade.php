@@ -16,7 +16,7 @@
                             @method('PUT')
 
                             <div class="form-group row">
-                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha Pago</label>
+                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal">Fecha</label>
 
                                 <div class="col-md-6">
                                     <input id="datepicker" type="date" class="form-control datepicker @error('fecha') is-invalid @enderror" name="fecha" value="{{ old('fecha', $pago->fecha) }}" min="2018-01-01" max="2030-12-31" autofocus>
@@ -62,12 +62,18 @@
 
                                 <div class="col-md-6">
                                     <select class="form-control" name="tipo_id" data-live-search="true">
-                                        @foreach ($tipos as $tipo)
-                                            <option class="" value="{{ $tipo->id }}"
-                                                {{ old('tipo_id', $pago->tipo_id) == $tipo->id ? 'selected' : '' }}
-                                                >{{ $tipo->nombre }}
-                                            </option>
-                                        @endforeach
+                                        <option value="1"
+                                            {{ old('tipo_id', 1) == $pago->tipo_id ? 'selected' : '' }}
+                                            >Pago Sisa
+                                        </option>
+                                        <option value="4"
+                                            {{ old('tipo_id', 4) == $pago->tipo_id ? 'selected' : '' }}
+                                            >Pago Agua
+                                        </option>
+                                        <option value="3"
+                                            {{ old('tipo_id', 3) == $pago->tipo_id ? 'selected' : '' }}
+                                            >Pago Trámite
+                                        </option>
                                     </select>
 
                                     @error('tipo_id')
@@ -141,20 +147,6 @@
                                     <input id="puesto_id" type="text" class="form-control @error('puesto_id') is-invalid @enderror" name="puesto_id" value="{{ old('puesto_id', $pago->puesto_id) }}" autocomplete="puesto_id" autofocus>
 
                                     @error('puesto_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="monto_remodelacion" class="col-md-4 col-form-label text-md-right font-weight-normal">Sisa Diaria</label>
-
-                                <div class="col-md-6">
-                                    <input id="monto_remodelacion" type="text" class="form-control @error('monto_remodelacion') is-invalid @enderror" name="monto_remodelacion" value="{{ old('monto_remodelacion') }}" autocomplete="monto_remodelacion" autofocus>
-
-                                    @error('monto_remodelacion')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

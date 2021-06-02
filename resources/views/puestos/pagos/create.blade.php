@@ -75,10 +75,10 @@
                                                 Pago Trámite
                                             </a>
                                             <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
-                                                Pago Servicio
+                                                Pago Agua
                                             </a>
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
-                                                Deuda Servicio
+                                                Deuda Agua
                                             </a>
                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Sisa Anticipada

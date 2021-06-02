@@ -70,7 +70,7 @@ class PuestoDeudaController extends Controller
 
     public function destroy(Puesto $puesto, Deuda $deuda)
     {
-        // dd($request->all());
+        // dd($deuda->tipo_id);
         request()->validate(['num_recibo' => 'required']);
 
         $deuda->delete();
@@ -88,7 +88,7 @@ class PuestoDeudaController extends Controller
             'monto_agua' => $deuda->monto_agua,
             'monto_sisa' => $deuda->monto_sisa,
             'puesto_id' => $puesto->id,
-            'tipo_id' => $deuda->tipo_id,
+            'tipo_id' => $deuda->tipo_id == 2 ? 1 : 4, // $deuda->tipo_id
         ]);
 
         Talonario::where('tipo', 1)->update([

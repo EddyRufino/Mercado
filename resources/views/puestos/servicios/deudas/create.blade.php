@@ -51,7 +51,7 @@
 
                                     <div class="dropdown">
                                         <button class="btn-s btn-select dropdown-toggle w-100" id="dropdownMenu2"    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Deuda Servicio
+                                            Deuda Agua
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <a href="{{ route('puestos.pagos.create', $puesto->id) }}" class="dropdown-item">
@@ -64,7 +64,7 @@
                                                 Pago Trámites
                                             </a>
                                             <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
-                                                Pago Servicio
+                                                Pago Agua
                                             </a>
                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Sisa Anticipada
@@ -77,10 +77,11 @@
                                 </div>
                             </div>
 
+                            {{-- Obtiene el ID --}}
                             <div class="form-group row d-none">
 
                                 <div class="col-md-6">
-                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="4" readonly autocomplete="tipo_id" autofocus>
+                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="5" readonly autocomplete="tipo_id" autofocus>
 
                                     @error('tipo_id')
                                         <span class="invalid-feedback" role="alert">

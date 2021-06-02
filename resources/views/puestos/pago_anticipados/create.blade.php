@@ -92,10 +92,10 @@
                                                 Pago Trámite
                                             </a>
                                             <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
-                                                Pago Servicio
+                                                Pago Agua
                                             </a>
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
-                                                Deuda Servicio
+                                                Deuda Agua
                                             </a>
                                             <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Agua Anticipada
@@ -109,7 +109,7 @@
                             <div class="form-group row d-none">
 
                                 <div class="col-md-6">
-                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="5" readonly autocomplete="tipo_id" autofocus>
+                                    <input id="tipo_id" type="text" class="form-control @error('tipo_id') is-invalid @enderror" name="tipo_id" value="6" readonly autocomplete="tipo_id" autofocus>
 
                                     @error('tipo_id')
                                         <span class="invalid-feedback" role="alert">
