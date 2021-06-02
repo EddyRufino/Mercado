@@ -17,8 +17,8 @@ class PromocionExportController extends Controller
 
         $pdf = PDF::loadView('exports.exportPDF.promociones-pdf', compact('promociones'));
 
-        return $pdf->stream();
-        // return $pdf->download('conductores-pdf.pdf');
+        // return $pdf->stream();
+        return $pdf->download('promociones-pdf.pdf');
     }
 
     // php artisan make:export UsersExport --model=User

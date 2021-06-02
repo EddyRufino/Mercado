@@ -17,8 +17,8 @@ class ComercianteExportController extends Controller
 
         $pdf = PDF::loadView('exports.exportPDF.conductores-pdf', compact('conductores'));
 
-        return $pdf->stream();
-        // return $pdf->download('conductores-pdf.pdf');
+        // return $pdf->stream();
+        return $pdf->download('conductores-pdf.pdf');
     }
 
     // php artisan make:export UsersExport --model=User

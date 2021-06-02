@@ -16,7 +16,8 @@ class UserExportController extends Controller
         $users = User::get();
         $pdf = PDF::loadView('exports.exportPDF.users-pdf', compact('users'));
 
-        return $pdf->stream();
+        // return $pdf->stream();
+        return $pdf->download('usuarios-pdf.pdf');
     }
 
     // php artisan make:export UsersExport --model=User
