@@ -278,7 +278,19 @@
                         <li class="nav-item">
                             <a href="{{ route('pago.sisa.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Listar Pagos</p>
+                                <p>Listar Pago Sisa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('deuda.sisa.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Listar Deuda Sisa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pagoanticipado.sisa.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Listar Pago Anticipado</p>
                             </a>
                         </li>
                         <li class="nav-item">

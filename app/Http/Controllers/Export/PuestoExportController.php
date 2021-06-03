@@ -18,8 +18,8 @@ class PuestoExportController extends Controller
 
         $pdf = PDF::loadView('exports.exportPDF.puestos-pdf', compact('puestos'));
 
-        return $pdf->stream();
-        // return $pdf->download('puestos-pdf.pdf');
+        // return $pdf->stream();
+        return $pdf->download('puestos-pdf.pdf');
     }
 
     public function excel()

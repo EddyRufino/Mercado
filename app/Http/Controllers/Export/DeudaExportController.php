@@ -20,8 +20,8 @@ class DeudaExportController extends Controller
 
         $pdf = PDF::loadView('exports.exportPDF.deudas-pdf', compact('deudas', 'deudaSisa', 'deudaAgua'));
 
-        return $pdf->stream();
-        // return $pdf->download('deudas-pdf.pdf');
+        // return $pdf->stream();
+        return $pdf->download('deudas-pdf.pdf');
     }
 
     // php artisan make:export DeudasExport --model=User

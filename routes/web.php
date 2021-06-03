@@ -18,7 +18,11 @@ Route::resource('actividades', 'ActividadController')->except('show');
 Route::resource('conductores', 'ComercianteController')->only('index');
 Route::resource('puestos', 'PuestoController');
 // Route::get('puestos-deudas-agua', 'PuestoDeudaAguaController@index')->name('puesto.deuda.agua');
+
+// Para Control
 Route::resource('pagos', 'PagoController');
+Route::resource('deudas', 'DeudaController')->only('edit', 'update');
+Route::resource('pagosanticipados', 'PagoAnticipadoControlController')->only('edit', 'update');
 
 Route::resource('puestos.pagos', 'PuestoPagoController')->only(['index', 'create', 'store']);
 Route::resource('puestos.deudas', 'PuestoDeudaController')->only(['index', 'create', 'store', 'destroy']);
@@ -50,10 +54,15 @@ Route::get('/buscar-conductor', 'Search\ConductorSearchController@search')->name
 Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.search');
 Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
 Route::get('/buscar-banios', 'Search\BanioSearchController@search')->name('banio.search');
+// Search Control
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
+Route::get('/buscar-deudas-sisa', 'Search\SearchDeudaSisa@search')->name('deuda.sisa.search');
+Route::get('/buscar-pagos-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');
 
-// Pago Sisa - Index
+// Pago Sisa Control - Index [Control]
 Route::get('/pagos-sisa', 'Search\SearchPagoSisa@index')->name('pago.sisa.index');
+Route::get('/deudas-sisa', 'Search\SearchDeudaSisa@index')->name('deuda.sisa.index');
+Route::get('/pagos-anticipados-sisa', 'Search\SearchPagoAnticipadoControlSisa@index')->name('pagoanticipado.sisa.index');
 
 // Export
 Route::get('puestos-excel', 'Export\PuestoExportController@excel')->name('puestos.excel');
