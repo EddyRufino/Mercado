@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <select class="form-control selectpicker" name="user_id" data-live-search="true">
                     @foreach ($users as $user)
-                        <option class="" value="{{ $user->id }}"
+                        <option value="{{ $user->id }}"
                             {{ old('user_id', $puesto->user_id) == $user->id ? 'selected' : '' }}
                             >{{ $user->name }} {{ $user->apellido }}
                         </option>
