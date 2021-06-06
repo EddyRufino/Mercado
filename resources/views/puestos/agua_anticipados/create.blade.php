@@ -11,7 +11,7 @@
                         </span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('puestos.aguaanticipados.store', $puesto) }}">
+                        <form id="myform" method="POST" action="{{ route('puestos.aguaanticipados.store', $puesto) }}">
                             @csrf
 
                             <div class="form-group row">
@@ -107,7 +107,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4 mt-2">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" onclick="mostrar(event)">
                                         Guardar Pago
                                     </button>
                                     <a href="{{ route('home') }}" class="btn btn-light text-dark">
@@ -122,3 +122,28 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    function mostrar() {
+        event.preventDefault();
+        Swal.fire({
+          title: "Estás segur@?",
+          text: "Recuerda estar completamente segur@!",
+          showDenyButton: true,  showCancelButton: false,
+          confirmButtonText: `Sí`,
+          denyButtonText: `Salir`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                document.getElementById("myform").submit();
+            } else if (result.isDenied) {
+                Swal.fire('Los cambios no se guardaron', '', 'info')
+            }
+        });
+
+    }
+</script>
+@endpush
