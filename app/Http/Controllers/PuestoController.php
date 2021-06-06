@@ -22,7 +22,7 @@ class PuestoController extends Controller
 
     public function index()
     {
-        $puestos = Puesto::latest()->paginate(7);
+        $puestos = Puesto::latest()->paginate(6);
         return view('puestos.index', compact('puestos'));
     }
 
@@ -33,18 +33,18 @@ class PuestoController extends Controller
         $actividades = Actividad::select(['id', 'nombre'])->get();
 
         $lists = DB::table('listas')
-                   ->whereNotExists(function ($query) {
-                       $query->select(DB::raw(1))
-                             ->from('lista_puesto')
-                             ->whereRaw('lista_puesto.lista_id = listas.id');
+                    ->whereNotExists(function ($query) {
+                        $query->select(DB::raw(1))
+                            ->from('lista_puesto')
+                            ->whereRaw('lista_puesto.lista_id = listas.id');
                    })
                    ->get();
 
         $users = DB::table('users')
-                   ->whereNotExists(function ($query) {
-                       $query->select(DB::raw(1))
-                             ->from('puestos')
-                             ->whereRaw('puestos.user_id = users.id');
+                    ->whereNotExists(function ($query) {
+                        $query->select(DB::raw(1))
+                            ->from('puestos')
+                            ->whereRaw('puestos.user_id = users.id');
                    })
                    ->get();
 
@@ -77,19 +77,19 @@ class PuestoController extends Controller
     {
         $ubicaciones = Ubicacion::select(['id', 'nombre'])->get();
         $actividades = Actividad::select(['id', 'nombre'])->get();
-        $users = User::select(['id', 'name'])->get();
+        $users = User::select(['id', 'name', 'apellido'])->get();
         // $lists = Lista::select(['id', 'num_puesto'])->get();
         $lists = DB::table('listas')
-                   ->whereNotExists(function ($query) {
-                       $query->select(DB::raw(1))
-                             ->from('lista_puesto')
-                             ->whereRaw('lista_puesto.lista_id = listas.id');
+                    ->whereNotExists(function ($query) {
+                        $query->select(DB::raw(1))
+                            ->from('lista_puesto')
+                            ->whereRaw('lista_puesto.lista_id = listas.id');
                    })
                    ->orWhereExists(function ($query) use ($puesto) {
-                       $query->select(DB::raw(1))
-                             ->from('lista_puesto')
-                             ->whereColumn('lista_puesto.lista_id', 'listas.id')
-                             ->where('lista_puesto.puesto_id', $puesto->id);
+                        $query->select(DB::raw(1))
+                            ->from('lista_puesto')
+                            ->whereColumn('lista_puesto.lista_id', 'listas.id')
+                            ->where('lista_puesto.puesto_id', $puesto->id);
                    })
                    ->get();
 
@@ -116,11 +116,11 @@ class PuestoController extends Controller
         $puesto->delete();
 
         $lists = DB::table('lista_puesto')
-                   ->whereExists(function ($query) {
-                       $query->select(DB::raw(1))
-                             ->from('listas')
-                             ->whereRaw('lista_puesto.lista_id = listas.id');
-                   })->where('lista_puesto.puesto_id', $puesto->id)->delete();
+                    ->whereExists(function ($query) {
+                        $query->select(DB::raw(1))
+                            ->from('listas')
+                            ->whereRaw('lista_puesto.lista_id = listas.id');
+                    })->where('lista_puesto.puesto_id', $puesto->id)->delete();
 
         // $lists->each->delete();
 
