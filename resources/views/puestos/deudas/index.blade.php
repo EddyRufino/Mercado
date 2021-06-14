@@ -25,6 +25,33 @@
                         </div>
                     </div>
 
+                    <div class="row justify-content-center mt-2">
+                        <form action="{{ route('deuda.personal') }}" class="form-inline">
+                            @csrf
+                            <div class="input-group input-group-md">
+                                <input type="date" id="start" name="dateStart" class="form-control"
+                                    value="<?php echo date("Y-m-d"); ?>"
+                                    min="2018-01-01" max="2030-12-31"
+                                    required
+                                >
+
+                                <p>Hasta</p>
+
+                                <input type="date" id="last" name="dateLast" class="form-control"
+                                    value="<?php echo date("Y-m-d"); ?>"
+                                    min="2018-01-01" max="2030-12-31"
+                                    required
+                                >
+
+                                <div class="input-group-append">
+                                  <button class="btn btn-navbar bg-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                  </button>
+                                </div>
+                          </div>
+                        </form>
+                    </div>
+
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">

@@ -58,6 +58,7 @@ Route::get('/buscar-banios', 'Search\BanioSearchController@search')->name('banio
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
 Route::get('/buscar-deudas-sisa', 'Search\SearchDeudaSisa@search')->name('deuda.sisa.search');
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');
+Route::get('/buscar-deuda-sisa-personal', 'Search\SearchDeudaSisaPersonal@search')->name('deuda.personal');
 
 // Pago Sisa Control - Index [Control]
 Route::get('/pagos-sisa', 'Search\SearchPagoSisa@index')->name('pago.sisa.index');

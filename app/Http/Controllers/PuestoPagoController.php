@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Tipo;
 use App\Pago;
 use App\Puesto;
@@ -38,14 +39,19 @@ class PuestoPagoController extends Controller
 
     public function store(PuestoPagoRequest $request, Puesto $puesto)
     {
-        $data = Pago::create([
-            'fecha' => $request->fecha,
-            'num_operacion' => $request->num_operacion,
-            'num_recibo' => $request->num_recibo,
-            'monto_sisa' => $request->monto_sisa,
-            'puesto_id' => $puesto->id,
-            'tipo_id' => $request->tipo_id,
-        ]);
+        // dd(Carbon::create($request->fecha));
+        for ($i=0; $i < $request->cant_dia; $i++) {
+            $now = Carbon::create($request->fecha);
+            Pago::create([
+                'fecha' => $now->addDay($i),
+                'num_operacion' => $request->num_operacion,
+                'num_recibo' => $request->num_recibo,
+                'cant_dia' => $request->cant_dia,
+                'monto_sisa' => $request->monto_sisa,
+                'puesto_id' => $puesto->id,
+                'tipo_id' => $request->tipo_id,
+            ]);
+        }
 
         Talonario::where('tipo', 1)->update([
             'num_inicio_correlativo' => $request->num_recibo
