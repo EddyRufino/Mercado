@@ -59,6 +59,7 @@ Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sis
 Route::get('/buscar-deudas-sisa', 'Search\SearchDeudaSisa@search')->name('deuda.sisa.search');
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');
 Route::get('/buscar-deuda-sisa-personal', 'Search\SearchDeudaSisaPersonal@search')->name('deuda.personal');
+Route::get('/buscars-deudas-sisas-personales', 'Search\SearchDeudaSisaPersonal@destroy')->name('deuda.personal.destroy');
 
 // Pago Sisa Control - Index [Control]
 Route::get('/pagos-sisa', 'Search\SearchPagoSisa@index')->name('pago.sisa.index');

@@ -25,17 +25,62 @@
                         </div>
                     </div>
 
-                    <div class="row justify-content-center mt-2">
-                        <form action="{{ route('deuda.personal') }}" class="form-inline">
-                            @csrf
-                            <div class="input-group input-group-md">
+
+{{--                     <div class="col-md-6 m-auto">
+
+                        <div class="form-group row">
+                            <label for="num_recibo" class="col-md-3">DESDE</label>
+                            <div class="col-md-12">
                                 <input type="date" id="start" name="dateStart" class="form-control"
                                     value="<?php echo date("Y-m-d"); ?>"
                                     min="2018-01-01" max="2030-12-31"
                                     required
                                 >
+                            </div>
+                        </div>
 
-                                <p>Hasta</p>
+                        <div class="form-group row">
+                            <label for="num_recibo" class="col-md-3">HASTA</label>
+                            <div class="col-md-12">
+                                <input type="date" id="last" name="dateLast" class="form-control"
+                                    value="<?php echo date("Y-m-d"); ?>"
+                                    min="2018-01-01" max="2030-12-31"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="num_recibo" class="col-md-6">N. Recibo</label>
+
+                            <div class="col-md-12">
+                                <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" autocomplete="num_recibo" autofocus readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for=""></label>
+                            <div class="col-md-12">
+                                <button class="btn btn-navbar bg-primary" type="submit" onclick="return confirm('¿Estás seguro del pago?')">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="d-flex justify-content-center mt-2">
+                        <form action="{{ route('deuda.personal') }}" class="form-inline">
+                            @csrf
+                            <div class="input-group input-group-md">
+                                <select name="tipo" class="form-control">
+                                    <option value="1">Deuda Sisa</option>
+                                    <option value="2">Deuda Agua</option>
+                                </select>
+                                <input type="date" id="start" name="dateStart" class="form-control"
+                                    value="<?php echo date("Y-m-d"); ?>"
+                                    min="2018-01-01" max="2030-12-31"
+                                    required
+                                >
 
                                 <input type="date" id="last" name="dateLast" class="form-control"
                                     value="<?php echo date("Y-m-d"); ?>"
@@ -43,8 +88,10 @@
                                     required
                                 >
 
+                                <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
+
                                 <div class="input-group-append">
-                                  <button class="btn btn-navbar bg-primary" type="submit">
+                                  <button class="btn btn-navbar bg-primary" type="submit" onclick="return confirm('¿Estás seguro del pago?')">
                                     <i class="fas fa-search"></i>
                                   </button>
                                 </div>

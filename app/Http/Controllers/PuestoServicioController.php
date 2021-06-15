@@ -7,6 +7,7 @@ use App\Pago;
 use App\Deuda;
 use App\Puesto;
 use App\Talonario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\PuestoServicioRequest;
 use App\Http\Requests\PuestoServicioDeudaRequest;
@@ -39,13 +40,16 @@ class PuestoServicioController extends Controller
 
     public function store(PuestoServicioRequest $request, Puesto $puesto)
     {
-        $data = Pago::create([
-            'fecha' => $request->fecha,
-            'num_recibo' => $request->num_recibo,
-            'monto_agua' => $request->monto_agua,
-            'puesto_id' => $puesto->id,
-            'tipo_id' => $request->tipo_id,
-        ]);
+        for ($i=0; $i < $request->cant_dia; $i++) {
+            $now = Carbon::create($request->fecha);
+            $data = Pago::create([
+                'fecha' => $now->addDay($i),
+                'num_recibo' => $request->num_recibo,
+                'monto_agua' => $request->monto_agua,
+                'puesto_id' => $puesto->id,
+                'tipo_id' => $request->tipo_id,
+            ]);
+        }
 
         Talonario::where('tipo', 1)->update([
             'num_inicio_correlativo' => request()->num_recibo

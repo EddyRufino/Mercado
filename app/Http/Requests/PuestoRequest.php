@@ -30,6 +30,7 @@ class PuestoRequest extends FormRequest
             'sisa' => ['string', 'required', 'max:200'],
             'sisa_diaria' => ['string', 'required', 'max:200'],
             'riesgo_exposicion' => ['string', 'nullable', 'max:200'],
+            'monto_agua' => ['string'],
             'ubicacion_id' => ['required'],
             'actividad_id' => ['required'],
             'user_id' => ['required'],

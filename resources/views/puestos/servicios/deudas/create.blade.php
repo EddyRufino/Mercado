@@ -34,7 +34,7 @@
                                 <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">M. Agua</label>
 
                                 <div class="col-md-6">
-                                    <input id="monto_agua" type="number" step="any" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua') }}"autocomplete="monto_agua" required autofocus>
+                                    <input id="monto_agua" type="number" step="any" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ $puesto->monto_agua }}"autocomplete="monto_agua" required autofocus readonly>
 
                                     @error('monto_agua')
                                         <span class="invalid-feedback" role="alert">
@@ -66,12 +66,12 @@
                                             <a href="{{ route('puestos.servicios.create', $puesto->id) }}" class="dropdown-item">
                                                 Pago Agua
                                             </a>
-                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+{{--                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Sisa Anticipada
                                             </a>
                                             <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Agua Anticipada
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>
