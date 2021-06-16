@@ -186,7 +186,7 @@
                                         <div class="p-4 col-sm-10 col-md-6">
 
                                             <div class="">
-                                                <h4 class="font-weight-bold text-secondary">N. Correlativo</h4>
+                                                <h4 class="font-weight-bold text-secondary">N. Correlativo - Pagar deuda sisa</h4>
                                             </div>
                                             <hr>
 
@@ -311,7 +311,7 @@
                                         <div class="p-4 col-sm-10 col-md-6">
 
                                             <div class="">
-                                                <h4 class="font-weight-bold text-secondary">N. Correlativo</h4>
+                                                <h4 class="font-weight-bold text-secondary">N. Correlativo - Pagar deuda agua</h4>
                                             </div>
                                             <hr>
 
