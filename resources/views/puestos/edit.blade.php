@@ -96,6 +96,20 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="riesgo_exposicion" class="col-md-4 col-form-label text-md-right font-weight-normal">R. Exposición</label>
+
+                                    <div class="col-md-6">
+                                        <input id="riesgo_exposicion" type="text" class="form-control @error('riesgo_exposicion') is-invalid @enderror" name="riesgo_exposicion" value="{{ old('riesgo_exposicion', $puesto->riesgo_exposicion) }}" required autocomplete="riesgo_exposicion" autofocus>
+
+                                        @error('riesgo_exposicion')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-md-6">
@@ -161,20 +175,20 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="riesgo_exposicion" class="col-md-4 col-form-label text-md-right font-weight-normal">R. Exposición</label>
+                                <div class="form-group row">
+                                    <label for="monto_agua" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Monto Agua</label>
 
-                            <div class="col-md-5">
-                                <input id="riesgo_exposicion" type="text" class="form-control @error('riesgo_exposicion') is-invalid @enderror" name="riesgo_exposicion" value="{{ old('riesgo_exposicion', $puesto->riesgo_exposicion) }}" required autocomplete="riesgo_exposicion" autofocus>
+                                    <div class="col-md-6">
+                                        <input id="monto_agua" type="number" step="any" class="form-control @error('monto_agua') is-invalid @enderror" name="monto_agua" value="{{ old('monto_agua', $puesto->monto_agua) }}" required autocomplete="monto_agua" autofocus>
 
-                                @error('riesgo_exposicion')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        @error('monto_agua')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

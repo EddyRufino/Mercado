@@ -40,6 +40,17 @@
                     </li>
                @endif
 
+                @if (auth()->user()->hasRoles(['admin', 'cobrador', 'secretaria']))
+                    <li class="nav-item">
+                        <a href="{{ route('automatic.create') }}" class="nav-link">
+                            <i class="nav-icon fas fa-magic"></i>
+                            <p>
+                                Deuda Automatica
+                            </p>
+                        </a>
+                    </li>
+                @endif
+
                @if (auth()->user()->hasRoles(['comerciante']))
                     <li class="nav-item">
                         <a href="{{ route('my-debts') }}" class="nav-link">

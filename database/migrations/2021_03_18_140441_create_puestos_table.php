@@ -21,6 +21,7 @@ class CreatePuestosTable extends Migration
             $table->string('sisa');
             $table->string('sisa_diaria'); // cantidad_puesto * sisa
             $table->string('riesgo_exposicion')->nullable();
+            $table->string('monto_agua')->nullable();
             // $table->foreignId('list_id')->constrained('lists')->onDelete('cascade')->nullable();
             $table->foreignId('ubicacion_id')->constrained('ubicacions')->onDelete('cascade');
             $table->foreignId('actividad_id')->constrained('actividads')->onDelete('cascade');

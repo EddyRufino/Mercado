@@ -70,7 +70,7 @@ class PuestoDeudaController extends Controller
 
     public function destroy(Puesto $puesto, Deuda $deuda)
     {
-        // dd($deuda->tipo_id);
+        // dd($deuda);
         request()->validate(['num_recibo' => 'required']);
 
         $deuda->delete();

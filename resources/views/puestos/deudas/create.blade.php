@@ -66,12 +66,12 @@
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Agua
                                             </a>
-                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+{{--                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Sisa Anticipada
                                             </a>
                                             <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Agua Anticipada
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>

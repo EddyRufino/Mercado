@@ -6,6 +6,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Automatic Deuda
+Route::get('/generar-deudas-automaticas', 'AutomaticDeudaController@create')->name('automatic.create');
+Route::post('/generar-deudas-automaticas', 'AutomaticDeudaController@store')->name('automatic.store');
+Route::post('/generar-deudas-agua-automaticas', 'AutomaticDeudaController@save')->name('automatic.save');
+
 Route::get('profile', 'ProfileController@edit')
             ->name('profile.edit');
 
@@ -57,7 +62,13 @@ Route::get('/buscar-banios', 'Search\BanioSearchController@search')->name('banio
 // Search Control
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
 Route::get('/buscar-deudas-sisa', 'Search\SearchDeudaSisa@search')->name('deuda.sisa.search');
+
+Route::get('/buscar-pagos-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');
+Route::get('/buscar-deuda-sisa-personal', 'Search\SearchDeudaSisaPersonal@search')->name('deuda.personal');
+Route::get('/buscars-deudas-sisas-personales', 'Search\SearchDeudaSisaPersonal@destroy')->name('deuda.personal.destroy');
+
 Route::get('/buscar-pagosanticipados-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');
+
 
 // Pago Sisa Control - Index [Control]
 Route::get('/pagos-sisa', 'Search\SearchPagoSisa@index')->name('pago.sisa.index');

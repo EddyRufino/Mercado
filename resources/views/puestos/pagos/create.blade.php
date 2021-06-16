@@ -45,6 +45,20 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="cant_dia" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Días a Pagar</label>
+
+                                <div class="col-md-6">
+                                    <input id="cant_dia" type="text" class="form-control @error('cant_dia') is-invalid @enderror" name="cant_dia" value="{{ $puesto->cant_dia }}" required autocomplete="cant_dia" autofocus>
+
+                                    @error('cant_dia')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="monto_sisa" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Sisa Diaria</label>
 
                                 <div class="col-md-6">
@@ -80,12 +94,12 @@
                                             <a href="{{ route('servicio.deuda', $puesto->id) }}" class="dropdown-item">
                                                 Deuda Agua
                                             </a>
-                                            <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
+{{--                                             <a href="{{ route('puestos.pagoanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Sisa Anticipada
                                             </a>
                                             <a href="{{ route('puestos.aguaanticipados.create', $puesto->id) }}" class="dropdown-item">
                                                Agua Anticipada
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
                                 </div>
