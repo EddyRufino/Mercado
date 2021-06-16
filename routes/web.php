@@ -6,6 +6,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Automatic Deuda
+Route::get('/generar-deudas-automaticas', 'AutomaticDeudaController@create')->name('automatic.create');
+Route::post('/generar-deudas-automaticas', 'AutomaticDeudaController@store')->name('automatic.store');
+Route::post('/generar-deudas-agua-automaticas', 'AutomaticDeudaController@save')->name('automatic.save');
+
 Route::get('profile', 'ProfileController@edit')
             ->name('profile.edit');
 
