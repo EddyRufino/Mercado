@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers\Search;
 
-use App\Deuda;
-use App\Http\Controllers\Controller;
 use App\Pago;
+use App\Deuda;
+use App\Puesto;
 use App\Talonario;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SearchDeudaSisaPersonal extends Controller
 {
-    public function search(Request $request)
+    public function search(Request $request, Puesto $puesto)
     {
         $now = Carbon::now();
 
-        $deudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])->get();
-        $aguaDeudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])->get();
+        $deudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
+                    ->where('puesto_id', $request->puesto_id)
+                    ->get();
+
+        $aguaDeudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
+                    ->where('puesto_id', $request->puesto_id)
+                    ->get();
 
         if ($request->tipo == 1) {
 
@@ -81,9 +87,11 @@ class SearchDeudaSisaPersonal extends Controller
         $tazaInicio = $inicio->num_inicio_correlativo;
         $tazaFin = $fin->num_fin;
 
-        Talonario::where('tipo', 1)->update([
-            'num_inicio_correlativo' => request()->num_recibo
-        ]);
+        if ($deudas->count() > 0 || $aguaDeudas->count() > 0) {
+            Talonario::where('tipo', 1)->update([
+                'num_inicio_correlativo' => request()->num_recibo
+            ]);
+        }
 
         return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
     }

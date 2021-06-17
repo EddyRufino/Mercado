@@ -80,9 +80,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
         @else
             <h2 class="text-secondary p-2">No Tienes permisos para ver esta vista</h2>
         @endif
@@ -93,74 +90,71 @@
 @push('scripts')
     <script>
         function showModal() {
-          document.getElementById('openModal').style.display = 'block';
+            document.getElementById('openModal').style.display = 'block';
         }
 
         function CloseModal() {
-          document.getElementById('openModal').style.display = 'none';
+            document.getElementById('openModal').style.display = 'none';
         }
     </script>
 
     <script>
         function showModalAgua() {
-          document.getElementById('openModalAgua').style.display = 'block';
+            document.getElementById('openModalAgua').style.display = 'block';
         }
 
         function CloseModalAgua() {
-          document.getElementById('openModalAgua').style.display = 'none';
+            document.getElementById('openModalAgua').style.display = 'none';
         }
     </script>
 @endpush
 
 @push('styles')
-  <style>
-    .content-modal {
-
-    }
+<style>
     .modalDialog {
-      position: fixed;
-      font-family: Arial, Helvetica, sans-serif;
-      top: 15px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 99999;
-      display:none;
-      -webkit-transition: opacity 400ms ease-in;
-      -moz-transition: opacity 400ms ease-in;
-      transition: opacity 400ms ease-in;
-      pointer-events: auto;
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 15px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 99999;
+        display:none;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: auto;
     }
     .modalDialog > div {
-      width: 100%;
-      position: relative;
-      margin: 10% auto;
-      padding: 5px 20px 13px 20px;
-      border-radius: 10px;
-      background: #fff;
-      -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
+        width: 100%;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
     }
     .close {
-      background: #606061;
-      color: #FFFFFF;
-      line-height: 25px;
-      position: absolute;
-      right: -12px;
-      text-align: center;
-      top: -10px;
-      width: 24px;
-      text-decoration: none;
-      font-weight: bold;
-      -webkit-border-radius: 12px;
-      -moz-border-radius: 12px;
-      border-radius: 12px;
-      -moz-box-shadow: 1px 1px 3px #000;
-      -webkit-box-shadow: 1px 1px 3px #000;
-      box-shadow: 1px 1px 3px #000;
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
     }
     .close:hover { background: #00d9ff; }
-  </style>
+</style>
 @endpush

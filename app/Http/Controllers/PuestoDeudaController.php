@@ -26,12 +26,18 @@ class PuestoDeudaController extends Controller
         $this->authorize('view', $puesto);
 
         $deudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
-            $query->where('user_id', $puesto->user_id)->whereNotNull('monto_sisa');
-        })->orderBy('fecha', 'asc')->paginate(4);
+            $query->where('user_id', $puesto->user_id);
+        })
+            ->whereNotNull('monto_sisa')
+            ->orderBy('fecha', 'asc')
+            ->paginate(4);
 
         $aguaDeudas = Deuda::whereHas('puesto', function (Builder $query) use ($puesto) {
-            $query->where('user_id', $puesto->user_id)->whereNotNull('monto_agua');
-        })->orderBy('fecha', 'asc')->paginate(4);
+            $query->where('user_id', $puesto->user_id);
+        })
+            ->whereNotNull('monto_agua')
+            ->orderBy('fecha', 'asc')
+            ->paginate(4);
 
         // Obtiene el num del talonario
         $inicio = Talonario::select('num_inicio_correlativo')
@@ -47,7 +53,7 @@ class PuestoDeudaController extends Controller
         $tazaInicio = $inicio->num_inicio_correlativo;
         $tazaFin = $fin->num_fin;
 
-        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
+        return view('puestos.deudas.index', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin', 'puesto'));
     }
 
     public function create(Puesto $puesto)

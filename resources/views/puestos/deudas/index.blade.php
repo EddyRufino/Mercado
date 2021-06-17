@@ -25,52 +25,10 @@
                         </div>
                     </div>
 
-
-{{--                     <div class="col-md-6 m-auto">
-
-                        <div class="form-group row">
-                            <label for="num_recibo" class="col-md-3">DESDE</label>
-                            <div class="col-md-12">
-                                <input type="date" id="start" name="dateStart" class="form-control"
-                                    value="<?php echo date("Y-m-d"); ?>"
-                                    min="2018-01-01" max="2030-12-31"
-                                    required
-                                >
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="num_recibo" class="col-md-3">HASTA</label>
-                            <div class="col-md-12">
-                                <input type="date" id="last" name="dateLast" class="form-control"
-                                    value="<?php echo date("Y-m-d"); ?>"
-                                    min="2018-01-01" max="2030-12-31"
-                                    required
-                                >
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="num_recibo" class="col-md-6">N. Recibo</label>
-
-                            <div class="col-md-12">
-                                <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" autocomplete="num_recibo" autofocus readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for=""></label>
-                            <div class="col-md-12">
-                                <button class="btn btn-navbar bg-primary" type="submit" onclick="return confirm('¿Estás seguro del pago?')">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div> --}}
-
                     <div class="d-flex justify-content-center mt-2">
-                        <form action="{{ route('deuda.personal') }}" class="form-inline">
+                        <form id="myform" action="{{ route('deuda.personal') }}" class="form-inline">
                             @csrf
+                            <input type="hidden" name="puesto_id" value="{{ $puesto->id }}">
                             <div class="input-group input-group-md">
                                 <select name="tipo" class="form-control">
                                     <option value="1">Deuda Sisa</option>
@@ -91,7 +49,7 @@
                                 <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
 
                                 <div class="input-group-append">
-                                  <button class="btn btn-navbar bg-primary" type="submit" onclick="return confirm('¿Estás seguro del pago?')">
+                                  <button class="btn btn-navbar bg-primary" type="submit" onclick="mostrarAll(event)">
                                     <i class="fas fa-search"></i>
                                   </button>
                                 </div>
@@ -190,7 +148,7 @@
                                             </div>
                                             <hr>
 
-                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                            <form id="myform2" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
                                                     method="POST"
                                                     style="display: inline;"
                                                 >
@@ -214,7 +172,7 @@
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
                                                             class="btn btn-primary"
-                                                            onclick="return confirm('¿Estás seguro del pago?')"
+                                                            onclick="mostrar(event)"
                                                         >
                                                             Guardar Pago
                                                         </button>
@@ -315,7 +273,7 @@
                                             </div>
                                             <hr>
 
-                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                            <form id="myform3" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
                                                     method="POST"
                                                     style="display: inline;"
                                                 >
@@ -339,7 +297,7 @@
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
                                                             class="btn btn-primary"
-                                                            onclick="return confirm('¿Estás seguro del pago?')"
+                                                            onclick="mostrarOneAgua(event)"
                                                         >
                                                             Guardar Pago
                                                         </button>
@@ -400,6 +358,74 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{-- Pagar muchos --}}
+<script type="text/javascript">
+    function mostrarAll() {
+        event.preventDefault();
+        Swal.fire({
+          title: "Estás segur@?",
+          text: "Recuerda estar completamente segur@!",
+          showDenyButton: true,  showCancelButton: false,
+          confirmButtonText: `Sí`,
+          denyButtonText: `Salir`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                document.getElementById("myform").submit();
+            } else if (result.isDenied) {
+                Swal.fire('Los cambios no se guardaron', '', 'info')
+            }
+        });
+
+    }
+</script>
+
+{{-- Pagar por 1 sisa --}}
+<script type="text/javascript">
+    function mostrar() {
+        event.preventDefault();
+        Swal.fire({
+          title: "Estás segur@?",
+          text: "Recuerda estar completamente segur@!",
+          showDenyButton: true,  showCancelButton: false,
+          confirmButtonText: `Sí`,
+          denyButtonText: `Salir`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                document.getElementById("myform2").submit();
+            } else if (result.isDenied) {
+                Swal.fire('Los cambios no se guardaron', '', 'info')
+            }
+        });
+
+    }
+</script>
+
+{{-- Pagar por 1 agua --}}
+<script type="text/javascript">
+    function mostrarOneAgua() {
+        event.preventDefault();
+        Swal.fire({
+          title: "Estás segur@?",
+          text: "Recuerda estar completamente segur@!",
+          showDenyButton: true,  showCancelButton: false,
+          confirmButtonText: `Sí`,
+          denyButtonText: `Salir`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                document.getElementById("myform3").submit();
+            } else if (result.isDenied) {
+                Swal.fire('Los cambios no se guardaron', '', 'info')
+            }
+        });
+
+    }
+</script>
+
     <script>
         function showModal() {
           document.getElementById('openModal').style.display = 'block';
@@ -434,7 +460,7 @@
       bottom: 0;
       left: 0;
       background: rgba(0,0,0,0.5);
-      z-index: 99999;
+      z-index: 5;
       display:none;
       -webkit-transition: opacity 400ms ease-in;
       -moz-transition: opacity 400ms ease-in;
