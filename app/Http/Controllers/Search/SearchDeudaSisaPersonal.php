@@ -16,15 +16,16 @@ class SearchDeudaSisaPersonal extends Controller
     {
         $now = Carbon::now();
 
-        $deudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
-                    ->where('puesto_id', $request->puesto_id)
-                    ->get();
+        $deudas = collect([]);
+        $aguaDeudas = collect([]);
 
-        $aguaDeudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
-                    ->where('puesto_id', $request->puesto_id)
-                    ->get();
+        if ($request->tipo == '1') {
 
-        if ($request->tipo == 1) {
+            $deudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
+                    ->where('puesto_id', $request->puesto_id)
+                    ->where('tipo_id', 2)
+                    ->whereNotNull('monto_sisa')
+                    ->get();
 
             $dias = $deudas->count();
 
@@ -47,8 +48,15 @@ class SearchDeudaSisaPersonal extends Controller
             }
 
             $deudas->each->delete();
-        } else {
+        }
 
+        if ($request->tipo == '2') {
+
+            $aguaDeudas = Deuda::whereBetween('fecha', [$request->dateStart, $request->dateLast])
+                    ->where('puesto_id', $request->puesto_id)
+                    ->where('tipo_id', 5)
+                    ->whereNotNull('monto_agua')
+                    ->get();
 
             $dias = $aguaDeudas->count();
 
@@ -73,6 +81,8 @@ class SearchDeudaSisaPersonal extends Controller
             $aguaDeudas->each->delete();
         }
 
+        // dd($deudas, $aguaDeudas);
+
         // Obtiene el num del talonario
         $inicio = Talonario::select('num_inicio_correlativo')
                             ->where('tipo', 1)
@@ -93,7 +103,8 @@ class SearchDeudaSisaPersonal extends Controller
             ]);
         }
 
-        return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
+        // return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
+        return redirect()->back()->with('status', 'Se registraron los pagos correctamente');
     }
 
     public function destroy(Request $request)

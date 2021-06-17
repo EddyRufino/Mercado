@@ -32,7 +32,7 @@ class AutomaticDeudaController extends Controller
             ]);
         });
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se registro la deuda a todos los comerciantes!');
     }
 
     public function save(Request $request)
@@ -53,6 +53,6 @@ class AutomaticDeudaController extends Controller
             ]);
         });
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Se registro la deuda a todos los comerciantes!');
     }
 }
