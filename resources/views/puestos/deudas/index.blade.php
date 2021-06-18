@@ -46,7 +46,7 @@
                                     required
                                 >
 
-                                <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
+                                <input id="num_recibo" type="hidden" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
 
                                 <div class="input-group-append">
                                   <button class="btn btn-navbar bg-primary" type="submit" onclick="mostrarAll(event)">
@@ -60,7 +60,10 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
-                                <li class="list-group mt-3">
+                            <p class="">El número correlativo que sigue es:
+                                <strong>{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}</strong>
+                            </p>
+                                <li class="list-group">
                                   <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
                                     <span class="font-weight-bold">Listado Deuda Sisa</span>
                                 @if ($deudas->count() >= 1 )
@@ -103,23 +106,27 @@
                                                     @include('icons.icon-date')
                                                     {{ $deuda->fecha }}
                                                 </span>
+
                                             </div>
-
-
-
-
 
                                             <div class="col-sm-12 col-md-5 d-flex justify-content-around">
                                                 <span class="text-secondary">S/. {{ $deuda->monto_sisa }}</span>
 
-{{--                                               @auth
+
+
+                                              @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
-                                                <form method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                                <form id="myform2" method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
                                                         style="display: inline;">
                                                         {{ csrf_field() }} {{ method_field('DELETE') }}
+
+                                                  <input id="num_recibo" type="hidden" class="form-control col-sm-2
+                                                  col-md-2" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required readonly>
+
                                                   <button class="btn btn-xs btn-link p-0 m-0"
-                                                    onclick="return confirm('¿Estás seguro del pago?')" data-toggle="tooltip" data-placement="top" title="Pagar Deuda">
+                                                    onclick="return confirm('¿Estás seguro del pago?')"
+                                                    data-toggle="tooltip" data-placement="top" title="Pagar Deuda">
 
                                                     @include('icons.icon-pay')
 
@@ -127,11 +134,11 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth --}}
-                        {{-- <button type="button" class="btn btn-primary btn-sm" >
+                                              @endauth
+{{--                         <button type="button" class="btn btn-primary btn-sm" >
                             Open
                         </button> --}}
-                                    <button class="btn btn-xs btn-link p-0 m-0"
+{{--                                     <button class="btn btn-xs btn-link p-0 m-0"
                                         title="Pagar Deuda"
                                         onclick="javascript:showModal();"
                                     >
@@ -139,6 +146,7 @@
                                         @include('icons.icon-pay')
 
                                     </button>
+
 
                                     <div id="openModal" class="modalDialog">
                                         <div class="p-4 col-sm-10 col-md-6">
@@ -148,7 +156,7 @@
                                             </div>
                                             <hr>
 
-                                            <form id="myform2" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
                                                     method="POST"
                                                     style="display: inline;"
                                                 >
@@ -172,7 +180,7 @@
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
                                                             class="btn btn-primary"
-                                                            onclick="mostrar(event)"
+                                                            onclick="return confirm('¿Estás seguro del pago?')"
                                                         >
                                                             Guardar Pago
                                                         </button>
@@ -188,7 +196,7 @@
 
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -206,6 +214,9 @@
                     <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
+                            <p class="">El número correlativo que sigue es:
+                                <strong>{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}</strong>
+                            </p>
                                 <li class="list-group mt-3">
                                   <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
                                     <span class="font-weight-bold">Listado Deuda Agua</span>
@@ -256,7 +267,7 @@
                                                 </span>
 
 
-                                    <button class="btn btn-xs btn-link p-0 m-0"
+{{--                                     <button class="btn btn-xs btn-link p-0 m-0"
                                         title="Pagar Deuda"
                                         onclick="javascript:showModalAgua();"
                                     >
@@ -273,7 +284,7 @@
                                             </div>
                                             <hr>
 
-                                            <form id="myform3" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
+                                            <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
                                                     method="POST"
                                                     style="display: inline;"
                                                 >
@@ -297,7 +308,7 @@
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
                                                             class="btn btn-primary"
-                                                            onclick="mostrarOneAgua(event)"
+                                                            onclick="return confirm('¿Estás seguro del pago?')"
                                                         >
                                                             Guardar Pago
                                                         </button>
@@ -311,11 +322,11 @@
 
 
                                         </div>
-                                    </div>
+                                    </div> --}}
 
 
 
-{{--                                               @auth
+                                              @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
                                                 <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
@@ -323,6 +334,8 @@
                                                         style="display: inline;"
                                                     >
                                                         @csrf @method('DELETE')
+
+                                                    <input id="num_recibo" type="hidden" class="form-control col-sm-2 col-md-2" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required readonly>
 
                                                     <button class="btn btn-xs btn-link p-0 m-0"
                                                     onclick="return confirm('¿Estás seguro del pago?')" data-toggle="tooltip" data-placement="top" title="Pagar Deuda">
@@ -333,7 +346,7 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth --}}
+                                              @endauth
                                             </div>
                                         </div>
                                     </div>

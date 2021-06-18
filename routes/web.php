@@ -60,7 +60,7 @@ Route::get('/buscar-users', 'Search\UserSearchController@search')->name('users.s
 Route::get('/buscar-promociones', 'Search\PromocionSearchController@search')->name('promociones.search');
 Route::get('/buscar-banios', 'Search\BanioSearchController@search')->name('banio.search');
 // Search Control
-Route::get('/buscar-pagos-sisa', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
+Route::get('/buscar-pagos-sisa-control', 'Search\SearchPagoSisa@search')->name('pago.sisa.search');
 Route::get('/buscar-deudas-sisa', 'Search\SearchDeudaSisa@search')->name('deuda.sisa.search');
 
 Route::get('/buscar-pagos-sisa', 'Search\SearchPagoAnticipadoControlSisa@search')->name('pagoanticipado.sisa.search');

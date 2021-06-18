@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use DateTime;
 use App\Tipo;
 use App\Pago;
 use App\Puesto;
@@ -39,8 +40,11 @@ class PuestoPagoController extends Controller
 
     public function store(PuestoPagoRequest $request, Puesto $puesto)
     {
-        // dd(Carbon::create($request->fecha));
-        for ($i=0; $i < $request->cant_dia; $i++) {
+        $start = Carbon::create($request->fecha);
+        $last = Carbon::create($request->fecha_fin);
+        $cant_dia = $start->diffInDays($last);
+
+        for ($i=0; $i <= $cant_dia; $i++) {
             $now = Carbon::create($request->fecha);
             Pago::create([
                 'fecha' => $now->addDay($i),
