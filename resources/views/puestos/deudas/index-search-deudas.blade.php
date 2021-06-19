@@ -8,6 +8,7 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
+                                <h3 class="text-dark">Los pagos realizados fueron:</h3>
                                 <li class="list-group mt-3">
 
                                 @forelse ($deudas as $deuda)
@@ -33,10 +34,11 @@
                                 </li>
                                 @endforeach
 
-                                <div class="overflow-auto mt-1">
-                                </div>
+                                <a href="{{ route('home') }}">Regresar</a>
+
                             </div>
                         </div>
+
                     </div>
 
 
