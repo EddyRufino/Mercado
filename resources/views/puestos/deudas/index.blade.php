@@ -25,7 +25,10 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center mt-2">
+                    <div class="d-flex flex-column align-items-center justify-content-center mt-2">
+                        <p class="text-dark">El número correlativo que sigue es:
+                            <strong>{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}</strong>
+                        </p>
                         <form id="myform" action="{{ route('deuda.personal') }}" class="form-inline">
                             @csrf
                             <input type="hidden" name="puesto_id" value="{{ $puesto->id }}">
@@ -60,12 +63,10 @@
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
-                            <p class="">El número correlativo que sigue es:
-                                <strong>{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}</strong>
-                            </p>
+
                                 <li class="list-group">
-                                  <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
-                                    <span class="font-weight-bold">Listado Deuda Sisa</span>
+                                    <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
+                                        <span class="font-weight-bold">Listado Deuda Sisa</span>
                                 @if ($deudas->count() >= 1 )
                                     <div>
                                         <a class="text-white mr-1 font-weight-bold"
@@ -87,7 +88,7 @@
                                     </div>
                                 @endif
 
-                                  </li>
+                                    </li>
 
                                 @forelse ($deudas as $deuda)
                                     <div class="list-group-item list-group-item-action">
@@ -113,8 +114,7 @@
                                                 <span class="text-secondary">S/. {{ $deuda->monto_sisa }}</span>
 
 
-
-                                              @auth
+                                            @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
                                                 <form id="myform2" method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
@@ -134,7 +134,8 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth
+                                            @endauth
+
 {{--                         <button type="button" class="btn btn-primary btn-sm" >
                             Open
                         </button> --}}
@@ -214,9 +215,6 @@
                     <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
-                            <p class="">El número correlativo que sigue es:
-                                <strong>{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}</strong>
-                            </p>
                                 <li class="list-group mt-3">
                                   <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
                                     <span class="font-weight-bold">Listado Deuda Agua</span>
