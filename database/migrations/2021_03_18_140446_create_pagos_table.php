@@ -15,7 +15,7 @@ class CreatePagosTable extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha'); // Fecha que pago
+            $table->datetime('fecha'); // Fecha que pago
             $table->date('fecha_deuda')->nullable(); // Fecha deuda
             $table->string('num_operacion')->nullable();
             $table->string('monto_deposito')->nullable();

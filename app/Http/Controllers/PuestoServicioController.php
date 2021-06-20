@@ -40,10 +40,21 @@ class PuestoServicioController extends Controller
 
     public function store(PuestoServicioRequest $request, Puesto $puesto)
     {
-        for ($i=0; $i < $request->cant_dia; $i++) {
+        // $cant_dia = 8;
+        // $today = Carbon::now()->endOfMonth()->addMonth($cant_dia)->toDateString();
+        // $today = Carbon::create()->endOfMonth()->modify("+1 month");
+        // dd(Carbon::now()->endOfMonth()->addMonth($cant_dia)->format('m'));
+        // dd(Carbon::create($request->fecha)->addMonths(4)->format('m'));
+        // dd(Carbon::create($request->fecha)->startOfMonth()->endOfMonth()->toDateString());
+        $start = Carbon::create($request->fecha);
+        $last = Carbon::create($request->fecha_fin);
+        $cant_dia = $start->diffInMonths($last);
+        // dd($cant_dia + 1);
+
+        for ($i=1; $i <= $cant_dia; $i++) {
             $now = Carbon::create($request->fecha);
             $data = Pago::create([
-                'fecha' => $now->addDay($i),
+                'fecha' => date("Y-m-t", strtotime($now->startOfMonth()->addMonth($i)->subSeconds(1)->toDateTimeString())),
                 'num_recibo' => $request->num_recibo,
                 'monto_agua' => $request->monto_agua,
                 'puesto_id' => $puesto->id,
