@@ -63,13 +63,20 @@ class PuestoDeudaController extends Controller
 
     public function store(PuestoDeudaRequest $request, Puesto $puesto)
     {
-        $data = Deuda::create([
-            'fecha' => $request->fecha,
-            'num_operacion' => $request->num_operacion,
-            'monto_sisa' => $request->monto_sisa,
-            'puesto_id' => $puesto->id,
-            'tipo_id' => 2,
-        ]);
+        $start = Carbon::create($request->fecha);
+        $last = Carbon::create($request->fecha_fin);
+        $cant_dia = $start->diffInDays($last);
+
+        for ($i=0; $i <= $cant_dia; $i++) {
+            $now = Carbon::create($request->fecha);
+            Deuda::create([
+                'fecha' => $now->addDay($i),
+                'num_operacion' => $request->num_operacion,
+                'monto_sisa' => $request->monto_sisa,
+                'puesto_id' => $puesto->id,
+                'tipo_id' => 2,
+            ]);
+        }
 
         return redirect()->route('home')->with('status', "La deuda fue procesada con éxito!");
     }

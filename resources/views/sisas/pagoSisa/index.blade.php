@@ -114,7 +114,7 @@
                         <tbody>
                             @forelse ($pagos as $pago)
                                 <tr>
-                                    <td>{{ $pago->fecha }}</td>
+                                    <td>{{ Carbon\Carbon::parse($pago->fecha)->format('Y-m-d') }}</td>
                                     <td>{{ $pago->fecha_deuda }}</td>
                                     <td>{{ $pago->num_recibo }}</td>
                                     <td>{{ $pago->num_operacion }}</td>

@@ -32,7 +32,7 @@ class AutomaticDeudaController extends Controller
             ]);
         });
 
-        return redirect()->back()->with('status', 'Se registro la deuda a todos los comerciantes!');
+        return redirect()->back()->with('status', "Se registro la deuda sisa a todos los comerciantes para la fecha $request->fecha");
     }
 
     public function save(Request $request)
@@ -40,7 +40,7 @@ class AutomaticDeudaController extends Controller
         $puestos = Puesto::all();
 
         $puestos->each(function ($item) use ($request) {
-            // SISA
+            // AGUA
             Deuda::create([
                 'fecha' => $request->fechaAgua,
                 'num_operacion' => NULL,
@@ -53,6 +53,6 @@ class AutomaticDeudaController extends Controller
             ]);
         });
 
-        return redirect()->back()->with('status', 'Se registro la deuda a todos los comerciantes!');
+        return redirect()->back()->with('status', "Se registro la deuda agua a todos los comerciantes para la fecha $request->fechaAgua");
     }
 }

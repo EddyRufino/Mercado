@@ -111,7 +111,7 @@
                         <tbody>
                             @forelse ($pagos as $pagosanticipado)
                                 <tr>
-                                    <td>{{ $pagosanticipado->fecha }}</td>
+                                    <td>{{ Carbon\Carbon::parse($pagosanticipado->fecha)->format('Y-m-d') }}</td>
                                     <td>{{ $pagosanticipado->fecha_anticipada }}</td>
                                     <td>{{ $pagosanticipado->num_recibo }}</td>
                                     <td>{{ $pagosanticipado->num_operacion }}</td>

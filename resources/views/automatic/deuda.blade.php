@@ -15,7 +15,7 @@
                                 <label class="col-md-4 text-dark col-form-label text-md-right font-weight-normal"
                                     for="fecha"
                                 >
-                                    Fecha Deuda
+                                    Fecha Deuda Sisa
                                 </label>
 
                                 <div class="col-md-6">
@@ -66,7 +66,7 @@
                                 <label class="col-md-4 text-dark col-form-label text-md-right font-weight-normal"
                                     for="fecha"
                                 >
-                                    Fecha Deuda
+                                    Fecha Deuda Agua
                                 </label>
 
                                 <div class="col-md-6">

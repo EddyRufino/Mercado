@@ -78,15 +78,30 @@ class PuestoServicioController extends Controller
 
     public function save(PuestoServicioDeudaRequest $request, Puesto $puesto)
     {
-        // dd($request->all());
-        $data = Deuda::create([
-            'fecha' => $request->fecha,
-            'num_operacion' => NULL,
-            'monto_agua' => $request->monto_agua,
-            'puesto_id' => $puesto->id,
-            'tipo_id' => $request->tipo_id,
-        ]);
+        $start = Carbon::create($request->fecha);
+        $last = Carbon::create($request->fecha_fin);
+        $cant_dia = $start->diffInMonths($last);
+        // dd($cant_dia);
 
-        return redirect()->route('home')->with('status', "El pago fue procesado con éxito - número de recibo  $request->num_recibo ");
+        for ($i=1; $i <= $cant_dia; $i++) {
+            $now = Carbon::create($request->fecha);
+            $data = Deuda::create([
+                'fecha' => date("Y-m-t", strtotime($now->startOfMonth()->addMonth($i)->subSeconds(1)->toDateTimeString())),
+                'num_operacion' => NULL,
+                'monto_agua' => $request->monto_agua,
+                'puesto_id' => $puesto->id,
+                'tipo_id' => $request->tipo_id,
+            ]);
+        }
+
+        // $data = Deuda::create([
+        //     'fecha' => $request->fecha,
+        //     'num_operacion' => NULL,
+        //     'monto_agua' => $request->monto_agua,
+        //     'puesto_id' => $puesto->id,
+        //     'tipo_id' => $request->tipo_id,
+        // ]);
+
+        return redirect()->route('home')->with('status', "La deuda fue procesada con éxito");
     }
 }
