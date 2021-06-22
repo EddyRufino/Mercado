@@ -33,9 +33,14 @@
                             @csrf
                             <input type="hidden" name="puesto_id" value="{{ $puesto->id }}">
                             <div class="input-group input-group-md">
-                                <select name="tipo" class="form-control">
-                                    <option value="1">Deuda Sisa</option>
-                                    <option value="2">Deuda Agua</option>
+                                <input type="date" id="start" name="fecha_last" class="form-control"
+                                        value="<?php echo date("Y-m-d"); ?>"
+                                        min="2016-01-01" max="2030-12-31" required
+                                >
+                                <select name="tipo" class="form-control" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="1">Pagar Sisa</option>
+                                    <option value="2">Pagar Agua</option>
                                 </select>
                                 <input type="date" id="start" name="dateStart" class="form-control"
                                     value="<?php echo date("Y-m-d"); ?>"
@@ -53,7 +58,7 @@
 
                                 <div class="input-group-append">
                                   <button class="btn btn-navbar bg-primary" type="submit" onclick="mostrarAll(event)">
-                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-save"></i>
                                   </button>
                                 </div>
                           </div>
@@ -105,7 +110,7 @@
                                                 </span>
                                                 <span class="text-secondary">
                                                     @include('icons.icon-date')
-                                                    {{ $deuda->fecha }}
+                                                    {{ Carbon\Carbon::parse($deuda->fecha)->format('Y-m-d') }}
                                                 </span>
 
                                             </div>
@@ -114,7 +119,7 @@
                                                 <span class="text-secondary">S/. {{ $deuda->monto_sisa }}</span>
 
 
-                                            @auth
+{{--                                             @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
                                                 <form id="myform2" method="POST" action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
@@ -134,12 +139,12 @@
                                                 </form>
 
                                                 @endif
-                                            @endauth
+                                            @endauth --}}
 
 {{--                         <button type="button" class="btn btn-primary btn-sm" >
                             Open
                         </button> --}}
-{{--                                     <button class="btn btn-xs btn-link p-0 m-0"
+                                    <button class="btn btn-xs btn-link p-0 m-0"
                                         title="Pagar Deuda"
                                         onclick="javascript:showModal();"
                                     >
@@ -177,6 +182,22 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group row">
+                                                    <label for="fecha_last" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
+
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="start" name="fecha_last" class="form-control @error('fecha_last') is-invalid @enderror"
+                                                               value="<?php echo date("Y-m-d"); ?>"
+                                                               min="2016-01-01" max="2030-12-31" required >
+
+                                                        @error('fecha_last')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group row mb-0">
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
@@ -197,7 +218,7 @@
 
 
                                         </div>
-                                    </div> --}}
+                                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +236,7 @@
                     <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="col-md-8 m-auto">
-                                <li class="list-group mt-3">
+                                <li class="list-group">
                                   <li class="list-group-item list-group-item-action bg-info d-flex justify-content-between">
                                     <span class="font-weight-bold">Listado Deuda Agua</span>
                                 @if ($deudas->count() >= 1 )
@@ -256,7 +277,7 @@
                                                 </span>
                                                 <span class="text-secondary">
                                                     @include('icons.icon-date')
-                                                    {{ $deuda->fecha }}
+                                                    {{ Carbon\Carbon::parse($deuda->fecha)->format('Y-m-d') }}
                                                 </span>
                                             </div>
                                             <div class="col-sm-12 col-md-5 d-flex justify-content-around">

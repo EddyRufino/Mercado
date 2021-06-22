@@ -78,12 +78,14 @@ class PuestoDeudaController extends Controller
             ]);
         }
 
-        return redirect()->route('home')->with('status', "La deuda fue procesada con éxito!");
+        $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia + 1;
+
+        return redirect()->route('home')->with('status', "Registro exitoso - $cant_dias día(s) más sin pagar.");
     }
 
     public function destroy(Puesto $puesto, Deuda $deuda)
     {
-        // dd(request()->num_recibo);
+        // dd(request()->fecha_last);
         request()->validate(['num_recibo' => 'required']);
 
         $deuda->delete();
@@ -92,10 +94,12 @@ class PuestoDeudaController extends Controller
         $fecha = $fecha->format('Y-m-d');
 
         Pago::create([
-            'fecha' => $fecha,
+            // 'fecha' => $fecha,
+            'fecha' => request()->fecha_last, // Quitalo para cuando hayan pasado su data y luego comentalo
             'fecha_deuda' => $deuda->fecha,
             'num_operacion' => NULL,
             'num_recibo' => request()->num_recibo,
+            'cant_dia' => "1",
             'monto_remodelacion' => $deuda->monto_remodelacion,
             'monto_constancia' => $deuda->monto_constancia,
             'monto_agua' => $deuda->monto_agua,
@@ -108,6 +112,6 @@ class PuestoDeudaController extends Controller
             'num_inicio_correlativo' => request()->num_recibo
         ]);
 
-        return back()->with('status', 'Pago de la deuda fue un éxito!');
+        return back()->with('status', "Pago de la deuda fue un éxito! - Fecha pagada $deuda->fecha");
     }
 }

@@ -56,6 +56,7 @@ class PuestoServicioController extends Controller
             $data = Pago::create([
                 'fecha' => date("Y-m-t", strtotime($now->startOfMonth()->addMonth($i)->subSeconds(1)->toDateTimeString())),
                 'num_recibo' => $request->num_recibo,
+                'cant_dia' => $cant_dia == 0 ? $cant_dia + 1 : $cant_dia,
                 'monto_agua' => $request->monto_agua,
                 'puesto_id' => $puesto->id,
                 'tipo_id' => $request->tipo_id,
@@ -66,7 +67,9 @@ class PuestoServicioController extends Controller
             'num_inicio_correlativo' => request()->num_recibo
         ]);
 
-        return redirect()->route('home')->with('status', "El pago fue procesado con éxito - número de recibo  $request->num_recibo ");
+        $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
+
+        return redirect()->route('home')->with('status', "Pagaste $cant_dias mes(es) con éxito - número de recibo  $request->num_recibo ");
     }
 
     /** Aquí para deudas **/
@@ -94,6 +97,8 @@ class PuestoServicioController extends Controller
             ]);
         }
 
+        $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
+
         // $data = Deuda::create([
         //     'fecha' => $request->fecha,
         //     'num_operacion' => NULL,
@@ -102,6 +107,6 @@ class PuestoServicioController extends Controller
         //     'tipo_id' => $request->tipo_id,
         // ]);
 
-        return redirect()->route('home')->with('status', "La deuda fue procesada con éxito");
+        return redirect()->route('home')->with('status', "Registro exitoso - $cant_dias mes(es) más sin pagar.");
     }
 }

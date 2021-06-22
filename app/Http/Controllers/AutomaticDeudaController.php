@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Deuda;
 use App\Pago;
 use App\Puesto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class AutomaticDeudaController extends Controller
 {
@@ -16,7 +18,9 @@ class AutomaticDeudaController extends Controller
 
     public function store(Request $request)
     {
-        $puestos = Puesto::all();
+        $puestos = Puesto::whereDoesntHave('pagos', function (Builder $query) use ($request) {
+            $query->whereDate('fecha', $request->fecha)->whereNull('monto_agua');
+        })->get();
 
         $puestos->each(function ($item) use ($request) {
             // SISA
@@ -37,7 +41,14 @@ class AutomaticDeudaController extends Controller
 
     public function save(Request $request)
     {
-        $puestos = Puesto::all();
+        $year = Carbon::create($request->fechaAgua)->format('Y');
+        $month = Carbon::create($request->fechaAgua)->format('m');
+
+        $puestos = Puesto::whereDoesntHave('pagos', function (Builder $query) use ($year, $month) {
+            $query->whereYear('fecha', $year)
+                ->whereMonth('fecha', $month)
+                ->whereNull('monto_sisa');
+        })->get();
 
         $puestos->each(function ($item) use ($request) {
             // AGUA
@@ -53,6 +64,6 @@ class AutomaticDeudaController extends Controller
             ]);
         });
 
-        return redirect()->back()->with('status', "Se registro la deuda agua a todos los comerciantes para la fecha $request->fechaAgua");
+        return redirect()->back()->with('status', "Se registro la deuda agua a todos los comerciantes para la fecha $month/$year");
     }
 }
