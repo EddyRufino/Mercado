@@ -40,6 +40,11 @@ class PuestoPagoController extends Controller
 
     public function store(PuestoPagoRequest $request, Puesto $puesto)
     {
+        $request->validate([
+            'fecha' => 'required|date',
+            'fecha_fin' => 'required|date|date_format:Y-m-d|after_or_equal:fecha',
+        ]);
+
         $start = Carbon::create($request->fecha);
         $last = Carbon::create($request->fecha_fin);
         $cant_dia = $start->diffInDays($last);
@@ -67,6 +72,6 @@ class PuestoPagoController extends Controller
 
         $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia + 1;
 
-        return redirect()->route('home')->with('status', "Pagaste $cant_dias día(s) con éxito - número de recibo  $request->num_recibo ");
+        return redirect()->route('home')->with('status', "Pago exitoso desde $request->fecha hasta $request->fecha_fin - Suma $cant_dias día(s) más pagados - número de recibo  $request->num_recibo");
     }
 }

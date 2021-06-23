@@ -46,30 +46,38 @@ class PuestoServicioController extends Controller
         // dd(Carbon::now()->endOfMonth()->addMonth($cant_dia)->format('m'));
         // dd(Carbon::create($request->fecha)->addMonths(4)->format('m'));
         // dd(Carbon::create($request->fecha)->startOfMonth()->endOfMonth()->toDateString());
+        $request->validate([
+            'fecha' => 'required|date|date_format:Y-m-d|before:fecha_fin',
+            'fecha_fin' => 'required|date|date_format:Y-m-d|after:fecha',
+        ]);
+
         $start = Carbon::create($request->fecha);
         $last = Carbon::create($request->fecha_fin);
         $cant_dia = $start->diffInMonths($last);
-        // dd($cant_dia + 1);
+        // dd($cant_dia);
 
         for ($i=1; $i <= $cant_dia; $i++) {
             $now = Carbon::create($request->fecha);
             $data = Pago::create([
                 'fecha' => date("Y-m-t", strtotime($now->startOfMonth()->addMonth($i)->subSeconds(1)->toDateTimeString())),
                 'num_recibo' => $request->num_recibo,
-                'cant_dia' => $cant_dia == 0 ? $cant_dia + 1 : $cant_dia,
+                'cant_dia' => $cant_dia,
                 'monto_agua' => $request->monto_agua,
                 'puesto_id' => $puesto->id,
                 'tipo_id' => $request->tipo_id,
             ]);
         }
 
-        Talonario::where('tipo', 1)->update([
-            'num_inicio_correlativo' => request()->num_recibo
-        ]);
+        if ($cant_dia > 0) {
+            Talonario::where('tipo', 1)->update([
+                'num_inicio_correlativo' => request()->num_recibo
+            ]);
+        }
 
-        $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
 
-        return redirect()->route('home')->with('status', "Pagaste $cant_dias mes(es) con éxito - número de recibo  $request->num_recibo ");
+        // $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
+
+        return redirect()->route('home')->with('status', "Pago exitoso desde $request->fecha hasta $request->fecha_fin - Suma $cant_dia mes(es) más pagados - número de recibo  $request->num_recibo ");
     }
 
     /** Aquí para deudas **/
@@ -81,6 +89,11 @@ class PuestoServicioController extends Controller
 
     public function save(PuestoServicioDeudaRequest $request, Puesto $puesto)
     {
+        $request->validate([
+            'fecha' => 'required|date|date_format:Y-m-d|before:fecha_fin',
+            'fecha_fin' => 'required|date|date_format:Y-m-d|after:fecha',
+        ]);
+
         $start = Carbon::create($request->fecha);
         $last = Carbon::create($request->fecha_fin);
         $cant_dia = $start->diffInMonths($last);
@@ -97,7 +110,7 @@ class PuestoServicioController extends Controller
             ]);
         }
 
-        $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
+        // $cant_dias = $cant_dia == 0 ? $cant_dia + 1 : $cant_dia;
 
         // $data = Deuda::create([
         //     'fecha' => $request->fecha,
@@ -107,6 +120,6 @@ class PuestoServicioController extends Controller
         //     'tipo_id' => $request->tipo_id,
         // ]);
 
-        return redirect()->route('home')->with('status', "Registro exitoso - $cant_dias mes(es) más sin pagar.");
+        return redirect()->route('home')->with('status', "Registro exitoso desde $request->fecha hasta $request->fecha_fin - Suma $cant_dia mes(es) más sin pagar.");
     }
 }

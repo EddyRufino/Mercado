@@ -107,7 +107,7 @@ class SearchDeudaSisaPersonal extends Controller
         }
 
         // return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
-        return redirect()->back()->with('status', "Se registraron $dias pago(s) correctamente.");
+        return redirect()->back()->with('status', "Pago exitoso desde $request->dateStart hasta $request->dateLast - Suma $dias pagos más - número de recibo  $request->num_recibo");
     }
 
     public function destroy(Request $request)

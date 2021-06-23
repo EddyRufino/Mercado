@@ -32,34 +32,59 @@
                         <form id="myform" action="{{ route('deuda.personal') }}" class="form-inline">
                             @csrf
                             <input type="hidden" name="puesto_id" value="{{ $puesto->id }}">
-                            <div class="input-group input-group-md">
-                                <input type="date" id="start" name="fecha_last" class="form-control"
-                                        value="<?php echo date("Y-m-d"); ?>"
-                                        min="2016-01-01" max="2030-12-31" required
-                                >
-                                <select name="tipo" class="form-control" required>
-                                    <option value="">Selecciona</option>
-                                    <option value="1">Pagar Sisa</option>
-                                    <option value="2">Pagar Agua</option>
-                                </select>
-                                <input type="date" id="start" name="dateStart" class="form-control"
-                                    value="<?php echo date("Y-m-d"); ?>"
-                                    min="2018-01-01" max="2030-12-31"
-                                    required
-                                >
+                            <div class="row d-flex justify-content-center">
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="num_recibo" class="font-weight-normal text-dark">Fecha</label>
+                                    <input type="date" id="start" name="fecha_last" class="form-control"
+                                            value="<?php echo date("Y-m-d"); ?>"
+                                            min="2016-01-01" max="2030-12-31" required
+                                    >
+                                </div>
+                            </div>
 
-                                <input type="date" id="last" name="dateLast" class="form-control"
-                                    value="<?php echo date("Y-m-d"); ?>"
-                                    min="2018-01-01" max="2030-12-31"
-                                    required
-                                >
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="num_recibo" class="font-weight-normal text-dark">Pago</label>
+                                    <select name="tipo" class="form-control" required>
+                                        <option value="">Selecciona</option>
+                                        <option value="1">Pagar Sisa</option>
+                                        <option value="2">Pagar Agua</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="num_recibo" class="font-weight-normal text-dark">Desde</label>
+                                    <input type="date" id="start" name="dateStart" class="form-control"
+                                        value="<?php echo date("Y-m-d"); ?>"
+                                        min="2018-01-01" max="2030-12-31"
+                                        required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-4">
+                                    <label for="num_recibo" class="font-weight-normal text-dark">Hasta</label>
+                                    <input type="date" id="last" name="dateLast" class="form-control"
+                                        value="<?php echo date("Y-m-d"); ?>"
+                                        min="2018-01-01" max="2030-12-31"
+                                        required
+                                    >
+                                </div>
+                            </div>
 
                                 <input id="num_recibo" type="hidden" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
 
-                                <div class="input-group-append">
-                                  <button class="btn btn-navbar bg-primary" type="submit" onclick="mostrarAll(event)">
-                                    <i class="fas fa-save"></i>
-                                  </button>
+                                <div class="form-group row">
+                                    <div class="col-md-2 mt-4">
+                                      <button class="btn btn-navbar bg-primary" type="submit" onclick="mostrarAll(event)">
+                                        <i class="fas fa-save"></i>
+                                      </button>
+
+                                    </div>
                                 </div>
                           </div>
                         </form>
@@ -286,7 +311,7 @@
                                                 </span>
 
 
-{{--                                     <button class="btn btn-xs btn-link p-0 m-0"
+                                    <button class="btn btn-xs btn-link p-0 m-0"
                                         title="Pagar Deuda"
                                         onclick="javascript:showModalAgua();"
                                     >
@@ -323,6 +348,22 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="form-group row">
+                                                    <label for="fecha_last" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
+
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="start" name="fecha_last" class="form-control @error('fecha_last') is-invalid @enderror"
+                                                               value="<?php echo date("Y-m-d"); ?>"
+                                                               min="2016-01-01" max="2030-12-31" required >
+
+                                                        @error('fecha_last')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group row mb-0">
                                                     <div class="col-md-8 offset-md-4 mt-2 d-flex">
                                                         <button type="submit"
@@ -341,11 +382,11 @@
 
 
                                         </div>
-                                    </div> --}}
+                                    </div>
 
 
 
-                                              @auth
+{{--                                               @auth
                                                 @if (auth()->user()->hasRoles(['admin', 'cobrador']))
 
                                                 <form action="{{ route('puestos.deudas.destroy', ['puesto' => $deuda->puesto->id, 'deuda' => $deuda->id]) }}"
@@ -365,7 +406,7 @@
                                                 </form>
 
                                                 @endif
-                                              @endauth
+                                              @endauth --}}
                                             </div>
                                         </div>
                                     </div>

@@ -29,14 +29,14 @@
                 >
                     <span id="headingTwo">Reporte Pagos</span>
                 </div>
-                <div class="btn btn-info font-weight-bold d-inline"
+{{--                 <div class="btn btn-info font-weight-bold d-inline"
                     data-toggle="collapse"
                     data-target="#collapseThree"
                     aria-expanded="true"
                     aria-controls="collapseThree"
                 >
                     <span id="headingThree">Reporte Pago Anticipados</span>
-                </div>
+                </div> --}}
                 <div class="btn btn-info font-weight-bold d-inline"
                     data-toggle="collapse"
                     data-target="#collapseFive"
@@ -74,7 +74,7 @@
                         ])
                 </div>
             </div>
-            <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
+{{--             <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [
                             'title' => 'Pagos Anticipados - Generar Reporte',
@@ -82,7 +82,7 @@
                             'link' => 'reporte.sisa'
                         ])
                 </div>
-            </div>
+            </div> --}}
             <div id="collapseFive" class="collapse " aria-labelledby="headingFive" data-parent="#accordionExample">
                 <div class="card-body">
                     @include('partials.search-reporte', [

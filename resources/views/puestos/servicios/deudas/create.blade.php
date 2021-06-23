@@ -35,7 +35,7 @@
 
                                 <div class="col-md-6">
                                     <input type="date" id="start" name="fecha_fin" class="form-control @error('fecha_fin') is-invalid @enderror"
-                                           value="<?php echo date("Y-m-d"); ?>"
+                                           value="<?php echo date("Y-m-d", strtotime('+1 Month')); ?>"
                                            min="2016-01-01" max="2030-12-31" required >
 
                                     @error('fecha_fin')
