@@ -18,9 +18,19 @@ class AutomaticDeudaController extends Controller
 
     public function store(Request $request)
     {
+        // $puestos = Puesto::whereDoesntHave('pagos', function (Builder $query) use ($request) {
+        //     $query->whereDate('fecha', $request->fecha)->whereNull('monto_agua');
+        // })->get();
+
         $puestos = Puesto::whereDoesntHave('pagos', function (Builder $query) use ($request) {
             $query->whereDate('fecha', $request->fecha)->whereNull('monto_agua');
-        })->get();
+        })
+        ->whereDoesntHave('deudas', function (Builder $query) use ($request) {
+            $query->whereDate('fecha', $request->fecha)->whereNull('monto_agua');
+        })
+        ->get();
+
+        // dd($puestos);
 
         $puestos->each(function ($item) use ($request) {
             // SISA
@@ -48,7 +58,15 @@ class AutomaticDeudaController extends Controller
             $query->whereYear('fecha', $year)
                 ->whereMonth('fecha', $month)
                 ->whereNull('monto_sisa');
-        })->get();
+        })
+        ->whereDoesntHave('deudas', function (Builder $query) use ($year, $month) {
+            $query->whereYear('fecha', $year)
+                ->whereMonth('fecha', $month)
+                ->whereNull('monto_sisa');
+        })
+        ->get();
+
+        // dd($puestos);
 
         $puestos->each(function ($item) use ($request) {
             // AGUA
