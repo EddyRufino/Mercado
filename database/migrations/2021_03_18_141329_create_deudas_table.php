@@ -15,7 +15,7 @@ class CreateDeudasTable extends Migration
     {
         Schema::create('deudas', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
+            $table->datetime('fecha');
             $table->string('num_operacion')->nullable();
             $table->string('monto_remodelacion')->nullable();
             $table->string('monto_constancia')->nullable();

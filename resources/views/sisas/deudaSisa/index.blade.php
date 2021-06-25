@@ -108,7 +108,7 @@
                         <tbody>
                             @forelse ($deudas as $deuda)
                                 <tr>
-                                    <td>{{ $deuda->fecha }}</td>
+                                    <td>{{ Carbon\Carbon::parse($deuda->fecha)->format('Y-m-d') }}</td>
 
                                     @if ($deuda->monto_sisa)
                                         <td>S/. {{ $deuda->monto_sisa }}</td>

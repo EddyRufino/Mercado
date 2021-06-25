@@ -35,7 +35,7 @@
                                 <div class="col-md-6">
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
                                            value="<?php echo date("Y-m-d"); ?>"
-                                           min="2018-01-01" max="2030-12-31" required>
+                                           min="2016-01-01" max="2030-12-31" required>
 
                                     @error('fecha')
                                         <span class="invalid-feedback" role="alert">

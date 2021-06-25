@@ -14,7 +14,10 @@ class SearchDeudaSisaPersonal extends Controller
 {
     public function search(Request $request, Puesto $puesto)
     {
-        $now = Carbon::now();
+        request()->validate(['tipo' => 'required']);
+
+        // $now = Carbon::now();
+        $now = $request->fecha_last; // Quitalo cuando hayan pasado su data
 
         $deudas = collect([]);
         $aguaDeudas = collect([]);
@@ -104,7 +107,7 @@ class SearchDeudaSisaPersonal extends Controller
         }
 
         // return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
-        return redirect()->back()->with('status', 'Se registraron los pagos correctamente');
+        return redirect()->back()->with('status', "Pago exitoso desde $request->dateStart hasta $request->dateLast - Suma $dias pagos más - número de recibo  $request->num_recibo");
     }
 
     public function destroy(Request $request)

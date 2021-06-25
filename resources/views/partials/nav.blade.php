@@ -298,12 +298,12 @@
                                 <p>Listar Deuda Sisa</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+{{--                         <li class="nav-item">
                             <a href="{{ route('pagoanticipado.sisa.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Listar Pago Anticipado</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

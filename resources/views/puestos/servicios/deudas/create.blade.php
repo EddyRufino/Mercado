@@ -15,14 +15,30 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha</label>
+                                <label for="fecha" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha Hoy</label>
 
                                 <div class="col-md-6">
                                     <input type="date" id="start" name="fecha" class="form-control @error('fecha') is-invalid @enderror"
                                            value="<?php echo date("Y-m-d"); ?>"
-                                           min="2018-01-01" max="2030-12-31" required>
+                                           min="2016-01-01" max="2030-12-31" required>
 
                                     @error('fecha')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="fecha_fin" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">Fecha Hasta</label>
+
+                                <div class="col-md-6">
+                                    <input type="date" id="start" name="fecha_fin" class="form-control @error('fecha_fin') is-invalid @enderror"
+                                           value="<?php echo date("Y-m-d", strtotime('+1 Month')); ?>"
+                                           min="2016-01-01" max="2030-12-31" required >
+
+                                    @error('fecha_fin')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

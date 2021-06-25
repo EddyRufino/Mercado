@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-6">
+{{--             <div class="col-lg-3 col-6">
 
                 <div class="small-box bg-warning" style="height: 6rem;">
                     <div class="inner">
@@ -31,7 +31,7 @@
                         <i class="fas fa-chart-bar"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-lg-3 col-6">
 

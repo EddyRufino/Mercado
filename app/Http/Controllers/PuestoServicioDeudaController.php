@@ -31,6 +31,6 @@ class PuestoServicioDeudaController extends Controller
             'tipo_id' => $request->tipo_id,
         ]);
 
-        return redirect()->route('home')->with('status', "El pago fue procesado con éxito - número de recibo  $request->num_recibo ");
+        return redirect()->route('home')->with('status', "La deuda fue procesada con éxito");
     }
 }

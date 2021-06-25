@@ -50,16 +50,16 @@ class dashboardChartController extends Controller
         $payDay = $remodelacion + $constancia + $sisa + $agua;
 
         // Count Pays Anticipado by day
-        $anticipados = PagoAnticipado::select('monto_agua_anticipada', 'monto_sisa_anticipada')
-                    ->whereYear('fecha', today()->format('Y'))
-                    ->whereMonth('fecha', today()->format('m'))
-                    ->whereDay('fecha', today()->format('d'))
-                    ->get();
+        // $anticipados = PagoAnticipado::select('monto_agua_anticipada', 'monto_sisa_anticipada')
+        //             ->whereYear('fecha', today()->format('Y'))
+        //             ->whereMonth('fecha', today()->format('m'))
+        //             ->whereDay('fecha', today()->format('d'))
+        //             ->get();
 
-        $sisaAnticipado = $anticipados->pluck('monto_sisa_anticipada')->sum();
-        $aguaAnticipado = $anticipados->pluck('monto_agua_anticipada')->sum();
+        // $sisaAnticipado = $anticipados->pluck('monto_sisa_anticipada')->sum();
+        // $aguaAnticipado = $anticipados->pluck('monto_agua_anticipada')->sum();
 
-        $payAnticipado = $sisaAnticipado + $aguaAnticipado;
+        // $payAnticipado = $sisaAnticipado + $aguaAnticipado;
 
         // Count Debts by day
         $deudas = Deuda::select('monto_agua', 'monto_sisa')
@@ -75,6 +75,6 @@ class dashboardChartController extends Controller
 
         // dd($payDeuda);
 
-        return view('dashboard', compact('chart', 'payDay', 'payAnticipado', 'deuda'));
+        return view('dashboard', compact('chart', 'payDay', 'deuda'));
     }
 }

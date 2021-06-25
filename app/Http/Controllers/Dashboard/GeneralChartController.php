@@ -16,7 +16,7 @@ class GeneralChartController extends Controller
     public function index(Request $request)
     {
         $sisas = Pago::query();
-        $sisaAnticipados = PagoAnticipado::query();
+        // $sisaAnticipados = PagoAnticipado::query();
         $banios = Banio::query();
         $promos = Promocion::query();
         $deudas = Deuda::query();
@@ -57,23 +57,24 @@ class GeneralChartController extends Controller
                     ->whereMonth('fecha', today()->format('m'))
                     ->get();
 
-        $paysAnticipado = $sisaAnticipados->select( 'monto_agua_anticipada', 'monto_sisa_anticipada')
-                    ->whereYear('fecha', today()->format('Y'))
-                    ->whereMonth('fecha', today()->format('m'))
-                    ->get();
+        // $paysAnticipado = $sisaAnticipados->select( 'monto_agua_anticipada', 'monto_sisa_anticipada')
+        //             ->whereYear('fecha', today()->format('Y'))
+        //             ->whereMonth('fecha', today()->format('m'))
+        //             ->get();
 
         $remodelacion = $pays->pluck('monto_remodelacion')->sum();
         $constancia = $pays->pluck('monto_constancia')->sum();
         $sisa = $pays->pluck('monto_sisa')->sum();
         $agua = $pays->pluck('monto_agua')->sum();
 
-        $sisaAnticipada = $paysAnticipado->pluck('monto_sisa_anticipada')->sum();
-        $aguaAnticipada = $paysAnticipado->pluck('monto_agua_anticipada')->sum();
+        // $sisaAnticipada = $paysAnticipado->pluck('monto_sisa_anticipada')->sum();
+        // $aguaAnticipada = $paysAnticipado->pluck('monto_agua_anticipada')->sum();
 
         $payDay = $remodelacion + $constancia + $sisa + $agua;
-        $payDayAnticipado = $sisaAnticipada + $aguaAnticipada;
+        // $payDayAnticipado = $sisaAnticipada + $aguaAnticipada;
 
-        $payMonthSisa = $payDay + $payDayAnticipado;
+        // $payMonthSisa = $payDay + $payDayAnticipado; // Descomenta si quieres add pay anticipados.
+        $payMonthSisa = $payDay; // Comentala si quieres agregar el pago anticipado.
 
         // Count Baños Pays
         $paysBanios = $banios->select('monto_taza', 'monto_ducha')
