@@ -14,7 +14,12 @@ class SearchDeudaSisaPersonal extends Controller
 {
     public function search(Request $request, Puesto $puesto)
     {
-        request()->validate(['tipo' => 'required']);
+        // request()->validate(['tipo' => 'required']);
+        $request->validate([
+            'tipo' => 'required',
+            'dateStart' => 'required|date',
+            'dateLast' => 'required|date|date_format:Y-m-d|after_or_equal:dateStart',
+        ]);
 
         // $now = Carbon::now();
         $now = $request->fecha_last; // Quitalo cuando hayan pasado su data
