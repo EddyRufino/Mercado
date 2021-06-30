@@ -13,33 +13,33 @@
         <table class="table mt-2">
             <thead>
                 <tr>
-                    <th scope="col">Conductor</th>
                     <th scope="col">Fecha Pago</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Conductor</th>
                     <th scope="col">Fecha Concepto Pago</th>
                     <th scope="col">Número Recibo</th>
                     <th scope="col">Número Operación</th>
-                    <th scope="col">Puesto</th>
                     <th scope="col">Monto Sisa</th>
                     <th scope="col">Monto Agua</th>
                     <th scope="col">Monto Remodelación</th>
                     <th scope="col">Monto Constancia</th>
-                    <th scope="col">Ubicación</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($pagos as $pago)
                     <tr>
-                        <td>{{ $pago->puesto->user->name }} {{ $pago->puesto->user->apellido }}</td>
                         <td>{{ $pago->fecha }}</td>
+                        <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
+                        <td>{{ $pago->puesto->ubicacion->nombre }}</td>
+                        <td>{{ $pago->puesto->user->name }} {{ $pago->puesto->user->apellido }}</td>
                         <td>{{ $pago->fecha_deuda }}</td>
                         <td>{{ $pago->num_recibo }}</td>
                         <td>{{ $pago->num_operacion }}</td>
-                        <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                        <td>{{ $pago->monto_sisa }}</td>
+                        <td>{{ $pago->cant_dia * $pago->monto_sisa }}</td>
                         <td>{{ $pago->monto_agua }}</td>
                         <td>{{ $pago->monto_remodelacion }}</td>
                         <td>{{ $pago->monto_constancia }}</td>
-                        <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                     </tr>
                 @endforeach
                     <tr><th></th><td></td></tr>
