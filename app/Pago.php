@@ -10,6 +10,8 @@ class Pago extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['puesto'];
+
     public function puesto()
     {
         return $this->belongsTo(Puesto::class);

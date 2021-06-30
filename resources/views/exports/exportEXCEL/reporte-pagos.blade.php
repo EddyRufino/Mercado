@@ -28,7 +28,7 @@
             </thead>
             <tbody>
                 @foreach ($pagos as $pago)
-                    <tr>
+                     <tr>
                         <td>{{ Carbon\Carbon::create($pago->fecha)->format('Y-m-d') }}</td>
                         <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
                         <td>{{ strtoupper($pago->puesto->ubicacion->nombre) }}</td>
