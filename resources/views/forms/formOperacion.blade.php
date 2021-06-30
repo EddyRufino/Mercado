@@ -4,8 +4,8 @@
     <div class="col-md-6">
         <select class="form-control selectpicker" name="fecha" required data-live-search="true">
             @foreach ($pagos as $pago)
-                <option class="" value="{{ $pago->fecha }}">
-                    {{ $pago->fecha }}
+                <option class="" value="{{ Carbon\Carbon::create($pago->fecha)->format('Y-m-d') }}">
+                    {{ Carbon\Carbon::create($pago->fecha)->format('Y-m-d') }}
                 </option>
             @endforeach
         </select>

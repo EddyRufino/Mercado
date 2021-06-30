@@ -13,50 +13,50 @@
         <table class="table mt-2">
             <thead>
                 <tr>
-                    <th scope="col">Conductor</th>
                     <th scope="col">Fecha Pago</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Conductor</th>
                     <th scope="col">Fecha Concepto Pago</th>
                     <th scope="col">Número Recibo</th>
                     <th scope="col">Número Operación</th>
-                    <th scope="col">Puesto</th>
                     <th scope="col">Monto Sisa</th>
                     <th scope="col">Monto Agua</th>
                     <th scope="col">Monto Remodelación</th>
                     <th scope="col">Monto Constancia</th>
-                    <th scope="col">Ubicación</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($pagos as $pago)
                     <tr>
-                        <td>{{ $pago->puesto->user->name }} {{ $pago->puesto->user->apellido }}</td>
-                        <td>{{ $pago->fecha }}</td>
-                        <td>{{ $pago->fecha_deuda }}</td>
+                        <td>{{ Carbon\Carbon::create($pago->fecha)->format('Y-m-d') }}</td>
+                        <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
+                        <td>{{ strtoupper($pago->puesto->ubicacion->nombre) }}</td>
+                        <td>{{ strtoupper($pago->puesto->user->name) }} {{ strtoupper($pago->puesto->user->apellido) }}</td>
+                        <td>PAGO {{ $pago->fecha_deuda }} HASTA {{ Carbon\Carbon::create($pago->fecha_deuda)->addDays($pago->cant_dia)->subDay(1)->format('Y-m-d') }}</td>
                         <td>{{ $pago->num_recibo }}</td>
                         <td>{{ $pago->num_operacion }}</td>
-                        <td>{{ $pago->puesto->lists->pluck('num_puesto')->implode(', ') }}</td>
-                        <td>{{ $pago->monto_sisa }}</td>
+                        <td>S/. {{ $pago->cant_dia * $pago->monto_sisa }}</td>
                         <td>{{ $pago->monto_agua }}</td>
                         <td>{{ $pago->monto_remodelacion }}</td>
                         <td>{{ $pago->monto_constancia }}</td>
-                        <td>{{ $pago->puesto->ubicacion->nombre }}</td>
                     </tr>
                 @endforeach
                     <tr><th></th><td></td></tr>
                     <tr>
-                        <th>Monto Pago Sisa:</th>
+                        <th>MONTO PAGO SISA:</th>
                         <td>S/. {{ $pagoSisa }}</td>
                     </tr>
                     <tr>
-                        <th>Monto Pago Agua:</th>
+                        <th>MONTO PAGO AGUA:</th>
                         <td>S/. {{ $pagoAgua }}</td>
                     </tr>
                     <tr>
-                        <th>Monto Pago Remodelación:</th>
+                        <th>MONTO PAGO REMODELACIÓN:</th>
                         <td>S/. {{ $pagoRemodelacion }}</td>
                     </tr>
                     <tr>
-                        <th>Monto Pago Constancia:</th>
+                        <th>MONTO PAGO CONSTANCIA:</th>
                         <td>S/. {{ $pagoConstancia }}</td>
                     </tr>
             </tbody>

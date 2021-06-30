@@ -25,21 +25,23 @@ class PagosRepostQueryExport implements FromView
     {
         $wfechaw = "{$this->year['year']}-{$this->date['search']}-{$this->day['day']}";
 
-        $pagos = Pago::with('puesto')->whereDate('fecha', $wfechaw)
+        $pagosList = Pago::with('puesto')->whereDate('fecha', $wfechaw)
                                     ->orderBy('fecha', 'ASC')
                                     ->get();
 
-        if (count($pagos) <= 0) {
-            $pagos = Pago::with('puesto')->whereYear('fecha', $this->year)
+        if (count($pagosList) <= 0) {
+            $pagosList = Pago::with('puesto')->whereYear('fecha', $this->year)
                                         ->whereMonth('fecha', $this->date)
                                         ->orderBy('fecha', 'ASC')
                                         ->get();
         }
 
-        $pagoSisa = $pagos->sum('monto_sisa');
-        $pagoAgua = $pagos->sum('monto_agua');
-        $pagoRemodelacion = $pagos->sum('monto_remodelacion');
-        $pagoConstancia = $pagos->sum('monto_constancia');
+        $pagos = $pagosList->unique('num_recibo');
+
+        $pagoSisa = $pagosList->sum('monto_sisa');
+        $pagoAgua = $pagosList->sum('monto_agua');
+        $pagoRemodelacion = $pagosList->sum('monto_remodelacion');
+        $pagoConstancia = $pagosList->sum('monto_constancia');
 
         return view('exports.exportEXCEL.reporte-pagos', compact('pagos', 'pagoSisa', 'pagoAgua', 'pagoRemodelacion', 'pagoConstancia'));
     }
