@@ -50,6 +50,7 @@
                                         <option value="">Selecciona</option>
                                         <option value="1">Pagar Sisa</option>
                                         <option value="2">Pagar Agua</option>
+                                        <option value="3">Anular N.</option>
                                     </select>
                                 </div>
                             </div>
@@ -197,7 +198,7 @@
                                                     <label for="num_recibo" class="col-md-4 col-form-label text-md-right font-weight-normal text-dark">N. Recibo</label>
 
                                                     <div class="col-md-6">
-                                                        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus readonly>
+                                                        <input id="num_recibo" type="text" class="form-control @error('num_recibo') is-invalid @enderror" name="num_recibo" value="{{ $tazaInicio == $tazaFin ? 'Actualiza Talonario' : $tazaInicio + 1 }}" required autocomplete="num_recibo" autofocus >
 
                                                         @error('num_recibo')
                                                             <span class="invalid-feedback" role="alert">

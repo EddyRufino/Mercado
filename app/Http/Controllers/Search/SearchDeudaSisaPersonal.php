@@ -111,6 +111,15 @@ class SearchDeudaSisaPersonal extends Controller
             ]);
         }
 
+        // Aumentar 1 al número correlativo
+        if ($request->tipo == '3') {
+            Talonario::where('tipo', 1)->update([
+                'num_inicio_correlativo' => request()->num_recibo
+            ]);
+
+            return redirect()->back()->with('status', "Se anulo el número de recibo!");
+        }
+
         // return view('puestos.deudas.index-search-deudas', compact('deudas', 'aguaDeudas', 'tazaInicio', 'tazaFin'));
         return redirect()->back()->with('status', "Pago exitoso desde $request->dateStart hasta $request->dateLast - Suma $dias pagos más - número de recibo  $request->num_recibo");
     }
