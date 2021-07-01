@@ -36,6 +36,8 @@ class PagosRepostQueryExport implements FromView
                                         ->get();
         }
 
+        // dd($pagosList);
+
         $pagos = $pagosList->unique('num_recibo');
 
         $pagoSisa = $pagosList->sum('monto_sisa');
