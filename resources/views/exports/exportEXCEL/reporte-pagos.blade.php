@@ -92,6 +92,10 @@
                         <th>MONTO PAGO CONSTANCIA:</th>
                         <td>S/. {{ $pagoConstancia }}</td>
                     </tr>
+                    <tr>
+                        <th>MONTO TOTAL:</th>
+                        <td>S/. {{ $montoTotal }}</td>
+                    </tr>
             </tbody>
         </table>
     </div>

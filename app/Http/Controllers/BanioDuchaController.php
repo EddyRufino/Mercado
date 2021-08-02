@@ -18,6 +18,7 @@ class BanioDuchaController extends Controller
     {
         $duchaInicio = Talonario::where('tipo', 3)->pluck('num_inicio_correlativo')->implode(' ');
         $duchaFin = Talonario::where('tipo', 3)->pluck('num_fin')->implode(' ');
+        // dd($duchaFin);
 
         return view('banios.duchas.create', compact('duchaInicio', 'duchaFin'));
     }
@@ -25,7 +26,7 @@ class BanioDuchaController extends Controller
     public function store(BanioRequest $request)
     {
 
-        Talonario::where('id', 2)->update([
+        Talonario::where('id', 3)->update([
             'num_inicio_correlativo' => $request->num_correlativo
         ]);
 
