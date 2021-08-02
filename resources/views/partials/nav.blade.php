@@ -189,7 +189,7 @@
                 @if (auth()->user()->hasRoles(['admin', 'secretaria']))
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-ad"></i>
+                        <i class="nav-icon fas fa-gift"></i>
                         <p>
                             Promociones
                             <i class="right fas fa-angle-left"></i>

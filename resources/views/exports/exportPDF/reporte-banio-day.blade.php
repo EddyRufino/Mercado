@@ -70,7 +70,7 @@
         <h4 class="font-color">LIQUIDACION DE COBRANZA DE SERVICIOS HIGIENICOS</h4>
 
         <span >DIA {{today()->format('d')}} DE {{today()->format('m')}} del {{today()->format('Y')}}</span><br>
-        <span>N. DE OPERACION: {{ $num_operacion->implode(' ') }}</span>
+        <span>N. DE OPERACION: {{ $num_operacion }}</span>
 
 
         <table class="table mt">

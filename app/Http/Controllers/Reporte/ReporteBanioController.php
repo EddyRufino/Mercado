@@ -40,12 +40,13 @@ class ReporteBanioController extends Controller
 
         $total = $tazaTotal + $duchaTotal;
 
-        $num_operacion = $taza->pluck('num_operacion');
-        // dd($ducha->sum('monto_ducha'));
+        $num_operacion = $taza->pluck('num_operacion')->first();
+        // dd($num_operacion);
 
         $pdf = PDF::loadView('exports.exportPDF.reporte-banio-day', compact('desdeTaza', 'desdeDucha', 'hastaTaza', 'hastaDucha', 'tazaCount', 'duchaCount', 'tazaTotal', 'duchaTotal', 'total', 'num_operacion'));
 
-        return $pdf->stream();
+        // return $pdf->stream();
+        return $pdf->download('baño-dia.xlsx');
     }
 
     public function month(Request $request)

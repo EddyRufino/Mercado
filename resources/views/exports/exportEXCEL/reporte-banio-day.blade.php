@@ -32,7 +32,13 @@
                     <tr>
                         <th>Monto Pago Total:</th>
                         <td>{{ $total }}</td>
+                    </tr>
+                    <tr>
+                        <th>Monto Total Taza:</th>
                         <td>{{ $pagoTaza }}</td>
+                    </tr>
+                    <tr>
+                        <th>Monto Total Ducha:</th>
                         <td>{{ $pagoDucha }}</td>
                     </tr>
             </tbody>
